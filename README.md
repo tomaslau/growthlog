@@ -1,2 +1,2 @@
-# growthlog
-Growthlog
+# Growthlog
+Welcome to 🌵 Growthlog!
