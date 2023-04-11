@@ -5,6 +5,15 @@ Welcome to 🌵 Growthlog!
 
 [Indiebrands](https://indiebrands.io/): Original names for your startup. Logo and domain included.
 
+### Questions helping decision making
+1. will it give me more options?
+2. will it make more time?
+3. will it make me more money?
+4. will it make me happier?
+5. will it make me healthier?
+6. will I have to maintain it?
+7. can I combine it with other things? e.g. hike=socialize + exercise
+
 ### Web, UI, UX inspiration
 https://godly.website/
 Dribble
