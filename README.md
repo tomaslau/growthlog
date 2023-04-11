@@ -46,6 +46,12 @@ https://www.opensourcealternative.to/
 gaps.com
 detailed.com
 
+### Logos
+
+https://logolivery.com/
+Logotouse.com 
+
+
 
 ### SaaS Growth Case Studies
 
