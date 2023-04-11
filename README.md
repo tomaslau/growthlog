@@ -17,6 +17,12 @@ https://figr.design/
 ### Open source
 https://www.opensourcealternative.to/
 
+### SEO
+
+gaps.com
+detailed.com
+
+
 ### SaaS Growth Case Studies
 
 Shopify: https://foundationinc.co/lab/the-growth-toolkit/
