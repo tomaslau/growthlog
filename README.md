@@ -14,6 +14,13 @@ AwwwArds
 Landingfolio
 https://figr.design/
 
+### Waitlist email software
+
+https://www.waitlist.email/
+https://getwaitlist.com/
+viral-loops
+
+
 ### Open source
 https://www.opensourcealternative.to/
 
