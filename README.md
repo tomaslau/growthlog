@@ -14,6 +14,13 @@ AwwwArds
 Landingfolio
 https://figr.design/
 
+### Newsletters sponsorships
+swapstack
+https://postapex.com/
+sponsorthisnewsletter
+
+
+
 ### Waitlist email software
 
 https://www.waitlist.email/
