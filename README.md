@@ -16,3 +16,10 @@ https://figr.design/
 
 ### Open source
 https://www.opensourcealternative.to/
+
+### SaaS Growth Case Studies
+
+Shopify: https://foundationinc.co/lab/the-growth-toolkit/
+Canva: https://foundationinc.co/lab/canva-seo
+MasterClass: https://foundationinc.co/lab/masterclass-empire/
+Notion: https://foundationinc.co/lab/notion-strategy
