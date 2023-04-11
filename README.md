@@ -1,6 +1,21 @@
 # Growthlog
 Welcome to 🌵 Growthlog!
 
+### Courses
+growth.design
+seo blueprint by glen allsop
+CXL
+demand curve
+marketing examples
+foundation inc
+swipe files
+starterstory seo and email courses
+
+### Newsletters
+https://marketingexamples.com/newsletter
+the creative marketer
+
+
 ### Domains
 
 [Indiebrands](https://indiebrands.io/): Original names for your startup. Logo and domain included.
