@@ -13,6 +13,16 @@ Figma community
 AwwwArds
 Landingfolio
 https://figr.design/
+https://twitter.com/saasshots
+https://typefully.com/saasshots
+https://pagecollective.com/
+https://pageflows.com/
+https://www.saaspo.com
+
+https://pageflows.com/emails/
+https://refero.design/
+
+
 
 ### Newsletters sponsorships
 swapstack
