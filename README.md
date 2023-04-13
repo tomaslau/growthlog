@@ -76,6 +76,28 @@ https://logolivery.com/
 Logotouse.com 
 
 
+### Alicante stuff todo
+
+Here are some tours: https://www.getyourguide.co.uk/alicante-l414 
+
+quad bikes: https://en.yumping.com/quad-biking/alicante 
+
+Rafting: https://nomadaaventura.com/actividades/8-rafting.html 
+
+rafting: https://www.groupon.es/ofertas/alicante/descenso-de-rios--rafting- 
+
+
+
+Caves
+Santa pola faro
+Later amusement park
+
+Restaurants
+natsu ramen
+Madness
+Sale and pepe
+Infraganti
+ 
 
 ### SaaS Growth Case Studies
 
