@@ -105,3 +105,19 @@ Shopify: https://foundationinc.co/lab/the-growth-toolkit/
 Canva: https://foundationinc.co/lab/canva-seo
 MasterClass: https://foundationinc.co/lab/masterclass-empire/
 Notion: https://foundationinc.co/lab/notion-strategy
+
+### Programmatic SEO
+https://webflow.com/blog/marketers-guide-to-seo
+https://twitter.com/MackGrenfell/status/1514557363902205952
+https://www.preetamnath.com/programmatic-seo/grow-habit-tracker-app-case-study
+https://www.preetamnath.com/programmatic-seo
+Wiki Style Directory
+Sales Glossary by Reply
+https://reply.io/sales-glossary
+https://apna.co/sitemap
+https://mobile.twitter.com/hipreetam93/status/1367119661368627204
+https://www.preetamnath.com/programmatic-seo/grow-habit-tracker-app-case-study
+Niche site: https://www.mattressunboxed.co.uk/
+https://finmark.com/glossary/
+https://www.adamdurrant.co.uk/seo-glossary
+https://www.adamdurrant.co.uk/resources
