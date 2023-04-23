@@ -13,3 +13,5 @@
 [Programmatic SEO Generator](https://byword.ai/programmatic_seo) by Byword
 
 [Practical Programmatic](https://practicalprogrammatic.com/)
+
+[A practical guide to programmatic SEO](https://ian.is/programmatic-seo/) by Ian Nuttall
