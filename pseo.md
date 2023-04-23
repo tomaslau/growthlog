@@ -11,3 +11,5 @@
 [Mack's Causal Case Study](https://twitter.com/MackGrenfell/status/1514557363902205952)
 
 [Programmatic SEO Generator](https://byword.ai/programmatic_seo) by Byword
+
+[Practical Programmatic](https://practicalprogrammatic.com/)
