@@ -9,3 +9,5 @@
 [Phind: The AI search engine for developers](https://www.phind.com/)
 
 [Prompt Engineering Guide](https://www.promptingguide.ai/)
+
+[Cuppa: AI-Powered SEO Blog Post Generator](https://cuppa.sh/)
