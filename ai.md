@@ -11,3 +11,6 @@
 [Prompt Engineering Guide](https://www.promptingguide.ai/)
 
 [Cuppa: AI-Powered SEO Blog Post Generator](https://cuppa.sh/)
+
+[Snack Prompt](https://www.snackprompt.com/)
+- [CoderGPT =- CAN (“code anything now”)](https://www.snackprompt.com/prompt/codergpt-can-code-anything-now)
