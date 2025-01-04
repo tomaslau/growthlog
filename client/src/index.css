@@ -42,8 +42,17 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .linear-nav .flex {
+  header {
+    left: 1rem !important;
+    right: 1rem !important;
+  }
+
+  .flex {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  nav {
+    display: none;
   }
 }

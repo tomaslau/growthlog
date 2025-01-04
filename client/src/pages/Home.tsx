@@ -7,8 +7,8 @@ import { Logo } from "@/components/ui/logo";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="fixed top-0 left-0 right-0 h-14 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="flex h-14 items-center px-6 max-w-[1120px] mx-auto">
+      <header className="fixed top-4 left-24 right-24 h-14 border border-border/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-lg">
+        <div className="flex h-14 items-center px-6">
           <Link href="/" className="flex items-center gap-2">
             <Logo />
             <h1 className="text-[13px] font-semibold tracking-tight">Growthlog</h1>
@@ -28,7 +28,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <Link href="/login">
-              <Button variant="secondary" size="sm" className="login-button h-7 rounded px-3 text-[13px] font-medium">
+              <Button variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
                 Log in
                 <span className="ml-2 text-[11px] text-muted-foreground/70">L</span>
               </Button>
