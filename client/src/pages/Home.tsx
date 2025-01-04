@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Logo } from "@/components/ui/logo";
-import { Timer, TrendingUp, Layers, Lightbulb } from "lucide-react";
+import { Timer, TrendingUp, Layers, Lightbulb, ChevronRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { CraftledLogo, BestWritingLogo } from "@/components/logos";
@@ -160,6 +160,28 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+
+        <div className="pb-24">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground/80 mb-6">
+            <span>Task tracking and sprint planning</span>
+            <ChevronRight className="h-4 w-4" />
+          </div>
+
+          <div className="space-y-4 mb-12">
+            <h2 className="text-4xl font-bold tracking-tight">
+              Issue tracking<br />
+              you'll enjoy using
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-[600px]">
+              Optimized for speed and efficiency. Create tasks in seconds, discuss issues
+              in context, and breeze through your work in views tailored to you and your team.
+            </p>
+          </div>
+
+          <div className="bg-[#0A0A0A] rounded-lg p-8 min-h-[400px]">
+            {/* Task tracking UI will be implemented here */}
+          </div>
         </div>
       </main>
     </div>
