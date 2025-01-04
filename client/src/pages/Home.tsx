@@ -113,15 +113,13 @@ export default function Home() {
           <h2 className="text-2xl font-semibold mb-2">Powering experiences</h2>
           <p className="text-muted-foreground mb-12">from next-gen startups to enterprises</p>
 
-          <div className="max-w-[800px] mx-auto flex justify-center">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="flex justify-center"
-            >
-              <CraftledLogo className="text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex justify-center"
+          >
+            <CraftledLogo className="text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
+          </motion.div>
         </div>
 
         <div className="pb-24 space-y-12">
