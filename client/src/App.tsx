@@ -21,14 +21,14 @@ function App() {
       <PomodoroProvider>
         <Switch>
           <Route path="/" component={Landing} />
-          <Route>
+          <Route path="/dashboard/*">
             <div className="min-h-screen bg-background">
               <TopNav />
               <CommandPalette />
               <FloatingTimer />
               <main className="p-6">
                 <Switch>
-                  <Route path="/dashboard" component={Dashboard} />
+                  <Route path="/" component={Dashboard} />
                   <Route path="/tasks" component={TaskBoard} />
                   <Route path="/ideas" component={GrowthIdeas} />
                   <Route path="/ideas/:id" component={GrowthIdeaView} />
@@ -36,11 +36,11 @@ function App() {
                   <Route path="/achievements" component={Achievements} />
                   <Route path="/manifesto" component={Manifesto} />
                   <Route path="/metrics" component={SaasMetrics} />
-                  <Route path="/share/:token" component={SharedDashboard} />
                 </Switch>
               </main>
             </div>
           </Route>
+          <Route path="/share/:token" component={SharedDashboard} />
         </Switch>
       </PomodoroProvider>
     </ThemeProvider>
