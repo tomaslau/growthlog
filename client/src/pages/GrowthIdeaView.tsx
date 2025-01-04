@@ -2,34 +2,85 @@ import { useParams, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Calendar, Target, TrendingUp, Users } from "lucide-react";
+import { ArrowLeft, Calendar, Target, TrendingUp, CheckSquare } from "lucide-react";
 
 // Using the same ideas array from GrowthIdeas.tsx
 // In a real app, this would come from an API
 const ideas = [
   {
     id: 1,
-    title: "Cloneable Templates",
-    description: "Improve acquisition & activation with a template library",
-    icon: "📑",
-    category: "Product",
+    title: "Cold Email Campaign",
+    description: "Launch targeted cold email campaign for SaaS decision makers",
+    icon: "📧",
+    category: "Acquisition",
     difficulty: "Medium",
     impact: "High",
-    steps: [
-      "Research competitor template offerings",
-      "Define template categories and structure",
-      "Create initial set of templates",
-      "Set up template sharing infrastructure",
-      "Launch template marketplace"
+    tasks: [
+      {
+        title: "Research and create ICP list",
+        description: "Define ideal customer profile and create initial prospect list",
+        duration: 25
+      },
+      {
+        title: "Draft initial email template",
+        description: "Write and test initial email template variation",
+        duration: 25
+      },
+      {
+        title: "Set up email tracking system",
+        description: "Configure tracking pixels and link monitoring",
+        duration: 25
+      },
+      {
+        title: "Create follow-up sequence",
+        description: "Design multi-touch follow-up campaign",
+        duration: 25
+      }
     ],
     metrics: [
-      "Template adoption rate",
-      "User activation rate",
-      "Template conversion rate",
-      "User retention impact"
+      "Email Open Rate",
+      "Click-Through Rate",
+      "Meeting Booking Rate",
+      "Customer Acquisition Cost (CAC)"
     ]
   },
-  // ... other ideas remain the same
+  {
+    id: 2, 
+    title: "Product-Led Blog Strategy",
+    description: "Create high-impact blog content showcasing product solutions",
+    icon: "✍️",
+    category: "Acquisition",
+    difficulty: "Medium",
+    impact: "High",
+    tasks: [
+      {
+        title: "Research competitor blogs",
+        description: "Analyze top 3 competitor blog strategies",
+        duration: 25
+      },
+      {
+        title: "Create content calendar",
+        description: "Plan next month's product-led content",
+        duration: 25
+      },
+      {
+        title: "Write first article outline",
+        description: "Structure initial product use-case article",
+        duration: 25
+      },
+      {
+        title: "Set up analytics tracking",
+        description: "Configure content conversion tracking",
+        duration: 25
+      }
+    ],
+    metrics: [
+      "Organic Traffic Growth",
+      "Time on Page",
+      "Product Sign-up Rate",
+      "Content ROI"
+    ]
+  }
 ];
 
 export default function GrowthIdeaView() {
@@ -40,7 +91,7 @@ export default function GrowthIdeaView() {
     return (
       <div className="flex items-center justify-center h-[50vh]">
         <div className="text-center">
-          <h2 className="text-xl font-semibold mb-4">Idea not found</h2>
+          <h2 className="text-xl font-semibold mb-4">Growth idea not found</h2>
           <Link href="/ideas">
             <Button variant="outline">Back to Ideas</Button>
           </Link>
@@ -96,9 +147,11 @@ export default function GrowthIdeaView() {
           <CardContent className="pt-6">
             <div className="flex items-center gap-2 text-muted-foreground mb-2">
               <Calendar className="h-4 w-4" />
-              <h3 className="font-medium">Estimated Time</h3>
+              <h3 className="font-medium">Time Investment</h3>
             </div>
-            <Badge variant="outline">2-4 weeks</Badge>
+            <Badge variant="outline">
+              {idea.tasks.length * 25} minutes total
+            </Badge>
           </CardContent>
         </Card>
       </div>
@@ -106,14 +159,27 @@ export default function GrowthIdeaView() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardContent className="pt-6">
-            <h3 className="font-medium mb-4">Implementation Steps</h3>
-            <div className="space-y-2">
-              {idea.steps?.map((step, index) => (
-                <div key={index} className="flex items-start gap-2">
-                  <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs">
+            <h3 className="font-medium mb-4">Pomodoro Tasks (25 min each)</h3>
+            <div className="space-y-4">
+              {idea.tasks?.map((task, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs shrink-0">
                     {index + 1}
                   </div>
-                  <p className="flex-1 text-sm pt-1">{step}</p>
+                  <div>
+                    <p className="font-medium">{task.title}</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">
+                      {task.description}
+                    </p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <Badge variant="secondary" className="text-xs">
+                        {task.duration} min
+                      </Badge>
+                      <Badge variant="outline" className="text-xs">
+                        1 point
+                      </Badge>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -122,8 +188,8 @@ export default function GrowthIdeaView() {
 
         <Card>
           <CardContent className="pt-6">
-            <h3 className="font-medium mb-4">Key Metrics to Track</h3>
-            <div className="space-y-2">
+            <h3 className="font-medium mb-4">Key SaaS Metrics to Track</h3>
+            <div className="space-y-3">
               {idea.metrics?.map((metric, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -137,7 +203,10 @@ export default function GrowthIdeaView() {
 
       <div className="flex justify-end gap-4">
         <Button variant="outline">Save for Later</Button>
-        <Button>Start Implementation</Button>
+        <Button>
+          <CheckSquare className="h-4 w-4 mr-2" />
+          Add Tasks to Board
+        </Button>
       </div>
     </div>
   );
