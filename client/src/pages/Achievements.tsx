@@ -2,6 +2,7 @@ import AchievementGrid from "@/components/achievements/AchievementGrid";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Trophy, Star } from "lucide-react";
+import GrowthInsights from "@/components/dashboard/GrowthInsights";
 
 const rankLevels = [
   { name: "Beginner", points: 0, icon: "🌱" },
@@ -104,6 +105,10 @@ export default function Achievements() {
       </div>
 
       <AchievementGrid userId={userId} />
+
+      <div className="mt-8">
+        <GrowthInsights />
+      </div>
     </div>
   );
 }
