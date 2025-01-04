@@ -55,41 +55,6 @@ export default function Manifesto() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="fixed top-0 left-0 right-0 flex justify-center px-6 pt-4">
-        <header className="w-full max-w-[1200px] h-14 border border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-md">
-          <div className="flex h-14 items-center px-6">
-            <Link href="/" className="flex items-center gap-2">
-              <Logo />
-              <h1 className="text-[13px] font-semibold tracking-tight">Growthlog</h1>
-            </Link>
-
-            <nav className="hidden md:flex flex-1 items-center justify-center gap-6 text-[13px] font-medium">
-              <Link href="/features" className="nav-link">Features</Link>
-              <Link href="/method" className="nav-link">Method</Link>
-              <Link href="/customers" className="nav-link">Customers</Link>
-              <Link href="/changelog" className="nav-link">Changelog</Link>
-              <Link href="/pricing" className="nav-link">Pricing</Link>
-              <Link href="/company" className="nav-link">Company</Link>
-              <Link href="/contact" className="nav-link">Contact</Link>
-            </nav>
-
-            <div className="flex items-center gap-3">
-              <Link href="/login">
-                <Button variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
-                  Log in
-                  <span className="ml-2 text-[11px] text-muted-foreground/70">L</span>
-                </Button>
-              </Link>
-              <Link href="/signup">
-                <Button variant="default" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
-                  Sign up
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </header>
-      </div>
-
       <main className="max-w-[1200px] mx-auto px-6">
         <div className="pt-36">
           <motion.div
