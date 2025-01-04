@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Plus, Calendar, CheckCircle2, Clock, ArrowRight } from "lucide-react";
 import PomodoroTimer from "./PomodoroTimer";
 import { useState } from "react";
+import { useConfetti } from "@/hooks/useConfetti";
 
 // Mock data - will be replaced with API data
 const tasks = [
@@ -42,6 +43,24 @@ const columns: { id: TaskStatus; title: string; icon: any }[] = [
 
 export default function TaskBoard() {
   const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
+  const [taskStates, setTaskStates] = useState(tasks);
+  const { fireConfetti } = useConfetti();
+
+  const handleCompleteTask = (taskId: number) => {
+    setTaskStates(prev => 
+      prev.map(task => 
+        task.id === taskId 
+          ? { ...task, status: "completed" as TaskStatus }
+          : task
+      )
+    );
+
+    // Trigger confetti with customized colors
+    fireConfetti({
+      primary: ['#10b981', '#34d399', '#6ee7b7'], // Emerald shades
+      secondary: ['#047857', '#059669', '#10b981'] // Darker emerald shades
+    });
+  };
 
   return (
     <div className="space-y-6">
@@ -77,12 +96,12 @@ export default function TaskBoard() {
                 <h2 className="font-semibold">{column.title}</h2>
               </div>
               <Badge variant="secondary">
-                {tasks.filter(t => t.status === column.id).length}
+                {taskStates.filter(t => t.status === column.id).length}
               </Badge>
             </div>
 
             <div className="space-y-4">
-              {tasks
+              {taskStates
                 .filter(task => task.status === column.id)
                 .map(task => (
                   <Card key={task.id} className="group">
@@ -96,14 +115,23 @@ export default function TaskBoard() {
                         </div>
                         <div className="flex gap-2">
                           {task.status === "today" && (
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              className={`${activeTaskId === task.id ? 'text-primary' : ''}`}
-                              onClick={() => setActiveTaskId(activeTaskId === task.id ? null : task.id)}
-                            >
-                              <Clock className="h-4 w-4" />
-                            </Button>
+                            <>
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                className={`${activeTaskId === task.id ? 'text-primary' : ''}`}
+                                onClick={() => setActiveTaskId(activeTaskId === task.id ? null : task.id)}
+                              >
+                                <Clock className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                onClick={() => handleCompleteTask(task.id)}
+                              >
+                                <CheckCircle2 className="h-4 w-4" />
+                              </Button>
+                            </>
                           )}
                           <Button 
                             variant="ghost" 
