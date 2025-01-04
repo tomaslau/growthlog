@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="fixed top-0 left-0 right-0 linear-nav border-b border-border/40">
+      <header className="fixed top-4 left-4 right-4 linear-nav border-b border-border/40">
         <div className="flex h-[52px] items-center gap-4 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-[18px] h-[18px] bg-foreground rounded-sm" />
@@ -39,26 +39,26 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-[1200px] mx-auto px-6 pt-32 pb-16">
-        <div className="max-w-[800px] mx-auto text-center space-y-12">
-          <h1 className="text-6xl font-bold tracking-tight leading-tight">
+      <main className="max-w-[1200px] mx-auto px-6 pt-36 pb-16">
+        <div className="max-w-[800px] mx-auto text-center space-y-8">
+          <h1 className="text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
             Track your SaaS growth
             <br />
             with purpose-built tools
           </h1>
 
-          <p className="text-xl text-muted-foreground">
+          <p className="text-lg text-muted-foreground/80 leading-relaxed max-w-[600px] mx-auto">
             Meet the system for modern software development. Streamline issues, projects, and product roadmaps.
           </p>
 
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex items-center justify-center gap-6 pt-4">
             <Link href="/dashboard">
-              <Button size="lg" className="h-12 px-6">
+              <Button size="lg" className="h-11 px-6 text-[13px] font-medium">
                 Start building
               </Button>
             </Link>
             <Link href="/method">
-              <Button variant="link" size="lg" className="text-muted-foreground">
+              <Button variant="link" size="lg" className="text-muted-foreground h-11 px-6 text-[13px] font-medium">
                 Introducing Customer Requests
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
