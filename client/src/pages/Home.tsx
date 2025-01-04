@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <header className="fixed top-4 left-6 right-6 linear-nav">
-        <div className="flex h-[52px] items-center px-6 max-w-[1120px] mx-auto">
+        <div className="flex h-[52px] items-center px-6 max-w-[1080px] mx-auto">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-[18px] h-[18px] bg-foreground rounded-sm" />
             <h1 className="text-[13px] font-semibold tracking-tight">Growthlog</h1>
