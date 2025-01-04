@@ -21,7 +21,7 @@
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 248 100% 88%;
+    --primary: 142 70% 45%;
     --primary-foreground: 0 0% 9%;
 
     --secondary: 0 0% 13%;
@@ -38,13 +38,13 @@
 
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
-    --ring: 248 100% 88%;
+    --ring: 142 70% 45%;
 
-    /* Activity level colors - using Linear-style purple shades */
-    --activity-0: hsl(248 20% 13%);
-    --activity-1: hsl(248 30% 20%);
-    --activity-2: hsl(248 40% 30%);
-    --activity-3: hsl(248 60% 40%);
-    --activity-4: hsl(248 100% 88%);
+    /* Activity level colors - using green shades */
+    --activity-0: hsl(142 20% 13%);
+    --activity-1: hsl(142 30% 20%);
+    --activity-2: hsl(142 40% 30%);
+    --activity-3: hsl(142 50% 35%);
+    --activity-4: hsl(142 70% 45%);
   }
 }
