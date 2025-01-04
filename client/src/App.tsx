@@ -14,20 +14,18 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="growthlog-theme">
       <PomodoroProvider>
-        <div className="min-h-screen bg-gradient">
+        <div className="min-h-screen bg-background">
           <TopNav />
           <CommandPalette />
           <FloatingTimer />
-          <main className="px-6 py-6 md:py-8">
-            <div className="max-w-[1500px] mx-auto">
-              <Switch>
-                <Route path="/" component={Dashboard} />
-                <Route path="/tasks" component={TaskBoard} />
-                <Route path="/ideas" component={GrowthIdeas} />
-                <Route path="/ideas/:id" component={GrowthIdeaView} />
-                <Route path="/profile" component={Profile} />
-              </Switch>
-            </div>
+          <main className="p-6">
+            <Switch>
+              <Route path="/" component={Dashboard} />
+              <Route path="/tasks" component={TaskBoard} />
+              <Route path="/ideas" component={GrowthIdeas} />
+              <Route path="/ideas/:id" component={GrowthIdeaView} />
+              <Route path="/profile" component={Profile} />
+            </Switch>
           </main>
         </div>
       </PomodoroProvider>
