@@ -11,6 +11,31 @@ export const users = pgTable("users", {
   createdAt: timestamp("created_at").default(sql`NOW()`).notNull(),
 });
 
+// Shared dashboards for public access
+export const sharedDashboards = pgTable("shared_dashboards", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  shareToken: text("share_token").unique().notNull(),
+  isPublic: boolean("is_public").default(false).notNull(),
+  customizeableLayout: boolean("customizeable_layout").default(false).notNull(),
+  title: text("title").notNull(),
+  description: text("description"),
+  createdAt: timestamp("created_at").default(sql`NOW()`).notNull(),
+  updatedAt: timestamp("updated_at").default(sql`NOW()`).notNull(),
+});
+
+// Dashboard components configuration
+export const dashboardComponents = pgTable("dashboard_components", {
+  id: serial("id").primaryKey(),
+  dashboardId: integer("dashboard_id").references(() => sharedDashboards.id).notNull(),
+  componentType: text("component_type").notNull(), // "tasks", "achievements", "growth_log", etc.
+  position: integer("position").notNull(),
+  settings: text("settings").notNull(), // JSON string of component-specific settings
+  visible: boolean("visible").default(true).notNull(),
+  createdAt: timestamp("created_at").default(sql`NOW()`).notNull(),
+  updatedAt: timestamp("updated_at").default(sql`NOW()`).notNull(),
+});
+
 // Simplified growth ideas focused on SaaS
 export const growthIdeas = pgTable("growth_ideas", {
   id: serial("id").primaryKey(),
@@ -64,6 +89,10 @@ export const insertTaskSchema = createInsertSchema(tasks);
 export const selectTaskSchema = createSelectSchema(tasks);
 export const insertAchievementSchema = createInsertSchema(achievements);
 export const selectAchievementSchema = createSelectSchema(achievements);
+export const insertSharedDashboardSchema = createInsertSchema(sharedDashboards);
+export const selectSharedDashboardSchema = createSelectSchema(sharedDashboards);
+export const insertDashboardComponentSchema = createInsertSchema(dashboardComponents);
+export const selectDashboardComponentSchema = createSelectSchema(dashboardComponents);
 
 // TypeScript types
 export type InsertUser = typeof users.$inferInsert;
@@ -74,29 +103,7 @@ export type InsertTask = typeof tasks.$inferInsert;
 export type SelectTask = typeof tasks.$inferSelect;
 export type InsertAchievement = typeof achievements.$inferInsert;
 export type SelectAchievement = typeof achievements.$inferSelect;
-
-// Example JSON structure for Google Sheets import/export
-/*
-{
-  "growthIdea": {
-    "title": "Cold Email Campaign",
-    "description": "Launch targeted cold email campaign for SaaS decision makers",
-    "category": "Acquisition",
-    "difficulty": "Medium",
-    "impact": "High",
-    "icon": "📧",
-    "tasks": [
-      {
-        "title": "Research and create ICP list",
-        "description": "Define ideal customer profile and create initial list",
-        "status": "today"
-      },
-      {
-        "title": "Draft email template",
-        "description": "Write and test initial email template",
-        "status": "today"
-      }
-    ]
-  }
-}
-*/
+export type InsertSharedDashboard = typeof sharedDashboards.$inferInsert;
+export type SelectSharedDashboard = typeof sharedDashboards.$inferSelect;
+export type InsertDashboardComponent = typeof dashboardComponents.$inferInsert;
+export type SelectDashboardComponent = typeof dashboardComponents.$inferSelect;
