@@ -1,31 +1,23 @@
 import AchievementGrid from "@/components/achievements/AchievementGrid";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Trophy, Star, TrendingUp } from "lucide-react";
+import { Trophy, Star } from "lucide-react";
 
 const rankLevels = [
   { name: "Beginner", points: 0, icon: "🌱" },
-  { name: "Growth Explorer", points: 500, icon: "🚀" },
-  { name: "Growth Hacker", points: 1000, icon: "💡" },
-  { name: "Growth Master", points: 2500, icon: "🏆" },
-  { name: "Growth Legend", points: 5000, icon: "⭐" }
-];
-
-const pointSources = [
-  { action: "Complete daily tasks", points: "50-100" },
-  { action: "Maintain streaks", points: "10 × streak days" },
-  { action: "Share growth insights", points: "100" },
-  { action: "Complete challenges", points: "200-500" },
-  { action: "Help others grow", points: "150" }
+  { name: "Explorer", points: 10, icon: "🚀" },
+  { name: "Builder", points: 25, icon: "🛠️" },
+  { name: "Master", points: 50, icon: "🏆" },
+  { name: "Legend", points: 100, icon: "⭐" }
 ];
 
 export default function Achievements() {
   // TODO: Get actual user ID and points from auth context
   const userId = 1; // Mock user ID for now
-  const currentPoints = 750; // Mock points for now
+  const currentPoints = 15; // Mock points for now
 
   // Calculate current rank
-  const currentRank = rankLevels.reduce((prev, curr) => 
+  const currentRank = rankLevels.reduce((prev, curr) =>
     currentPoints >= curr.points ? curr : prev
   );
 
@@ -49,7 +41,7 @@ export default function Achievements() {
             <div>
               <CardTitle>Your Growth Journey</CardTitle>
               <p className="text-sm text-muted-foreground mt-1">
-                Track your progress and unlock achievements
+                Track your progress - each completed task earns 1 point
               </p>
             </div>
           </CardHeader>
@@ -66,7 +58,7 @@ export default function Achievements() {
                   </div>
                   {nextRank && (
                     <p className="text-sm text-muted-foreground">
-                      Next: {nextRank.icon} {nextRank.name} at {nextRank.points} pts
+                      {nextRank.points - currentPoints} more points to {nextRank.icon} {nextRank.name}
                     </p>
                   )}
                 </div>
@@ -84,18 +76,18 @@ export default function Achievements() {
             <div>
               <CardTitle>Growth Ranks</CardTitle>
               <p className="text-sm text-muted-foreground mt-1">
-                Milestone levels in your growth journey
+                Complete tasks to earn points and level up
               </p>
             </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {rankLevels.map((rank, index) => (
-                <div 
+                <div
                   key={rank.name}
                   className={`flex items-center justify-between ${
-                    currentPoints >= rank.points 
-                      ? "text-foreground" 
+                    currentPoints >= rank.points
+                      ? "text-foreground"
                       : "text-muted-foreground"
                   }`}
                 >
@@ -103,42 +95,13 @@ export default function Achievements() {
                     <span className="text-xl">{rank.icon}</span>
                     <span>{rank.name}</span>
                   </div>
-                  <span>{rank.points} pts</span>
+                  <span>{rank.points} tasks</span>
                 </div>
               ))}
             </div>
           </CardContent>
         </Card>
       </div>
-
-      <Card>
-        <CardHeader className="flex flex-row items-center gap-4">
-          <div className="p-2 bg-primary/10 rounded-full">
-            <TrendingUp className="h-6 w-6 text-primary" />
-          </div>
-          <div>
-            <CardTitle>Ways to Earn Points</CardTitle>
-            <p className="text-sm text-muted-foreground mt-1">
-              Various actions to boost your growth score
-            </p>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-2">
-            {pointSources.map(source => (
-              <div 
-                key={source.action}
-                className="flex items-center justify-between p-3 rounded-lg border bg-card"
-              >
-                <span>{source.action}</span>
-                <span className="font-mono text-sm text-muted-foreground">
-                  +{source.points} pts
-                </span>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
 
       <AchievementGrid userId={userId} />
     </div>
