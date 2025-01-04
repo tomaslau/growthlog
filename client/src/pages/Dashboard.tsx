@@ -2,7 +2,6 @@ import GrowthCalendar from "@/components/dashboard/GrowthCalendar";
 import ProgressStats from "@/components/dashboard/ProgressStats";
 import GrowthLog from "@/components/dashboard/GrowthLog";
 import ProfileSidebar from "@/components/dashboard/ProfileSidebar";
-import MomentumGraph from "@/components/dashboard/MomentumGraph";
 import GrowthInsights from "@/components/dashboard/GrowthInsights";
 
 export default function Dashboard() {
@@ -16,12 +15,11 @@ export default function Dashboard() {
         </div>
 
         <ProgressStats />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <MomentumGraph />
+        <GrowthLog />
+        <div className="grid grid-cols-1">
           <GrowthInsights />
         </div>
         <GrowthCalendar />
-        <GrowthLog />
       </div>
     </div>
   );
