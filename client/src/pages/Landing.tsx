@@ -41,12 +41,12 @@ function LandingNav() {
 
             <div className="flex items-center gap-1.5">
               <Link href="/login">
-                <Button variant="ghost" size="sm" className="text-[13px] text-white/60 hover:text-white/90">
+                <Button variant="ghost" size="sm" className="text-[13px] text-white/60 hover:text-white/90 px-3 h-7">
                   Log in
                 </Button>
               </Link>
               <Link href="/signup">
-                <Button size="sm" className="text-[13px]">Sign up</Button>
+                <Button size="sm" className="text-[13px] px-3 h-7">Sign up</Button>
               </Link>
             </div>
           </div>
@@ -68,19 +68,19 @@ export default function Landing() {
           transition={{ duration: 0.5 }}
           className="max-w-[800px] mx-auto text-center"
         >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight leading-[1.1]">
             Track your SaaS growth with purpose-built tools
           </h1>
-          <p className="text-lg md:text-xl text-white/70 mb-8">
+          <p className="text-lg md:text-xl text-white/70 mb-8 leading-relaxed">
             Meet the system for modern software development.
             Streamline issues, projects, and product roadmaps.
           </p>
           <div className="flex items-center justify-center gap-4">
-            <Button size="lg" className="h-12 px-8">
+            <Button size="lg" className="h-12 px-8 text-[15px] font-medium">
               Start building
             </Button>
             <Link href="#product-tour">
-              <a className="text-sm text-white/70 hover:text-white transition-colors">
+              <a className="text-[15px] text-white/60 hover:text-white/90 transition-colors">
                 Introducing Customer Requests →
               </a>
             </Link>
