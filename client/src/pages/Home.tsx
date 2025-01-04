@@ -179,7 +179,7 @@ export default function Home() {
               Powerful Features,<br />Simple Pricing
             </h2>
             <p className="text-lg text-muted-foreground max-w-[600px] mx-auto">
-              Get all the tools you need to build and scale your SaaS, AI tool or web application with our comprehensive feature set and straightforward pricing.
+              Transform your growth initiatives into actionable wins with our comprehensive SaaS growth platform and straightforward annual pricing.
             </p>
           </div>
 
@@ -187,9 +187,9 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-12">
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Next 15 Starter Kit</h3>
+                  <h3 className="text-xl font-semibold mb-2">Growth Platform</h3>
                   <p className="text-muted-foreground">
-                    Everything you need to start your SaaS, AI tool or web app - from authentication to billing, all in one powerful package.
+                    A complete toolkit for sustainable SaaS growth. Break down complex initiatives into focused 25-minute sprints and track your progress effectively.
                   </p>
                 </div>
 
@@ -200,37 +200,37 @@ export default function Home() {
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      Credentials auth
+                      25-minute growth sprints
                     </li>
                     <li className="flex items-center gap-2">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      Email templates
+                      Progress tracking dashboard
                     </li>
                     <li className="flex items-center gap-2">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      Member & invite system
+                      Growth framework access
                     </li>
                     <li className="flex items-center gap-2">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      Onboarding wizard
+                      Task management system
                     </li>
                     <li className="flex items-center gap-2">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      Dashboard
+                      Achievement tracking
                     </li>
                     <li className="flex items-center gap-2">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      Account settings
+                      Metrics visualization
                     </li>
                   </ul>
                 </div>
@@ -257,37 +257,37 @@ export default function Home() {
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      Google & Microsoft login
+                      Growth ideas library
                     </li>
                     <li className="flex items-center gap-2">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      Organizations
+                      Collaborative workspaces
                     </li>
                     <li className="flex items-center gap-2">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      Stripe billing integration
+                      Real-time analytics
                     </li>
                     <li className="flex items-center gap-2">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      App shell
+                      Export functionality
                     </li>
                     <li className="flex items-center gap-2">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      Master/detail pages
+                      Priority support
                     </li>
                     <li className="flex items-center gap-2">
                       <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
-                      API keys & webhooks
+                      Regular updates
                     </li>
                   </ul>
                 </div>
