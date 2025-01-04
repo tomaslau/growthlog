@@ -172,6 +172,130 @@ export default function Home() {
           </motion.div>
         </div>
 
+        {/* Pricing Section */}
+        <div className="pb-24">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-4xl font-bold tracking-tight">
+              Powerful Features,<br />Simple Pricing
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-[600px] mx-auto">
+              Get all the tools you need to build and scale your SaaS, AI tool or web application with our comprehensive feature set and straightforward pricing.
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto p-6 rounded-lg bg-card/50">
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Next 15 Starter Kit</h3>
+                  <p className="text-muted-foreground">
+                    Everything you need to start your SaaS, AI tool or web app - from authentication to billing, all in one powerful package.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h4 className="font-medium">What's included</h4>
+                  <ul className="space-y-3 text-sm">
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Credentials auth
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Email templates
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Member & invite system
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Onboarding wizard
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Dashboard
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Account settings
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-background p-8 rounded-lg">
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <h3 className="text-4xl font-bold">$100</h3>
+                    <p className="text-sm text-muted-foreground">per year</p>
+                  </div>
+
+                  <div className="space-y-4">
+                    <Button className="w-full">
+                      Get access
+                    </Button>
+                    <p className="text-xs text-center text-muted-foreground">
+                      Invoices and receipts available for easy company reimbursement
+                    </p>
+                  </div>
+
+                  <ul className="space-y-3 text-sm">
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Google & Microsoft login
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Organizations
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Stripe billing integration
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      App shell
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Master/detail pages
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      API keys & webhooks
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="pb-24">
           <div className="flex items-center gap-2 text-sm text-muted-foreground/80 mb-6">
             <span>Task tracking and sprint planning</span>
