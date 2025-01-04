@@ -119,7 +119,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               className="flex justify-center"
             >
-              <CraftledLogo className="w-auto h-5 text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
+              <CraftledLogo className="text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
             </motion.div>
           </div>
         </div>
