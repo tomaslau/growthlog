@@ -2,13 +2,13 @@ import { Switch, Route } from "wouter";
 import Dashboard from "@/pages/Dashboard";
 import GrowthIdeas from "@/pages/GrowthIdeas";
 import Profile from "@/pages/Profile";
-import Sidebar from "@/components/layout/Sidebar";
+import TopNav from "@/components/layout/TopNav";
 
 function App() {
   return (
-    <div className="flex min-h-screen bg-background">
-      <Sidebar />
-      <main className="flex-1 p-8">
+    <div className="min-h-screen bg-background">
+      <TopNav />
+      <main className="p-6">
         <Switch>
           <Route path="/" component={Dashboard} />
           <Route path="/ideas" component={GrowthIdeas} />
