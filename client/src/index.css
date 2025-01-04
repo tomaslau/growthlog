@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-background text-foreground text-sm;
   }
 
   :root {
@@ -20,3 +20,6 @@
     --activity-4: #39d353;
   }
 }
+
+/* Import Geist font */
+@import '@geist-ui/core/esm/index.css';
