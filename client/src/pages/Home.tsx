@@ -44,13 +44,13 @@ export default function Home() {
       <main className="max-w-[1200px] mx-auto px-6 pt-36 pb-16">
         <div className="max-w-[800px] mx-auto text-center space-y-8">
           <h1 className="text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
-            The analytics platform
+            Track your SaaS growth
             <br />
-            built for SaaS growth
+            with purpose-built tools
           </h1>
 
           <p className="text-lg text-muted-foreground/80 leading-relaxed max-w-[600px] mx-auto">
-            Track your key metrics, analyze performance trends, and drive strategic growth with a purpose-built platform for SaaS founders and marketers.
+            Meet the system designed for sustainable SaaS growth. Transform complex initiatives into 25-minute focused sprints, track your momentum, and drive results through incremental progress.
           </p>
 
           <div className="flex items-center justify-center pt-4">
