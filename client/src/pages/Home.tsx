@@ -315,6 +315,61 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Growth Ideas Library section */}
+        <div className="pb-24">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground/80 mb-6">
+            <span>Growth library</span>
+            <ChevronRight className="h-4 w-4" />
+          </div>
+
+          <div className="space-y-4 mb-12">
+            <h2 className="text-4xl font-bold tracking-tight">
+              Growth Ideas Library
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-[600px]">
+              Access a curated collection of proven SaaS growth tactics and strategies, ready to be implemented in 25-minute focused sessions.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="p-6 hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Lightbulb className="h-4 w-4 text-primary" />
+                </div>
+                <h3 className="font-medium">Growth Tactics</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Proven growth strategies backed by real-world success stories and implementation guides.
+              </p>
+            </Card>
+
+            <Card className="p-6 hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Timer className="h-4 w-4 text-primary" />
+                </div>
+                <h3 className="font-medium">Ready-to-Execute</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Each strategy is broken down into focused 25-minute implementation sprints.
+              </p>
+            </Card>
+
+            <Card className="p-6 hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <TrendingUp className="h-4 w-4 text-primary" />
+                </div>
+                <h3 className="font-medium">Impact Tracking</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Track the effectiveness of implemented strategies with built-in metrics.
+              </p>
+            </Card>
+          </div>
+        </div>
+
       </main>
     </div>
   );
