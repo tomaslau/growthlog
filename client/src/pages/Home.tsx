@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Logo } from "@/components/ui/logo";
-import { Timer, TrendingUp, Layers, Lightbulb, ChevronRight } from "lucide-react";
+import { Timer, TrendingUp, Layers, Lightbulb, ChevronRight, Users, Heart, BarChart3 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { CraftledLogo, BestWritingLogo } from "@/components/logos";
@@ -256,6 +256,61 @@ export default function Home() {
                   <div className="h-full w-2/3 bg-primary rounded-full" />
                 </div>
               </div>
+            </Card>
+          </div>
+        </div>
+
+        {/* Structured Framework section */}
+        <div className="pb-24">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground/80 mb-6">
+            <span>Framework</span>
+            <ChevronRight className="h-4 w-4" />
+          </div>
+
+          <div className="space-y-4 mb-12">
+            <h2 className="text-4xl font-bold tracking-tight">
+              Structured Framework
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-[600px]">
+              Follow a proven methodology for sustainable growth, focusing on key areas like acquisition, retention, and revenue optimization.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="p-6 hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Users className="h-4 w-4 text-primary" />
+                </div>
+                <h3 className="font-medium">Acquisition</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Implement proven strategies to attract and convert qualified leads into customers.
+              </p>
+            </Card>
+
+            <Card className="p-6 hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Heart className="h-4 w-4 text-primary" />
+                </div>
+                <h3 className="font-medium">Retention</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Build lasting relationships and maximize customer lifetime value through engagement.
+              </p>
+            </Card>
+
+            <Card className="p-6 hover:border-primary/50 transition-colors">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <BarChart3 className="h-4 w-4 text-primary" />
+                </div>
+                <h3 className="font-medium">Revenue</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Optimize pricing, reduce churn, and unlock new revenue streams systematically.
+              </p>
             </Card>
           </div>
         </div>
