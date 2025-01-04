@@ -3,6 +3,7 @@ import Dashboard from "@/pages/Dashboard";
 import GrowthIdeas from "@/pages/GrowthIdeas";
 import GrowthIdeaView from "@/pages/GrowthIdeaView";
 import Profile from "@/pages/Profile";
+import Achievements from "@/pages/Achievements";
 import TaskBoard from "@/components/tasks/TaskBoard";
 import TopNav from "@/components/layout/TopNav";
 import { CommandPalette } from "@/components/command/CommandPalette";
@@ -25,6 +26,7 @@ function App() {
               <Route path="/ideas" component={GrowthIdeas} />
               <Route path="/ideas/:id" component={GrowthIdeaView} />
               <Route path="/profile" component={Profile} />
+              <Route path="/achievements" component={Achievements} />
             </Switch>
           </main>
         </div>
