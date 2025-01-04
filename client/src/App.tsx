@@ -1,4 +1,5 @@
 import { Switch, Route } from "wouter";
+import Home from "@/pages/Home";
 import Dashboard from "@/pages/Dashboard";
 import GrowthIdeas from "@/pages/GrowthIdeas";
 import GrowthIdeaView from "@/pages/GrowthIdeaView";
@@ -22,9 +23,10 @@ function App() {
           <TopNav />
           <CommandPalette />
           <FloatingTimer />
-          <main className="p-6">
+          <main>
             <Switch>
-              <Route path="/" component={Dashboard} />
+              <Route path="/" component={Home} />
+              <Route path="/dashboard" component={Dashboard} />
               <Route path="/tasks" component={TaskBoard} />
               <Route path="/ideas" component={GrowthIdeas} />
               <Route path="/ideas/:id" component={GrowthIdeaView} />

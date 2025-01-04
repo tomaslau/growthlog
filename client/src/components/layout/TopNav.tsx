@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const navItems = [
-  { icon: Home, label: "Dashboard", href: "/" },
+  { icon: Home, label: "Dashboard", href: "/dashboard" },
   { icon: CheckSquare, label: "Tasks", href: "/tasks" },
   { icon: Lightbulb, label: "Growth Ideas", href: "/ideas" },
   { icon: Trophy, label: "Achievements", href: "/achievements" },
@@ -16,11 +16,18 @@ const navItems = [
 export default function TopNav() {
   const [location] = useLocation();
 
+  // Only show the navigation menu if we're not on the homepage
+  if (location === "/") {
+    return null;
+  }
+
   return (
     <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
       <div className="flex h-14 items-center px-6">
         <div className="mr-8">
-          <h1 className="text-lg font-semibold tracking-tight">Growthlog</h1>
+          <Link href="/">
+            <h1 className="text-lg font-semibold tracking-tight cursor-pointer">Growthlog</h1>
+          </Link>
         </div>
 
         <nav className="flex gap-1 flex-1">
