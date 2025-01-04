@@ -15,7 +15,7 @@ export default function TopNav() {
     <header className="border-b border-border bg-background">
       <div className="flex h-14 items-center px-6">
         <div className="mr-8">
-          <h1 className="text-lg font-bold">Growth Tracker</h1>
+          <h1 className="text-lg font-bold">Growthlog</h1>
         </div>
 
         <nav className="flex gap-1">

@@ -1,6 +1,6 @@
-import ActivityCalendar from "@/components/dashboard/ActivityCalendar";
+import GrowthCalendar from "@/components/dashboard/GrowthCalendar";
 import ProgressStats from "@/components/dashboard/ProgressStats";
-import ActivityLog from "@/components/dashboard/ActivityLog";
+import GrowthLog from "@/components/dashboard/GrowthLog";
 import ProfileSidebar from "@/components/dashboard/ProfileSidebar";
 
 export default function Dashboard() {
@@ -10,12 +10,12 @@ export default function Dashboard() {
       <div className="flex-1 space-y-6">
         <div>
           <h1 className="text-2xl font-bold mb-1">Your Progress</h1>
-          <p className="text-sm text-muted-foreground">Track your growth marketing activities</p>
+          <p className="text-sm text-muted-foreground">Track your daily growth tasks and build momentum</p>
         </div>
 
         <ProgressStats />
-        <ActivityCalendar />
-        <ActivityLog />
+        <GrowthCalendar />
+        <GrowthLog />
       </div>
     </div>
   );

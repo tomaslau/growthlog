@@ -3,7 +3,7 @@ import { Progress } from "@/components/ui/progress";
 
 export default function ProgressStats() {
   const stats = [
-    { label: "Deep Work This Month", value: "10 days", progress: 33 },
+    { label: "Growth Tasks This Month", value: "10 tasks", progress: 33 },
     { label: "Growth Streak", value: "4 days", progress: 40 },
     { label: "Missed Days", value: "1/6 days", progress: 16 }
   ];
