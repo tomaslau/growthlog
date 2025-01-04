@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { DollarSign, Users, Activity, BarChart } from "lucide-react";
+import { DollarSign, Users, Activity, BarChart, Mail, Share2, Search, Megaphone } from "lucide-react";
 
 const container = {
   hidden: { opacity: 0 },
@@ -139,6 +139,53 @@ const metricCategories = [
         name: "Time-based Retention",
         description: "Percentage of customers retained over specific time periods",
         example: "90-day retention = Users active after 90 days ÷ Initial cohort size"
+      }
+    ]
+  },
+  {
+    title: "Marketing & Growth Metrics",
+    icon: Megaphone,
+    description: "Key metrics for tracking marketing and growth initiatives",
+    metrics: [
+      {
+        name: "Email Marketing Performance",
+        description: "Core metrics for email campaign effectiveness",
+        example: "Open Rate: 25%, CTR: 3.2%, List Growth: +5%/month, Unsubscribe Rate: <0.5%"
+      },
+      {
+        name: "Outreach Effectiveness",
+        description: "Metrics for measuring outreach campaign success",
+        example: "Response Rate: 15%, Meeting Rate: 30% of responses, Campaign ROI: 300%"
+      },
+      {
+        name: "Ad Performance",
+        description: "Key advertising metrics across platforms",
+        example: "ROAS: 3.5x, CPC: $2.50, CPL: $50, Conversion Rate: 2.5%"
+      },
+      {
+        name: "SEO Health",
+        description: "Organic search performance indicators",
+        example: "Organic Traffic Growth: +20% MoM, Domain Authority: 45, Top 3 Rankings: 50 keywords"
+      },
+      {
+        name: "Content Performance",
+        description: "Metrics for content marketing effectiveness",
+        example: "Avg. Time on Page: 3:30, Bounce Rate: 45%, Lead Magnet CR: 5%"
+      },
+      {
+        name: "Social Media Engagement",
+        description: "Social platform performance metrics",
+        example: "Engagement Rate: 4.5%, Social Traffic CR: 2%, Share of Voice: 25% in category"
+      },
+      {
+        name: "Landing Page Performance",
+        description: "Conversion metrics for landing pages",
+        example: "Page Load Time: <2s, Form CR: 15%, Exit Intent CR: 3%"
+      },
+      {
+        name: "Channel Attribution",
+        description: "Understanding which channels drive growth",
+        example: "First Touch: Organic 40%, Paid 30%, Social 20%, Direct 10%"
       }
     ]
   }
