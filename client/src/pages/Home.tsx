@@ -5,7 +5,7 @@ import { Logo } from "@/components/ui/logo";
 import { Timer, TrendingUp, Layers, Lightbulb } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { SiVercel, SiPrisma, SiSupabase, SiPostgresql, SiTailwindcss, SiNextdotjs, SiStripe, SiFramer } from "react-icons/si";
+import { AnthropicLogo, ZapierLogo, CursorLogo, ResendLogo, LaravelLogo, CodeiumLogo } from "@/components/logos";
 
 const container = {
   hidden: { opacity: 0 },
@@ -47,14 +47,12 @@ export default function Home() {
   ];
 
   const companies = [
-    { icon: SiVercel, name: "Vercel" },
-    { icon: SiPrisma, name: "Prisma" },
-    { icon: SiSupabase, name: "Supabase" },
-    { icon: SiPostgresql, name: "PostgreSQL" },
-    { icon: SiTailwindcss, name: "Tailwind" },
-    { icon: SiNextdotjs, name: "Next.js" },
-    { icon: SiStripe, name: "Stripe" },
-    { icon: SiFramer, name: "Framer" }
+    { logo: AnthropicLogo, name: "Anthropic" },
+    { logo: ZapierLogo, name: "Zapier" },
+    { logo: CursorLogo, name: "Cursor" },
+    { logo: ResendLogo, name: "Resend" },
+    { logo: LaravelLogo, name: "Laravel" },
+    { logo: CodeiumLogo, name: "Codeium" }
   ];
 
   return (
@@ -74,7 +72,6 @@ export default function Home() {
             <Link href="/pricing" className="nav-link">Pricing</Link>
             <Link href="/company" className="nav-link">Company</Link>
             <Link href="/contact" className="nav-link">Contact</Link>
-            <Link href="/demo" className="nav-link">Demo</Link>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -121,7 +118,7 @@ export default function Home() {
           <h2 className="text-2xl font-semibold mb-2">Powering experiences</h2>
           <p className="text-muted-foreground mb-12">from next-gen startups to enterprises</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-center max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-12 items-center justify-center max-w-4xl mx-auto">
             {companies.map((company, index) => (
               <motion.div
                 key={index}
@@ -130,7 +127,7 @@ export default function Home() {
                 transition={{ delay: index * 0.1 }}
                 className="flex justify-center"
               >
-                <company.icon className="w-8 h-8 text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
+                <company.logo className="h-8 text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
               </motion.div>
             ))}
           </div>
