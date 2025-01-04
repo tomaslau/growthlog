@@ -2,7 +2,7 @@ import GrowthCalendar from "@/components/dashboard/GrowthCalendar";
 import ProgressStats from "@/components/dashboard/ProgressStats";
 import GrowthLog from "@/components/dashboard/GrowthLog";
 import ProfileSidebar from "@/components/dashboard/ProfileSidebar";
-import ShareDashboard from "@/components/dashboard/ShareDashboard";
+import ProfileVisibilityToggle from "@/components/dashboard/ProfileVisibilityToggle";
 
 export default function Dashboard() {
   // TODO: Get actual user ID from auth context
@@ -17,7 +17,7 @@ export default function Dashboard() {
             <h1 className="text-2xl font-bold mb-1">Growth Activity</h1>
             <p className="text-sm text-muted-foreground">Track your progress and get personalized insights</p>
           </div>
-          <ShareDashboard userId={userId} />
+          <ProfileVisibilityToggle userId={userId} />
         </div>
 
         <ProgressStats />
