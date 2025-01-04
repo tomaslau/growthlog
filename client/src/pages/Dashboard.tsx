@@ -4,6 +4,7 @@ import GrowthLog from "@/components/dashboard/GrowthLog";
 import ProfileSidebar from "@/components/dashboard/ProfileSidebar";
 import MomentumGraph from "@/components/dashboard/MomentumGraph";
 import GrowthInsights from "@/components/dashboard/GrowthInsights";
+import ActiveChallenges from "@/components/dashboard/ActiveChallenges";
 
 export default function Dashboard() {
   return (
@@ -20,6 +21,7 @@ export default function Dashboard() {
           <MomentumGraph />
           <GrowthInsights />
         </div>
+        <ActiveChallenges />
         <GrowthCalendar />
         <GrowthLog />
       </div>
