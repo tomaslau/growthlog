@@ -8,11 +8,25 @@ interface ProfileVisibilityToggleProps {
   userId: number;
 }
 
+interface Dashboard {
+  id: number;
+  userId: number;
+  shareToken: string;
+  isPublic: boolean;
+  customizeableLayout: boolean;
+  title: string;
+  description?: string;
+}
+
+interface DashboardResponse {
+  dashboard: Dashboard | null;
+}
+
 export default function ProfileVisibilityToggle({ userId }: ProfileVisibilityToggleProps) {
   const { toast } = useToast();
 
   // Fetch existing dashboard if any
-  const { data: dashboardData } = useQuery({
+  const { data: dashboardData } = useQuery<DashboardResponse>({
     queryKey: [`/api/dashboards/user/${userId}`],
   });
 
@@ -43,10 +57,10 @@ export default function ProfileVisibilityToggle({ userId }: ProfileVisibilityTog
 
       return res.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast({
         title: "Visibility updated",
-        description: dashboard?.isPublic 
+        description: data.dashboard.isPublic 
           ? "Your profile is now public" 
           : "Your profile is now private",
       });
