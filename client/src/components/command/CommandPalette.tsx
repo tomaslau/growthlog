@@ -15,7 +15,20 @@ import { Command } from "cmdk";
 import { Dialog } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 
-const groups = [
+type Action = {
+  id: string;
+  name: string;
+  shortcut: string[];
+  icon: any;
+  href?: string;
+};
+
+type Group = {
+  name: string;
+  actions: Action[];
+};
+
+const groups: Group[] = [
   {
     name: "Suggestions",
     actions: [
@@ -80,7 +93,7 @@ export function CommandPalette() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <Command
-        className="fixed inset-x-0 top-20 z-50 max-w-2xl mx-auto rounded-lg border bg-popover shadow-md"
+        className="fixed inset-x-0 top-20 z-50 max-w-2xl mx-auto rounded-lg border bg-popover text-sm shadow-md"
         loop
       >
         <div className="flex items-center border-b px-3" cmdk-input-wrapper="">

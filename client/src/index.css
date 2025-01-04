@@ -48,8 +48,3 @@
     --activity-4: hsl(248 100% 88%);
   }
 }
-
-@font-face {
-  font-family: 'Inter';
-  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-}
