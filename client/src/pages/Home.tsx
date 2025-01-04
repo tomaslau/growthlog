@@ -186,6 +186,80 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Progress Tracking section */}
+        <div className="pb-24">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground/80 mb-6">
+            <span>Progress tracking</span>
+            <ChevronRight className="h-4 w-4" />
+          </div>
+
+          <div className="space-y-4 mb-12">
+            <h2 className="text-4xl font-bold tracking-tight">
+              Track Your Growth Journey
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-[600px]">
+              Monitor your momentum with intelligent tracking of daily wins, achievements, and growth metrics specific to SaaS businesses.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Timer className="h-4 w-4 text-primary" />
+                </div>
+                <h3 className="font-medium">Daily Progress</h3>
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Completed Tasks</span>
+                  <span className="font-medium">12/15</span>
+                </div>
+                <div className="h-2 rounded-full bg-muted overflow-hidden">
+                  <div className="h-full w-4/5 bg-primary rounded-full" />
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <TrendingUp className="h-4 w-4 text-primary" />
+                </div>
+                <h3 className="font-medium">Weekly Stats</h3>
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Growth Score</span>
+                  <span className="font-medium">85%</span>
+                </div>
+                <div className="h-2 rounded-full bg-muted overflow-hidden">
+                  <div className="h-full w-[85%] bg-primary rounded-full" />
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Layers className="h-4 w-4 text-primary" />
+                </div>
+                <h3 className="font-medium">Achievements</h3>
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">Unlocked</span>
+                  <span className="font-medium">8/12</span>
+                </div>
+                <div className="h-2 rounded-full bg-muted overflow-hidden">
+                  <div className="h-full w-2/3 bg-primary rounded-full" />
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+
       </main>
     </div>
   );
