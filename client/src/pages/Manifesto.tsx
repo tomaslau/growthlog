@@ -1,6 +1,22 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Timer, TrendingUp, Layers, Target } from "lucide-react";
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
 
 export default function Manifesto() {
   const principles = [
@@ -35,53 +51,87 @@ export default function Manifesto() {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      <div>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-4xl mx-auto space-y-8 pb-12"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
         <Badge variant="secondary" className="mb-4">Our Philosophy</Badge>
         <h1 className="text-4xl font-bold mb-4">The Growthlog Manifesto</h1>
         <p className="text-lg text-muted-foreground">
           A new approach to SaaS growth, designed for founders and marketers who believe in sustainable, focused progress.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="grid gap-6">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="grid gap-6"
+      >
         {principles.map((principle, index) => (
-          <Card key={index}>
-            <CardContent className="pt-6">
-              <div className="flex gap-4">
-                <div className="mt-1">
-                  <principle.icon className="h-5 w-5 text-primary" />
+          <motion.div key={index} variants={item}>
+            <Card className="hover:border-primary/50 transition-colors">
+              <CardContent className="pt-6">
+                <div className="flex gap-4">
+                  <div className="mt-1">
+                    <principle.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-semibold mb-2">{principle.title}</h2>
+                    <p className="text-muted-foreground leading-relaxed">{principle.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-xl font-semibold mb-2">{principle.title}</h2>
-                  <p className="text-muted-foreground">{principle.description}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      <Card>
-        <CardContent className="pt-6">
-          <h2 className="text-xl font-semibold mb-4">Why This Works</h2>
-          <div className="space-y-3">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <p>{benefit}</p>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <motion.div
+        variants={item}
+        initial="hidden"
+        animate="show"
+        transition={{ delay: 0.8 }}
+      >
+        <Card className="hover:border-primary/50 transition-colors">
+          <CardContent className="pt-6">
+            <h2 className="text-xl font-semibold mb-4">Why This Works</h2>
+            <div className="space-y-4">
+              {benefits.map((benefit, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1 + index * 0.1 }}
+                  className="flex items-center gap-3"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                  <p className="text-muted-foreground">{benefit}</p>
+                </motion.div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
 
-      <div className="text-center py-8">
+      <motion.div 
+        className="text-center py-8"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5 }}
+      >
         <p className="text-lg font-medium mb-4">Ready to grow your SaaS?</p>
         <p className="text-muted-foreground">
           Start with a single 25-minute task. That's all it takes to begin building momentum.
         </p>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
