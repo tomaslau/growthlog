@@ -127,7 +127,7 @@ export default function Home() {
                 transition={{ delay: index * 0.1 }}
                 className="flex justify-center"
               >
-                <company.logo className="h-8 text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
+                <company.logo className="w-auto h-5 text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
               </motion.div>
             ))}
           </div>
