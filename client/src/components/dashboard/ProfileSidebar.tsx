@@ -2,13 +2,9 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock, MapPin, Link2, Twitter, Linkedin, Trophy, Star, HelpCircle } from "lucide-react";
+import { Clock, MapPin, Link2, Twitter, Linkedin, Trophy, Star } from "lucide-react";
 
-interface ProfileSidebarProps {
-  onStartTour?: () => void;
-}
-
-export default function ProfileSidebar({ onStartTour }: ProfileSidebarProps) {
+export default function ProfileSidebar() {
   return (
     <div className="w-64 space-y-4">
       {/* Profile Info */}
@@ -21,20 +17,9 @@ export default function ProfileSidebar({ onStartTour }: ProfileSidebarProps) {
             </Avatar>
             <h2 className="font-semibold mb-1">Growth Marketer</h2>
             <p className="text-sm text-muted-foreground mb-3">@growthpro</p>
-            <Button variant="outline" size="sm" className="w-full mb-2">
+            <Button variant="outline" size="sm" className="w-full">
               Edit profile
             </Button>
-            {onStartTour && (
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="w-full"
-                onClick={onStartTour}
-              >
-                <HelpCircle className="h-4 w-4 mr-2" />
-                Take a tour
-              </Button>
-            )}
           </div>
 
           <div className="space-y-2 text-sm">
