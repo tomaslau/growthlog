@@ -12,14 +12,44 @@
   }
 
   :root {
-    /* Activity level colors - using GitHub-like shades */
-    --activity-0: #161b22;
-    --activity-1: #0e4429;
-    --activity-2: #006d32;
-    --activity-3: #26a641;
-    --activity-4: #39d353;
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 248 100% 88%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 13%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 13%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 13%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 248 100% 88%;
+
+    /* Activity level colors - using Linear-style purple shades */
+    --activity-0: hsl(248 20% 13%);
+    --activity-1: hsl(248 30% 20%);
+    --activity-2: hsl(248 40% 30%);
+    --activity-3: hsl(248 60% 40%);
+    --activity-4: hsl(248 100% 88%);
   }
 }
 
-/* Import Geist font */
-@import '@geist-ui/core/esm/index.css';
+@font-face {
+  font-family: 'Inter';
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+}
