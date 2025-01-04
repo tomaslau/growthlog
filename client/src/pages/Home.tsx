@@ -2,14 +2,15 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { Logo } from "@/components/ui/logo";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="fixed top-4 left-6 right-6 linear-nav">
-        <div className="flex h-[52px] items-center px-6 max-w-[1080px] mx-auto">
+      <header className="fixed top-0 left-0 right-0 h-14 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="flex h-14 items-center px-6 max-w-[1120px] mx-auto">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-[18px] h-[18px] bg-foreground rounded-sm" />
+            <Logo />
             <h1 className="text-[13px] font-semibold tracking-tight">Growthlog</h1>
           </Link>
 
