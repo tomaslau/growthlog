@@ -1,7 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Calendar, CheckCircle2, Clock, ArrowRight } from "lucide-react";
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Plus, Calendar, CheckCircle2, Clock, ArrowRight, Search, ArrowUpDown } from "lucide-react";
 import PomodoroTimer from "./PomodoroTimer";
 import { useState } from "react";
 import { useConfetti } from "@/hooks/useConfetti";
@@ -17,7 +25,7 @@ const tasks = [
     status: "today"
   },
   {
-    id: 2,
+    id: 2, 
     title: "Create social media calendar",
     description: "Plan next week's content",
     points: 150,
@@ -34,6 +42,8 @@ const tasks = [
 ];
 
 type TaskStatus = "today" | "later" | "completed";
+type SortField = "title" | "points" | "dueTime";
+type SortOrder = "asc" | "desc";
 
 const columns: { id: TaskStatus; title: string; icon: any }[] = [
   { id: "today", title: "Today", icon: Clock },
@@ -46,6 +56,12 @@ export default function TaskBoard() {
   const [taskStates, setTaskStates] = useState(tasks);
   const { fireConfetti } = useConfetti();
 
+  // Filtering state
+  const [searchQuery, setSearchQuery] = useState("");
+  const [minPoints, setMinPoints] = useState<number>(0);
+  const [sortField, setSortField] = useState<SortField>("title");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
+
   const handleCompleteTask = (taskId: number) => {
     setTaskStates(prev => 
       prev.map(task => 
@@ -55,12 +71,32 @@ export default function TaskBoard() {
       )
     );
 
-    // Trigger confetti with customized colors
     fireConfetti({
-      primary: ['#10b981', '#34d399', '#6ee7b7'], // Emerald shades
-      secondary: ['#047857', '#059669', '#10b981'] // Darker emerald shades
+      primary: ['#10b981', '#34d399', '#6ee7b7'],
+      secondary: ['#047857', '#059669', '#10b981']
     });
   };
+
+  const filteredAndSortedTasks = taskStates
+    .filter(task => {
+      const matchesSearch = 
+        task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        task.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesPoints = task.points >= minPoints;
+      return matchesSearch && matchesPoints;
+    })
+    .sort((a, b) => {
+      const direction = sortOrder === "asc" ? 1 : -1;
+      if (sortField === "points") {
+        return (a.points - b.points) * direction;
+      }
+      if (sortField === "dueTime") {
+        if (!a.dueTime) return 1;
+        if (!b.dueTime) return -1;
+        return a.dueTime.localeCompare(b.dueTime) * direction;
+      }
+      return a.title.localeCompare(b.title) * direction;
+    });
 
   return (
     <div className="space-y-6">
@@ -73,6 +109,51 @@ export default function TaskBoard() {
           <Plus className="h-4 w-4 mr-2" />
           Add Task
         </Button>
+      </div>
+
+      {/* Filter and Sort Controls */}
+      <div className="flex items-center gap-4">
+        <div className="flex-1 flex items-center gap-2 bg-muted/50 px-4 py-2 rounded-lg">
+          <Search className="h-4 w-4 text-muted-foreground" />
+          <Input 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search tasks..." 
+            className="bg-transparent border-none focus-visible:ring-0 px-0"
+          />
+        </div>
+
+        <div className="flex gap-2 items-center">
+          <Input
+            type="number"
+            placeholder="Min points"
+            className="w-28"
+            value={minPoints}
+            onChange={(e) => setMinPoints(Number(e.target.value))}
+          />
+
+          <Select
+            value={sortField}
+            onValueChange={(value) => setSortField(value as SortField)}
+          >
+            <SelectTrigger className="w-32">
+              <SelectValue placeholder="Sort by" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="title">Title</SelectItem>
+              <SelectItem value="points">Points</SelectItem>
+              <SelectItem value="dueTime">Due Time</SelectItem>
+            </SelectContent>
+          </Select>
+
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setSortOrder(order => order === "asc" ? "desc" : "asc")}
+          >
+            <ArrowUpDown className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
 
       {activeTaskId && (
@@ -96,12 +177,12 @@ export default function TaskBoard() {
                 <h2 className="font-semibold">{column.title}</h2>
               </div>
               <Badge variant="secondary">
-                {taskStates.filter(t => t.status === column.id).length}
+                {filteredAndSortedTasks.filter(t => t.status === column.id).length}
               </Badge>
             </div>
 
             <div className="space-y-4">
-              {taskStates
+              {filteredAndSortedTasks
                 .filter(task => task.status === column.id)
                 .map(task => (
                   <Card key={task.id} className="group">
