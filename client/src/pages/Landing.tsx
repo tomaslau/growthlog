@@ -37,6 +37,9 @@ function LandingNav() {
               <Link href="#contact">
                 <a className="px-3 py-1.5 text-[13px] text-white/50 hover:text-white/90 transition-colors">Contact</a>
               </Link>
+              <Link href="/dashboard">
+                <a className="px-3 py-1.5 text-[13px] text-white/50 hover:text-white/90 transition-colors">Demo</a>
+              </Link>
             </nav>
 
             <div className="flex items-center gap-1.5">
