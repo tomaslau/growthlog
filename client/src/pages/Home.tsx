@@ -370,6 +370,72 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Footer */}
+        <footer className="grid grid-cols-2 md:grid-cols-5 gap-12 py-24 text-sm">
+          <div className="space-y-4">
+            <h4 className="font-medium">Features</h4>
+            <ul className="space-y-3 text-muted-foreground">
+              <li><Link href="/plan">Plan</Link></li>
+              <li><Link href="/build">Build</Link></li>
+              <li><Link href="/insights">Insights</Link></li>
+              <li><Link href="/customer-requests">Customer Requests</Link></li>
+              <li><Link href="/linear-asks">Linear Asks</Link></li>
+              <li><Link href="/security">Security</Link></li>
+              <li><Link href="/mobile">Mobile</Link></li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-medium">Product</h4>
+            <ul className="space-y-3 text-muted-foreground">
+              <li><Link href="/pricing">Pricing</Link></li>
+              <li><Link href="/method">Method</Link></li>
+              <li><Link href="/integrations">Integrations</Link></li>
+              <li><Link href="/changelog">Changelog</Link></li>
+              <li><Link href="/documentation">Documentation</Link></li>
+              <li><Link href="/download">Download</Link></li>
+              <li><Link href="/switch">Switch</Link></li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-medium">Company</h4>
+            <ul className="space-y-3 text-muted-foreground">
+              <li><Link href="/about">About</Link></li>
+              <li><Link href="/customers">Customers</Link></li>
+              <li><Link href="/careers">Careers</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
+              <li><Link href="/readme">README</Link></li>
+              <li><Link href="/quality">Quality</Link></li>
+              <li><Link href="/brand">Brand</Link></li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-medium">Resources</h4>
+            <ul className="space-y-3 text-muted-foreground">
+              <li><Link href="/api">API</Link></li>
+              <li><Link href="/status">Status</Link></li>
+              <li><Link href="/startups">Startups</Link></li>
+              <li><Link href="/report-issue">Report issue</Link></li>
+              <li><Link href="/dpa">DPA</Link></li>
+              <li><Link href="/privacy">Privacy</Link></li>
+              <li><Link href="/terms">Terms</Link></li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-medium">Connect</h4>
+            <ul className="space-y-3 text-muted-foreground">
+              <li><Link href="/contact-us">Contact us</Link></li>
+              <li><Link href="/community">Community</Link></li>
+              <li><Link href="https://twitter.com">X (Twitter)</Link></li>
+              <li><Link href="https://github.com">GitHub</Link></li>
+              <li><Link href="https://youtube.com">YouTube</Link></li>
+            </ul>
+          </div>
+        </footer>
+
       </main>
     </div>
   );
