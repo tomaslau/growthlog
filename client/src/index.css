@@ -40,6 +40,21 @@
     --input: 220 13% 91%;
     --ring: 160 84% 39%;
 
+    /* Gradient colors - inspired by Mintlify */
+    --gradient-from: hsl(151 70% 98%);
+    --gradient-to: hsl(160 84% 95%);
+    --gradient-stop-1: hsl(156 72% 97%);
+    --gradient-stop-2: hsl(158 76% 96%);
+
+    /* Accent gradients */
+    --accent-gradient-from: hsl(160 84% 39%);
+    --accent-gradient-to: hsl(157 90% 42%);
+
+    /* Subtle shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.08);
+
     /* Activity level colors - softer emerald shades */
     --activity-0: hsl(160 20% 93%);
     --activity-1: hsl(160 30% 86%);
@@ -49,33 +64,48 @@
   }
 
   .dark {
-    --background: 220 14% 4%;
+    --background: 222 47% 4%;
     --foreground: 210 20% 98%;
 
-    --card: 220 14% 6%;
+    --card: 222 47% 6%;
     --card-foreground: 210 20% 98%;
 
-    --popover: 220 14% 6%;
+    --popover: 222 47% 6%;
     --popover-foreground: 210 20% 98%;
 
     --primary: 160 84% 39%;
     --primary-foreground: 220 14% 4%;
 
-    --secondary: 220 14% 10%;
+    --secondary: 222 47% 10%;
     --secondary-foreground: 210 20% 98%;
 
-    --muted: 220 14% 10%;
+    --muted: 222 47% 10%;
     --muted-foreground: 217.9 10.6% 64.9%;
 
-    --accent: 220 14% 10%;
+    --accent: 222 47% 10%;
     --accent-foreground: 210 20% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 20% 98%;
 
-    --border: 220 14% 14%;
-    --input: 220 14% 14%;
+    --border: 217 19% 27%;
+    --input: 217 19% 27%;
     --ring: 160 84% 39%;
+
+    /* Dark mode gradient colors */
+    --gradient-from: hsl(222 47% 4%);
+    --gradient-to: hsl(222 47% 6%);
+    --gradient-stop-1: hsl(222 47% 5%);
+    --gradient-stop-2: hsl(222 47% 5.5%);
+
+    /* Dark mode accent gradients */
+    --accent-gradient-from: hsl(160 84% 39%);
+    --accent-gradient-to: hsl(157 90% 42%);
+
+    /* Dark mode shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.3);
 
     /* Activity level colors - darker but still professional */
     --activity-0: hsl(160 20% 10%);
@@ -83,5 +113,34 @@
     --activity-2: hsl(160 40% 30%);
     --activity-3: hsl(160 50% 35%);
     --activity-4: hsl(160 84% 39%);
+  }
+
+  /* Apply gradients to specific elements */
+  .bg-gradient {
+    background-image: linear-gradient(
+      135deg,
+      var(--gradient-from),
+      var(--gradient-stop-1),
+      var(--gradient-stop-2),
+      var(--gradient-to)
+    );
+  }
+
+  .bg-accent-gradient {
+    background-image: linear-gradient(
+      135deg,
+      var(--accent-gradient-from),
+      var(--accent-gradient-to)
+    );
+  }
+
+  /* Add subtle depth to cards */
+  .card {
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-md);
   }
 }
