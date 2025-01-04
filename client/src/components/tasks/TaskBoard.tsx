@@ -2,6 +2,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Calendar, CheckCircle2, Clock, ArrowRight } from "lucide-react";
+import PomodoroTimer from "./PomodoroTimer";
+import { useState } from "react";
 
 // Mock data - will be replaced with API data
 const tasks = [
@@ -39,6 +41,8 @@ const columns: { id: TaskStatus; title: string; icon: any }[] = [
 ];
 
 export default function TaskBoard() {
+  const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -51,6 +55,18 @@ export default function TaskBoard() {
           Add Task
         </Button>
       </div>
+
+      {activeTaskId && (
+        <div className="max-w-sm mx-auto">
+          <PomodoroTimer 
+            taskId={activeTaskId}
+            onComplete={() => {
+              console.log("Pomodoro completed for task:", activeTaskId);
+              setActiveTaskId(null);
+            }}
+          />
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {columns.map(column => (
@@ -78,15 +94,27 @@ export default function TaskBoard() {
                             {task.description}
                           </p>
                         </div>
-                        <Button 
-                          variant="ghost" 
-                          size="icon"
-                          className="opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <ArrowRight className="h-4 w-4" />
-                        </Button>
+                        <div className="flex gap-2">
+                          {task.status === "today" && (
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              className={`${activeTaskId === task.id ? 'text-primary' : ''}`}
+                              onClick={() => setActiveTaskId(activeTaskId === task.id ? null : task.id)}
+                            >
+                              <Clock className="h-4 w-4" />
+                            </Button>
+                          )}
+                          <Button 
+                            variant="ghost" 
+                            size="icon"
+                            className="opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <ArrowRight className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </div>
-                      
+
                       <div className="flex items-center gap-2 mt-3">
                         <Badge variant="secondary" className="text-xs">
                           {task.points} pts
