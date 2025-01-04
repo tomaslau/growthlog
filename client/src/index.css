@@ -10,4 +10,13 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
+
+  :root {
+    /* Activity level colors - using GitHub-like shades */
+    --activity-0: #161b22;
+    --activity-1: #0e4429;
+    --activity-2: #006d32;
+    --activity-3: #26a641;
+    --activity-4: #39d353;
+  }
 }
