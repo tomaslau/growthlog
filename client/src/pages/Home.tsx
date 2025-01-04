@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
             <h1 className="text-[13px] font-semibold tracking-tight">Growthlog</h1>
           </Link>
 
-          <nav className="flex flex-1 items-center justify-center gap-6 text-[13px] font-medium">
+          <nav className="hidden md:flex flex-1 items-center justify-center gap-6 text-[13px] font-medium">
             <Link href="/features" className="nav-link">Features</Link>
             <Link href="/method" className="nav-link">Method</Link>
             <Link href="/customers" className="nav-link">Customers</Link>
@@ -24,6 +25,7 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <Link href="/login">
               <Button variant="secondary" size="sm" className="login-button h-7 rounded px-3 text-[13px] font-medium">
                 Log in
