@@ -5,6 +5,7 @@ import { Logo } from "@/components/ui/logo";
 import { Timer, TrendingUp, Layers, Lightbulb } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { SiVercel, SiPrisma, SiSupabase, SiPostgresql, SiTailwindcss, SiNextdotjs, SiStripe, SiFramer } from "react-icons/si";
 
 const container = {
   hidden: { opacity: 0 },
@@ -43,6 +44,17 @@ export default function Home() {
       title: "Growth Ideas Library",
       description: "Access a curated collection of proven SaaS growth tactics and strategies, ready to be implemented in 25-minute focused sessions."
     }
+  ];
+
+  const companies = [
+    { icon: SiVercel, name: "Vercel" },
+    { icon: SiPrisma, name: "Prisma" },
+    { icon: SiSupabase, name: "Supabase" },
+    { icon: SiPostgresql, name: "PostgreSQL" },
+    { icon: SiTailwindcss, name: "Tailwind" },
+    { icon: SiNextdotjs, name: "Next.js" },
+    { icon: SiStripe, name: "Stripe" },
+    { icon: SiFramer, name: "Framer" }
   ];
 
   return (
@@ -102,6 +114,25 @@ export default function Home() {
                 </Button>
               </Link>
             </div>
+          </div>
+        </div>
+
+        <div className="pb-24 text-center">
+          <h2 className="text-2xl font-semibold mb-2">Powering experiences</h2>
+          <p className="text-muted-foreground mb-12">from next-gen startups to enterprises</p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-center max-w-4xl mx-auto">
+            {companies.map((company, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.1 }}
+                className="flex justify-center"
+              >
+                <company.icon className="w-8 h-8 text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
+              </motion.div>
+            ))}
           </div>
         </div>
 
