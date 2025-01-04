@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, ArrowUpDown, Filter } from "lucide-react";
+import { Search, ArrowUpDown } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
+import { useLocation } from "wouter";
 
 const ideas = [
   {
@@ -99,6 +100,7 @@ const ideas = [
 const categories = ["All", "Product", "Marketing", "Sales", "Community", "Analytics"];
 
 export default function GrowthIdeas() {
+  const [, setLocation] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortField, setSortField] = useState<"title" | "category" | "difficulty" | "impact">("title");
@@ -162,68 +164,76 @@ export default function GrowthIdeas() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[50px]">Icon</TableHead>
+              <TableHead className="w-[40px]">Icon</TableHead>
               <TableHead>
                 <button 
                   onClick={() => handleSort("title")}
-                  className="flex items-center hover:text-accent-foreground"
+                  className="flex items-center hover:text-accent-foreground text-sm"
                 >
                   Title
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
+                  <ArrowUpDown className="ml-2 h-3 w-3" />
                 </button>
               </TableHead>
-              <TableHead>Description</TableHead>
+              <TableHead className="hidden md:table-cell">Description</TableHead>
               <TableHead>
                 <button 
                   onClick={() => handleSort("category")}
-                  className="flex items-center hover:text-accent-foreground"
+                  className="flex items-center hover:text-accent-foreground text-sm"
                 >
                   Category
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
+                  <ArrowUpDown className="ml-2 h-3 w-3" />
                 </button>
               </TableHead>
               <TableHead>
                 <button 
                   onClick={() => handleSort("difficulty")}
-                  className="flex items-center hover:text-accent-foreground"
+                  className="flex items-center hover:text-accent-foreground text-sm"
                 >
                   Difficulty
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
+                  <ArrowUpDown className="ml-2 h-3 w-3" />
                 </button>
               </TableHead>
               <TableHead>
                 <button 
                   onClick={() => handleSort("impact")}
-                  className="flex items-center hover:text-accent-foreground"
+                  className="flex items-center hover:text-accent-foreground text-sm"
                 >
                   Impact
-                  <ArrowUpDown className="ml-2 h-4 w-4" />
+                  <ArrowUpDown className="ml-2 h-3 w-3" />
                 </button>
               </TableHead>
-              <TableHead className="w-[100px]">Actions</TableHead>
+              <TableHead className="w-[80px]">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredIdeas.map(idea => (
-              <TableRow key={idea.id}>
-                <TableCell className="font-medium text-xl">{idea.icon}</TableCell>
+              <TableRow key={idea.id} className="text-sm">
+                <TableCell className="text-base">{idea.icon}</TableCell>
                 <TableCell className="font-medium">{idea.title}</TableCell>
-                <TableCell className="text-muted-foreground">{idea.description}</TableCell>
+                <TableCell className="text-muted-foreground hidden md:table-cell">{idea.description}</TableCell>
                 <TableCell>
-                  <Badge variant="outline">{idea.category}</Badge>
+                  <Badge variant="outline" className="text-xs">{idea.category}</Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge variant="secondary">{idea.difficulty}</Badge>
+                  <Badge variant="secondary" className="text-xs">{idea.difficulty}</Badge>
                 </TableCell>
                 <TableCell>
                   <Badge 
                     variant={idea.impact === "High" ? "default" : "secondary"}
+                    className="text-xs"
                   >
                     {idea.impact}
                   </Badge>
                 </TableCell>
                 <TableCell>
-                  <Button variant="outline" size="sm">View</Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => setLocation(`/ideas/${idea.id}`)}
+                    className="text-xs h-7 px-2"
+                  >
+                    View
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
