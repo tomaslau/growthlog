@@ -647,6 +647,25 @@ export default function Home() {
           </div>
         </footer>
 
+        {/* Copyright Footer */}
+        <footer className="border-t border-zinc-200/80 mt-24">
+          <div className="container mx-auto px-6 py-8 max-w-6xl">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="flex items-center gap-2">
+                <Logo />
+                <span className="text-sm text-muted-foreground">
+                  © 2025 Growthlog. All rights reserved.
+                </span>
+              </div>
+              <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                <Link href="/privacy">Privacy</Link>
+                <Link href="/terms">Terms</Link>
+                <Link href="/security">Security</Link>
+                <Link href="/sitemap">Sitemap</Link>
+              </div>
+            </div>
+          </div>
+        </footer>
       </main>
     </div>
   );
