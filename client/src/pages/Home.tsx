@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="fixed top-4 left-4 right-4 linear-nav border-b border-border/40">
+      <header className="fixed top-4 left-4 right-4 linear-nav">
         <div className="flex h-[52px] items-center gap-4 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-[18px] h-[18px] bg-foreground rounded-sm" />
@@ -23,8 +23,8 @@ export default function Home() {
             <Link href="/demo" className="nav-link">Demo</Link>
           </nav>
 
-          <div className="flex items-center gap-3 text-[13px]">
-            <Link href="/login" className="flex items-center">
+          <div className="flex items-center gap-3">
+            <Link href="/login">
               <Button variant="secondary" size="sm" className="login-button h-7 rounded px-3 text-[13px] font-medium">
                 Log in
                 <span className="ml-2 text-[11px] text-muted-foreground/70">L</span>
