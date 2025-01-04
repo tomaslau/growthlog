@@ -5,6 +5,7 @@ import GrowthIdeaView from "@/pages/GrowthIdeaView";
 import Profile from "@/pages/Profile";
 import Achievements from "@/pages/Achievements";
 import Manifesto from "@/pages/Manifesto";
+import SaasMetrics from "@/pages/SaasMetrics";
 import SharedDashboard from "@/pages/SharedDashboard";
 import TaskBoard from "@/components/tasks/TaskBoard";
 import TopNav from "@/components/layout/TopNav";
@@ -30,6 +31,7 @@ function App() {
               <Route path="/profile" component={Profile} />
               <Route path="/achievements" component={Achievements} />
               <Route path="/manifesto" component={Manifesto} />
+              <Route path="/metrics" component={SaasMetrics} />
               <Route path="/share/:token" component={SharedDashboard} />
             </Switch>
           </main>

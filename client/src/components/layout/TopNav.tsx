@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Home, Lightbulb, User, CheckSquare, Trophy, BookOpen } from "lucide-react";
+import { Home, Lightbulb, User, CheckSquare, Trophy, BookOpen, BarChart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
@@ -9,6 +9,7 @@ const navItems = [
   { icon: Lightbulb, label: "Growth Ideas", href: "/ideas" },
   { icon: Trophy, label: "Achievements", href: "/achievements" },
   { icon: BookOpen, label: "Manifesto", href: "/manifesto" },
+  { icon: BarChart, label: "SaaS Metrics", href: "/metrics" },
   { icon: User, label: "Profile", href: "/profile" }
 ];
 
