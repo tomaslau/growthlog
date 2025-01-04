@@ -1,7 +1,8 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Clock, MapPin, Link2, Twitter, Linkedin } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Clock, MapPin, Link2, Twitter, Linkedin, Trophy, Star } from "lucide-react";
 
 export default function ProfileSidebar() {
   return (
@@ -60,6 +61,58 @@ export default function ProfileSidebar() {
               <span className="font-medium">4 days</span>
             </div>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Points & Level */}
+      <Card>
+        <CardContent className="pt-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-medium">Level 3</h3>
+            <Star className="h-5 w-5 text-yellow-500" />
+          </div>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Total Points</span>
+              <span className="font-medium">1,250</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-muted-foreground">Next Level</span>
+              <span className="font-medium">750 points away</span>
+            </div>
+            <div className="w-full bg-secondary h-2 rounded-full mt-2">
+              <div className="bg-primary h-full rounded-full" style={{ width: '62.5%' }} />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Achievements */}
+      <Card>
+        <CardContent className="pt-6">
+          <div className="flex items-center gap-2 mb-4">
+            <Trophy className="h-5 w-5 text-yellow-500" />
+            <h3 className="font-medium">Recent Achievements</h3>
+          </div>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <Badge variant="secondary">🌱</Badge>
+              <div>
+                <p className="text-sm font-medium">First Steps</p>
+                <p className="text-xs text-muted-foreground">Complete your first growth task</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Badge variant="secondary">📈</Badge>
+              <div>
+                <p className="text-sm font-medium">Analytics Ace</p>
+                <p className="text-xs text-muted-foreground">Complete 5 analytics tasks</p>
+              </div>
+            </div>
+          </div>
+          <Button variant="ghost" size="sm" className="w-full mt-4">
+            View All Achievements
+          </Button>
         </CardContent>
       </Card>
 
