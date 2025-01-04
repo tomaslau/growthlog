@@ -585,7 +585,7 @@ export default function Home() {
         <footer className="border-t border-zinc-200/80 mt-24">
           <div className="container mx-auto px-6 py-8 max-w-6xl">
             <div className="flex flex-col gap-8">
-              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 pb-8 border-b border-zinc-200/80">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5 pb-8 border-b border-zinc-200/80">
                 <div className="space-y-3">
                   <div className="flex items-center space-x-2">
                     <Logo className="text-[#2F363F]" />
@@ -603,7 +603,7 @@ export default function Home() {
                       href="https://github.com"
                     >
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M12 0C5.3724 0 0 5.3556 0 11.964C0 17.2488 3.438 21.732 8.2068 23.3136C8.8068 23.424 9.0252 23.0544 9.0252 22.7376C9.0252 22.4544 9.0156 21.7008 9.0096 20.7036C5.6712 21.426 4.9668 19.0992 4.9668 19.0992C4.422 17.718 3.6348 17.3496 3.6348 17.3496C2.5452 16.608 3.7176 16.6224 3.7176 16.6224C4.9212 16.7064 5.5548 17.8548 5.5548 17.8548C6.6252 19.6836 8.364 19.1556 9.0468 18.8484C9.1572 18.0768 9.4668 17.5488 9.81 17.25C7.146 16.9488 4.344 15.9216 4.344 11.3376C4.344 10.032 4.812 8.9628 5.5788 8.1276C5.4552 7.8252 5.0436 6.6084 5.6964 4.962C5.6964 4.962 6.7044 4.6404 8.9964 6.1884C9.97544 5.92201 10.9854 5.78604 12 5.784C13.02 5.7888 14.046 5.9208 15.0048 6.1872C17.2956 4.6392 18.3012 4.9608 18.3012 4.9608C18.9564 6.6072 18.5448 7.8240 18.4212 8.1264C19.1892 8.9616 19.6548 10.0308 19.6548 11.3364C19.6548 15.9324 19.6548 16.944 14.1756 17.2404C14.6064 17.6088 14.9892 18.3384 14.9892 19.4556C14.9892 21.054 14.9748 22.344 14.9748 22.7364C14.9748 23.0568 15.1908 23.4288 15.8004 23.3124C20.5644 21.7284 24 17.2476 24 11.9628C24 5.3556 18.6264 0 12 0Z"/>
+                        <path fillRule="evenodd" clipRule="evenodd" d="M12 0C5.3724 0 0 5.3556 0 11.964C0 17.2488 3.438 21.732 8.2068 23.3136C8.8068 23.424 9.0252 23.0544 9.0252 22.7376C9.0252 22.4544 9.0156 21.7008 9.0096 20.7036C5.6712 21.426 4.9668 19.0992 4.9668 19.0992C4.422 17.718 3.6348 17.3496 3.6348 17.3496C2.5452 16.608 3.7176 16.6224 3.7176 16.6224C4.9212 16.7064 5.5548 17.8548 5.5548 17.8548C6.6252 19.6836 8.364 19.1556 9.0468 18.8484C9.1572 18.0768 9.4668 17.5488 9.81 17.25C7.146 16.9488 4.344 15.9216 4.344 11.3376C4.344 10.032 4.812 8.9628 5.5788 8.1276C5.4552 7.8252 5.0436 6.6084 5.6964 4.962C5.6964 4.962 6.7044 4.6404 8.9964 6.1884C9.97544 5.92201 10.9854 5.78604 12 5.784C13.02 5.7888 14.046 5.9208 15.0048 6.1872C17.2956 4.6392 18.3012 4.9608 18.3012 4.9608C18.9564 6.6072 18.548 18.4212 8.1264C19.1892 8.9616 19.6548 10.0308 19.6548 11.3364C19.6548 15.9324 19.6548 16.944 14.1756 17.2404C14.6064 17.6088 14.9892 18.3384 14.9892 19.4556C14.9892 21.054 14.9748 22.344 14.9748 22.7364C14.9748 23.0568 15.1908 23.4288 15.8004 23.3124C20.5644 21.7284 24 17.2476 24 11.9628C24 5.3556 18.6264 0 12 0Z"/>
                       </svg>
                     </a>
                     <a 
@@ -621,10 +621,33 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-3">
+                  <h4 className="font-medium">Features</h4>
+                  <ul className="space-y-3 text-sm text-zinc-500">
+                    <li><Link href="/features/growth-sprints">25-Minute Growth Sprints</Link></li>
+                    <li><Link href="/features/progress-tracking">Progress Tracking</Link></li>
+                    <li><Link href="/features/framework">Structured Framework</Link></li>
+                    <li><Link href="/features/growth-ideas">Growth Ideas Library</Link></li>
+                  </ul>
+                </div>
+
+                <div className="space-y-3">
+                  <h4 className="font-medium">Product</h4>
+                  <ul className="space-y-3 text-sm text-zinc-500">
+                    <li><Link href="/about">About</Link></li>
+                    <li><Link href="/pricing">Pricing</Link></li>
+                    <li><Link href="/manifesto">Manifesto</Link></li>
+                    <li><Link href="/integrations">Integrations</Link></li>
+                    <li><Link href="/documentation">Documentation</Link></li>
+                    <li><Link href="/updates">Updates</Link></li>
+                  </ul>
+                </div>
+
+                <div className="space-y-3">
                   <h4 className="font-medium">Resources</h4>
                   <ul className="space-y-3 text-sm text-zinc-500">
-                    <li><Link href="/home">Home</Link></li>
-                    <li><Link href="/changelog">Changelog</Link></li>
+                    <li><Link href="/blog">Blog</Link></li>
+                    <li><Link href="/report-issue">Report Issue</Link></li>
+                    <li><Link href="/status">Status</Link></li>
                   </ul>
                 </div>
 
@@ -632,6 +655,8 @@ export default function Home() {
                   <h4 className="font-medium">Legal</h4>
                   <ul className="space-y-3 text-sm text-zinc-500">
                     <li><Link href="/license">License</Link></li>
+                    <li><Link href="/terms">Terms</Link></li>
+                    <li><Link href="/privacy">Privacy</Link></li>
                   </ul>
                 </div>
               </div>
