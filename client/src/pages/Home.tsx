@@ -5,14 +5,14 @@ import { ArrowRight } from "lucide-react";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="fixed top-4 left-4 right-4 linear-nav">
-        <div className="flex h-[52px] items-center gap-4 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+      <header className="fixed top-4 left-6 right-6 linear-nav">
+        <div className="flex h-[52px] items-center px-6 max-w-[1120px] mx-auto">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-[18px] h-[18px] bg-foreground rounded-sm" />
             <h1 className="text-[13px] font-semibold tracking-tight">Growthlog</h1>
           </Link>
 
-          <nav className="flex flex-1 items-center justify-center gap-5 text-[13px] font-medium">
+          <nav className="flex flex-1 items-center justify-center gap-6 text-[13px] font-medium">
             <Link href="/features" className="nav-link">Features</Link>
             <Link href="/method" className="nav-link">Method</Link>
             <Link href="/customers" className="nav-link">Customers</Link>
