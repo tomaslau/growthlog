@@ -12,55 +12,43 @@ interface PomodoroTimerProps {
 }
 
 export default function PomodoroTimer({ onComplete, taskId, taskTitle }: PomodoroTimerProps) {
-  const [timeLeft, setTimeLeft] = useState(25 * 60); // 25 minutes in seconds
-  const [isRunning, setIsRunning] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const { setActiveTimer } = usePomodoroTimer();
-
   const totalTime = 25 * 60; // 25 minutes in seconds
+  const { activeTimer, setActiveTimer, toggleTimer, resetTimer } = usePomodoroTimer();
+  const [progress, setProgress] = useState(0);
 
+  // Initialize timer if this task becomes active
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-
-    if (isRunning && timeLeft > 0) {
-      // Update global timer state
-      setActiveTimer({ taskId, taskTitle, timeLeft });
-
-      interval = setInterval(() => {
-        setTimeLeft((prev) => {
-          const newTime = prev - 1;
-          setProgress(((totalTime - newTime) / totalTime) * 100);
-          return newTime;
-        });
-      }, 1000);
-    } else if (timeLeft === 0) {
-      setIsRunning(false);
-      setActiveTimer(null);
-      onComplete?.();
+    if (!activeTimer && taskId) {
+      setActiveTimer({
+        taskId,
+        taskTitle,
+        timeLeft: totalTime,
+        isRunning: false
+      });
     }
+  }, [taskId, taskTitle, setActiveTimer]);
 
-    return () => clearInterval(interval);
-  }, [isRunning, timeLeft, onComplete, taskId, taskTitle, setActiveTimer]);
+  // Update progress and handle completion
+  useEffect(() => {
+    if (activeTimer && activeTimer.taskId === taskId) {
+      const newProgress = ((totalTime - activeTimer.timeLeft) / totalTime) * 100;
+      setProgress(newProgress);
 
-  const toggleTimer = () => {
-    setIsRunning(!isRunning);
-    if (!isRunning) {
-      setActiveTimer({ taskId, taskTitle, timeLeft });
+      if (activeTimer.timeLeft === 0) {
+        onComplete?.();
+      }
     }
-  };
-
-  const resetTimer = () => {
-    setIsRunning(false);
-    setTimeLeft(totalTime);
-    setProgress(0);
-    setActiveTimer(null);
-  };
+  }, [activeTimer, taskId, onComplete]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
+
+  const isActive = activeTimer?.taskId === taskId;
+  const timeLeft = isActive ? activeTimer.timeLeft : totalTime;
+  const isRunning = isActive && activeTimer.isRunning;
 
   return (
     <Card className="w-full">

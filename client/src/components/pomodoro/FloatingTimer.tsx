@@ -1,12 +1,11 @@
-import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import { Timer, X } from "lucide-react";
+import { Timer, X, Play, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePomodoroTimer } from "@/contexts/PomodoroContext";
 import { useLocation } from "wouter";
 
 export default function FloatingTimer() {
-  const { activeTimer, setActiveTimer } = usePomodoroTimer();
+  const { activeTimer, toggleTimer, resetTimer } = usePomodoroTimer();
   const [location] = useLocation();
 
   // Only show if we have an active timer and we're not on the tasks page
@@ -25,14 +24,28 @@ export default function FloatingTimer() {
         <div className="text-sm font-medium">{activeTimer.taskTitle}</div>
         <div className="text-lg font-mono">{formatTime(activeTimer.timeLeft)}</div>
       </div>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="h-8 w-8"
-        onClick={() => setActiveTimer(null)}
-      >
-        <X className="h-4 w-4" />
-      </Button>
+      <div className="flex gap-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-8 w-8"
+          onClick={toggleTimer}
+        >
+          {activeTimer.isRunning ? (
+            <Pause className="h-4 w-4" />
+          ) : (
+            <Play className="h-4 w-4" />
+          )}
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-8 w-8"
+          onClick={resetTimer}
+        >
+          <X className="h-4 w-4" />
+        </Button>
+      </div>
     </Card>
   );
 }
