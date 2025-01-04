@@ -180,7 +180,7 @@ export default function Home() {
           </div>
 
           <div className="bg-[#0A0A0A] rounded-lg p-8 min-h-[400px]">
-            {/* Task tracking UI will be implemented here */}
+            <Timer />
           </div>
         </div>
       </main>
