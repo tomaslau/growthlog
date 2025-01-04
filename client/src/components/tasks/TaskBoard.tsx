@@ -21,19 +21,25 @@ const tasks = [
     id: 1,
     title: "Research competitor pricing",
     description: "Analyze top 5 competitors' pricing models",
-    status: "today"
+    status: "today",
+    sourceIdeaId: 1, // Links to "Cloneable Templates" idea
+    sourceIdeaTitle: "Cloneable Templates"
   },
   {
     id: 2, 
     title: "Create social media calendar",
     description: "Plan next week's content",
-    status: "today"
+    status: "today",
+    sourceIdeaId: 5, // Links to "SEO Content Strategy" idea
+    sourceIdeaTitle: "SEO Content Strategy"
   },
   {
     id: 3,
     title: "Review analytics dashboard",
     description: "Check key metrics and create report",
-    status: "later"
+    status: "later",
+    sourceIdeaId: 9, // Links to "Product Analytics" idea
+    sourceIdeaTitle: "Product Analytics"
   },
 ];
 
@@ -162,7 +168,7 @@ export default function TaskBoard() {
               {filteredAndSortedTasks
                 .filter(task => task.status === column.id)
                 .map(task => (
-                  <Link key={task.id} to={`/tasks/${task.id}`}>
+                  <Link key={task.id} to={`/ideas/${task.sourceIdeaId}`}>
                     <Card className="group hover:border-primary/50 transition-colors cursor-pointer">
                       <CardContent className="p-4">
                         <div className="flex items-start justify-between">
@@ -205,6 +211,9 @@ export default function TaskBoard() {
                         <div className="flex items-center gap-2 mt-3">
                           <Badge variant="secondary" className="text-xs">
                             1 pt
+                          </Badge>
+                          <Badge variant="outline" className="text-xs">
+                            From: {task.sourceIdeaTitle}
                           </Badge>
                         </div>
                       </CardContent>
