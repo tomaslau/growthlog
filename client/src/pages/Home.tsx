@@ -7,6 +7,13 @@ import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { CraftledLogo, BestWritingLogo } from "@/components/logos";
 import PomodoroTimer from "@/components/tasks/PomodoroTimer";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const container = {
   hidden: { opacity: 0 },
@@ -368,6 +375,86 @@ export default function Home() {
               </p>
             </Card>
           </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="pb-24">
+          <div className="text-center space-y-4 mb-12">
+            <h2 className="text-3xl font-bold tracking-tight">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <Tabs defaultValue="general" className="max-w-3xl mx-auto">
+            <TabsList className="grid grid-cols-4 w-full">
+              <TabsTrigger value="general">General</TabsTrigger>
+              <TabsTrigger value="technical">Technical</TabsTrigger>
+              <TabsTrigger value="payment">Payment</TabsTrigger>
+              <TabsTrigger value="license">License</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="general" className="mt-6">
+              <Accordion type="single" collapsible defaultValue="item-1">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>What do I get exactly with Growthlog?</AccordionTrigger>
+                  <AccordionContent>
+                    With Growthlog, you receive lifetime access to a comprehensive SaaS growth platform. This includes the full suite of growth tracking tools, 25-minute sprint functionality, and access to the growth ideas library. The platform features a robust task management system, growth metrics dashboard, achievement tracking, and detailed examples of proven growth strategies. It's built with modern web technologies for improved performance and developer experience.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>How often is Growthlog updated?</AccordionTrigger>
+                  <AccordionContent>
+                    We regularly update Growthlog with new features, growth strategies, and performance improvements. Major updates are released monthly, while smaller improvements and bug fixes are deployed weekly.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-3">
+                  <AccordionTrigger>Do I need to be an expert to use Growthlog?</AccordionTrigger>
+                  <AccordionContent>
+                    Not at all! Growthlog is designed to be accessible for both beginners and experienced growth professionals. Our structured framework and step-by-step guides make it easy to get started, while offering advanced features for more experienced users.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </TabsContent>
+
+            <TabsContent value="technical" className="mt-6">
+              <Accordion type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>What authentication options are available?</AccordionTrigger>
+                  <AccordionContent>
+                    Growthlog supports multiple authentication methods including Google OAuth, email/password, and single sign-on (SSO) for enterprise customers.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>Can I use Growthlog if my tech stack is different?</AccordionTrigger>
+                  <AccordionContent>
+                    Yes! Growthlog is platform-agnostic and can be integrated with any tech stack through our API. We provide SDKs for major programming languages and frameworks.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </TabsContent>
+
+            <TabsContent value="payment" className="mt-6">
+              <Accordion type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>What payment methods do you accept?</AccordionTrigger>
+                  <AccordionContent>
+                    We accept all major credit cards, PayPal, and offer enterprise invoicing for annual plans.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </TabsContent>
+
+            <TabsContent value="license" className="mt-6">
+              <Accordion type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>What type of license do I get?</AccordionTrigger>
+                  <AccordionContent>
+                    Growthlog comes with a perpetual license for the version you purchase, including 12 months of updates and support.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </TabsContent>
+          </Tabs>
         </div>
 
         {/* Footer */}
