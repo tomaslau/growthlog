@@ -44,7 +44,7 @@
 
 /* Linear-style navigation */
 header.linear-nav {
-  background: hsl(var(--background) / 0.7);
+  background: hsl(var(--background) / 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 14px;
