@@ -5,7 +5,7 @@ import { Logo } from "@/components/ui/logo";
 import { Timer, TrendingUp, Layers, Lightbulb } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { CraftledLogo, AnthropicLogo, ZapierLogo, CursorLogo, ResendLogo, LaravelLogo, CodeiumLogo } from "@/components/logos";
+import { CraftledLogo } from "@/components/logos";
 
 const container = {
   hidden: { opacity: 0 },
@@ -47,13 +47,7 @@ export default function Home() {
   ];
 
   const companies = [
-    { logo: CraftledLogo, name: "Craftled" },
-    { logo: AnthropicLogo, name: "Anthropic" },
-    { logo: ZapierLogo, name: "Zapier" },
-    { logo: CursorLogo, name: "Cursor" },
-    { logo: ResendLogo, name: "Resend" },
-    { logo: LaravelLogo, name: "Laravel" },
-    { logo: CodeiumLogo, name: "Codeium" }
+    { logo: CraftledLogo, name: "Craftled" }
   ];
 
   return (
@@ -119,18 +113,14 @@ export default function Home() {
           <h2 className="text-2xl font-semibold mb-2">Powering experiences</h2>
           <p className="text-muted-foreground mb-12">from next-gen startups to enterprises</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-12 items-center justify-center max-w-4xl mx-auto">
-            {companies.map((company, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: index * 0.1 }}
-                className="flex justify-center"
-              >
-                <company.logo className="w-auto h-5 text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
-              </motion.div>
-            ))}
+          <div className="max-w-[800px] mx-auto flex justify-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex justify-center"
+            >
+              <CraftledLogo className="w-auto h-5 text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
+            </motion.div>
           </div>
         </div>
 
