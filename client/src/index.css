@@ -45,6 +45,7 @@
   header {
     left: 1rem !important;
     right: 1rem !important;
+    border-color: hsl(var(--border) / 0.8) !important;
   }
 
   .flex {

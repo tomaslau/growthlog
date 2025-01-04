@@ -7,7 +7,7 @@ import { Logo } from "@/components/ui/logo";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="fixed top-4 left-24 right-24 h-14 border border-border/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-lg">
+      <header className="fixed top-4 left-24 right-24 h-14 border border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-md">
         <div className="flex h-14 items-center px-6">
           <Link href="/" className="flex items-center gap-2">
             <Logo />
