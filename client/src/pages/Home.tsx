@@ -1,6 +1,5 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Logo } from "@/components/ui/logo";
 
@@ -45,25 +44,19 @@ export default function Home() {
       <main className="max-w-[1200px] mx-auto px-6 pt-36 pb-16">
         <div className="max-w-[800px] mx-auto text-center space-y-8">
           <h1 className="text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
-            Track your SaaS growth
+            The analytics platform
             <br />
-            with purpose-built tools
+            built for SaaS growth
           </h1>
 
           <p className="text-lg text-muted-foreground/80 leading-relaxed max-w-[600px] mx-auto">
-            Meet the system for modern software development. Streamline issues, projects, and product roadmaps.
+            Track your key metrics, analyze performance trends, and drive strategic growth with a purpose-built platform for SaaS founders and marketers.
           </p>
 
-          <div className="flex items-center justify-center gap-6 pt-4">
+          <div className="flex items-center justify-center pt-4">
             <Link href="/dashboard">
               <Button size="lg" className="h-11 px-6 text-[13px] font-medium">
-                Start building
-              </Button>
-            </Link>
-            <Link href="/method">
-              <Button variant="link" size="lg" className="text-muted-foreground h-11 px-6 text-[13px] font-medium">
-                Introducing Customer Requests
-                <ArrowRight className="w-4 h-4 ml-2" />
+                Start your growthlog
               </Button>
             </Link>
           </div>
