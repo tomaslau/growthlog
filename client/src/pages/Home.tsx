@@ -44,9 +44,9 @@ export default function Home() {
       <main className="max-w-[1200px] mx-auto px-6 pt-36 pb-16">
         <div className="max-w-[800px] mx-auto text-center space-y-8">
           <h1 className="text-5xl font-bold tracking-[-0.02em] leading-[1.1]">
-            Track your SaaS growth
+            Transform SaaS growth into
             <br />
-            with purpose-built tools
+            focused 25-minute wins
           </h1>
 
           <p className="text-lg text-muted-foreground/80 leading-relaxed max-w-[600px] mx-auto">
