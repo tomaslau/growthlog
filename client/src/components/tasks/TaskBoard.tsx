@@ -160,6 +160,7 @@ export default function TaskBoard() {
         <div className="max-w-sm mx-auto">
           <PomodoroTimer 
             taskId={activeTaskId}
+            taskTitle={taskStates.find(t => t.id === activeTaskId)?.title || "Task"}
             onComplete={() => {
               console.log("Pomodoro completed for task:", activeTaskId);
               setActiveTaskId(null);
