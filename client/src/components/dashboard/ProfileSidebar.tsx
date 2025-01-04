@@ -49,7 +49,7 @@ export default function ProfileSidebar() {
           <h3 className="font-medium mb-4">Growth Stats</h3>
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Ideas Tried</span>
+              <span className="text-sm text-muted-foreground">Tasks Completed</span>
               <span className="font-medium">12</span>
             </div>
             <div className="flex justify-between items-center">
@@ -74,20 +74,20 @@ export default function ProfileSidebar() {
           <div className="space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-sm text-muted-foreground">Total Points</span>
-              <span className="font-medium">1,250</span>
+              <span className="font-medium">12</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-muted-foreground">Next Level</span>
-              <span className="font-medium">750 points away</span>
+              <span className="font-medium">13 tasks away</span>
             </div>
             <div className="w-full bg-secondary h-2 rounded-full mt-2">
-              <div className="bg-primary h-full rounded-full" style={{ width: '62.5%' }} />
+              <div className="bg-primary h-full rounded-full" style={{ width: '48%' }} />
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Achievements */}
+      {/* Recent Achievements */}
       <Card>
         <CardContent className="pt-6">
           <div className="flex items-center gap-2 mb-4">
@@ -99,7 +99,7 @@ export default function ProfileSidebar() {
               <Badge variant="secondary">🌱</Badge>
               <div>
                 <p className="text-sm font-medium">First Steps</p>
-                <p className="text-xs text-muted-foreground">Complete your first growth task</p>
+                <p className="text-xs text-muted-foreground">Complete your first task</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
