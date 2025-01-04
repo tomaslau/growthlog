@@ -16,88 +16,52 @@ import { useLocation } from "wouter";
 const ideas = [
   {
     id: 1,
-    title: "Cloneable Templates",
-    description: "Improve acquisition & activation with a template library",
-    icon: "📑",
-    category: "Product",
+    title: "Cold Email Campaign",
+    description: "Launch targeted cold email campaign for SaaS decision makers",
+    icon: "📧",
+    category: "Acquisition",
     difficulty: "Medium",
-    impact: "High"
+    impact: "High",
+    suggestedTasks: [
+      "Research and create ICP list (25min)",
+      "Draft initial email template (25min)",
+      "Set up email tracking system (25min)",
+      "Create follow-up sequence (25min)"
+    ]
   },
   {
     id: 2, 
-    title: "Co-Marketing Campaigns",
-    description: "Partner with complementary businesses to increase reach",
-    icon: "🤝",
-    category: "Marketing",
-    difficulty: "High",
-    impact: "High"
+    title: "Product-Led Blog Strategy",
+    description: "Create high-impact blog content showcasing product solutions",
+    icon: "✍️",
+    category: "Acquisition",
+    difficulty: "Medium",
+    impact: "High",
+    suggestedTasks: [
+      "Research top 3 competitor blogs (25min)",
+      "Create content calendar (25min)",
+      "Write first article outline (25min)",
+      "Set up analytics tracking (25min)"
+    ]
   },
   {
     id: 3,
-    title: "Cold Calling 2.0",
-    description: "Prospect new accounts without Cold Calling",
-    icon: "📞",
-    category: "Sales",
+    title: "Feature Adoption Campaign",
+    description: "Increase adoption of key premium features",
+    icon: "🚀",
+    category: "Activation",
     difficulty: "Medium",
-    impact: "Medium"
+    impact: "High",
+    suggestedTasks: [
+      "Analyze current feature usage (25min)",
+      "Create in-app tooltips (25min)",
+      "Write onboarding email (25min)",
+      "Set up A/B test (25min)"
+    ]
   },
-  {
-    id: 4,
-    title: "Community-Led Growth",
-    description: "Build and nurture an engaged user community",
-    icon: "👥",
-    category: "Community",
-    difficulty: "High",
-    impact: "High"
-  },
-  {
-    id: 5,
-    title: "SEO Content Strategy",
-    description: "Create content that ranks and converts",
-    icon: "📈",
-    category: "Marketing",
-    difficulty: "Medium",
-    impact: "High"
-  },
-  {
-    id: 6,
-    title: "Viral Loops",
-    description: "Design features that encourage user sharing",
-    icon: "🔄",
-    category: "Product",
-    difficulty: "High",
-    impact: "High"
-  },
-  {
-    id: 7,
-    title: "Email Automation",
-    description: "Set up behavior-triggered email sequences",
-    icon: "✉️",
-    category: "Marketing",
-    difficulty: "Medium",
-    impact: "High"
-  },
-  {
-    id: 8,
-    title: "Referral Program",
-    description: "Implement user referral rewards system",
-    icon: "🎁",
-    category: "Sales",
-    difficulty: "Medium",
-    impact: "High"
-  },
-  {
-    id: 9,
-    title: "Product Analytics",
-    description: "Track key metrics and user behavior",
-    icon: "📊",
-    category: "Analytics",
-    difficulty: "High",
-    impact: "High"
-  }
 ];
 
-const categories = ["All", "Product", "Marketing", "Sales", "Community", "Analytics"];
+const categories = ["All", "Acquisition", "Activation", "Retention", "Revenue"];
 
 export default function GrowthIdeas() {
   const [, setLocation] = useLocation();
@@ -131,7 +95,9 @@ export default function GrowthIdeas() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold mb-2">Growth Ideas</h1>
-          <p className="text-muted-foreground">Find and track growth experiments</p>
+          <p className="text-muted-foreground">
+            Proven growth tactics for SaaS companies, broken down into 25-minute tasks
+          </p>
         </div>
         <Button>Add New Idea</Button>
       </div>
@@ -175,33 +141,9 @@ export default function GrowthIdeas() {
                 </button>
               </TableHead>
               <TableHead className="hidden md:table-cell">Description</TableHead>
-              <TableHead>
-                <button 
-                  onClick={() => handleSort("category")}
-                  className="flex items-center hover:text-accent-foreground text-sm"
-                >
-                  Category
-                  <ArrowUpDown className="ml-2 h-3 w-3" />
-                </button>
-              </TableHead>
-              <TableHead>
-                <button 
-                  onClick={() => handleSort("difficulty")}
-                  className="flex items-center hover:text-accent-foreground text-sm"
-                >
-                  Difficulty
-                  <ArrowUpDown className="ml-2 h-3 w-3" />
-                </button>
-              </TableHead>
-              <TableHead>
-                <button 
-                  onClick={() => handleSort("impact")}
-                  className="flex items-center hover:text-accent-foreground text-sm"
-                >
-                  Impact
-                  <ArrowUpDown className="ml-2 h-3 w-3" />
-                </button>
-              </TableHead>
+              <TableHead>Category</TableHead>
+              <TableHead>Difficulty</TableHead>
+              <TableHead>Impact</TableHead>
               <TableHead className="w-[80px]">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -210,7 +152,22 @@ export default function GrowthIdeas() {
               <TableRow key={idea.id} className="text-sm">
                 <TableCell className="text-base">{idea.icon}</TableCell>
                 <TableCell className="font-medium">{idea.title}</TableCell>
-                <TableCell className="text-muted-foreground hidden md:table-cell">{idea.description}</TableCell>
+                <TableCell className="text-muted-foreground hidden md:table-cell">
+                  <div>
+                    <p>{idea.description}</p>
+                    <div className="mt-2 text-xs">
+                      <p className="font-medium text-foreground">Suggested tasks:</p>
+                      <ul className="list-disc list-inside mt-1">
+                        {idea.suggestedTasks?.slice(0, 2).map((task, i) => (
+                          <li key={i}>{task}</li>
+                        ))}
+                        {idea.suggestedTasks?.length > 2 && (
+                          <li>+ {idea.suggestedTasks.length - 2} more tasks</li>
+                        )}
+                      </ul>
+                    </div>
+                  </div>
+                </TableCell>
                 <TableCell>
                   <Badge variant="outline" className="text-xs">{idea.category}</Badge>
                 </TableCell>
