@@ -55,17 +55,17 @@ export default function Manifesto() {
 
   return (
     <div className="min-h-screen bg-background">
-      <main className="max-w-[1200px] mx-auto px-6">
-        <div className="pt-36">
+      <main className="mx-auto px-6">
+        <div className="pt-24 pb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="max-w-[800px] mx-auto text-center space-y-8"
+            className="max-w-[700px] mx-auto text-center space-y-6"
           >
-            <Badge variant="secondary" className="mb-4">Our Philosophy</Badge>
-            <h1 className="text-4xl font-bold tracking-tight">The Growthlog Manifesto</h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-[600px] mx-auto">
+            <Badge variant="secondary" className="mb-2">Our Philosophy</Badge>
+            <h1 className="text-3xl font-bold tracking-tight">The Growthlog Manifesto</h1>
+            <p className="text-base text-muted-foreground leading-relaxed max-w-[600px] mx-auto">
               A new approach to SaaS growth, designed for founders and marketers who believe in sustainable, focused progress.
             </p>
           </motion.div>
@@ -74,19 +74,19 @@ export default function Manifesto() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="grid gap-6 mt-24"
+            className="grid gap-4 mt-16 max-w-[700px] mx-auto"
           >
             {principles.map((principle, index) => (
               <motion.div key={index} variants={item}>
                 <Card className="hover:border-primary/50 transition-colors">
-                  <CardContent className="pt-6">
-                    <div className="flex gap-4">
+                  <CardContent className="pt-4 pb-4">
+                    <div className="flex gap-3">
                       <div className="mt-1">
-                        <principle.icon className="h-5 w-5 text-primary" />
+                        <principle.icon className="h-4 w-4 text-primary" />
                       </div>
                       <div>
-                        <h2 className="text-xl font-semibold mb-2">{principle.title}</h2>
-                        <p className="text-muted-foreground leading-relaxed">{principle.description}</p>
+                        <h2 className="text-base font-semibold mb-1.5">{principle.title}</h2>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{principle.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -100,22 +100,22 @@ export default function Manifesto() {
             initial="hidden"
             animate="show"
             transition={{ delay: 0.8 }}
-            className="mt-24"
+            className="mt-16 max-w-[700px] mx-auto"
           >
             <Card className="hover:border-primary/50 transition-colors">
-              <CardContent className="pt-6">
-                <h2 className="text-xl font-semibold mb-4">Why This Works</h2>
-                <div className="space-y-4">
+              <CardContent className="pt-4 pb-4">
+                <h2 className="text-base font-semibold mb-3">Why This Works</h2>
+                <div className="space-y-3">
                   {benefits.map((benefit, index) => (
                     <motion.div 
                       key={index}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 1 + index * 0.1 }}
-                      className="flex items-center gap-3"
+                      className="flex items-center gap-2"
                     >
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                      <p className="text-muted-foreground">{benefit}</p>
+                      <div className="w-1 h-1 rounded-full bg-primary shrink-0" />
+                      <p className="text-sm text-muted-foreground">{benefit}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -124,20 +124,20 @@ export default function Manifesto() {
           </motion.div>
 
           <motion.div 
-            className="text-center py-24"
+            className="text-center py-16 max-w-[700px] mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5 }}
           >
-            <p className="text-lg font-medium mb-4">Ready to grow your SaaS?</p>
-            <p className="text-muted-foreground">
+            <p className="text-base font-medium mb-2">Ready to grow your SaaS?</p>
+            <p className="text-sm text-muted-foreground">
               Start with a single 25-minute task. That's all it takes to begin building momentum.
             </p>
           </motion.div>
         </div>
 
         {/* Copyright Footer */}
-        <footer className="border-t border-zinc-200/80 mt-24">
+        <footer className="border-t border-zinc-200/80 mt-16">
           <div className="container mx-auto px-6 py-8 max-w-6xl">
             <div className="flex flex-col gap-8">
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5 pb-8 border-b border-zinc-200/80">
