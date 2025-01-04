@@ -10,6 +10,7 @@ import {
   Lightbulb,
   Home,
   Search,
+  Keyboard,
 } from "lucide-react";
 import {
   CommandDialog,
@@ -21,14 +22,21 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
+import { useNavigationShortcuts, formatShortcut } from "@/hooks/useKeyboardShortcuts";
 
 type Action = {
   id: string;
   name: string;
-  shortcut: string[];
+  shortcut?: string[];
   icon: any;
   href?: string;
   action?: () => void;
+  keyboardShortcut?: {
+    key: string;
+    ctrlKey?: boolean;
+    shiftKey?: boolean;
+    altKey?: boolean;
+  };
 };
 
 type Group = {
@@ -38,28 +46,28 @@ type Group = {
 
 const groups: Group[] = [
   {
-    name: "Suggestions",
+    name: "Navigation",
     actions: [
       {
         id: "home",
         name: "Go to Dashboard",
-        shortcut: ["g", "h"],
         icon: Home,
         href: "/",
+        keyboardShortcut: { key: "h", ctrlKey: true },
       },
       {
         id: "ideas",
         name: "Browse Growth Ideas",
-        shortcut: ["g", "i"],
         icon: Lightbulb,
         href: "/ideas",
+        keyboardShortcut: { key: "i", ctrlKey: true },
       },
       {
         id: "profile",
         name: "View Profile",
-        shortcut: ["g", "p"],
         icon: User,
         href: "/profile",
+        keyboardShortcut: { key: "p", ctrlKey: true },
       },
     ],
   },
@@ -72,7 +80,6 @@ const groups: Group[] = [
         shortcut: ["c", "t"],
         icon: Calendar,
         action: () => {
-          // Will implement task creation later
           console.log("Create task");
         },
       },
@@ -82,8 +89,17 @@ const groups: Group[] = [
         shortcut: ["c", "i"],
         icon: Lightbulb,
         action: () => {
-          // Will implement idea creation later
           console.log("Add idea");
+        },
+      },
+      {
+        id: "shortcuts",
+        name: "View Keyboard Shortcuts",
+        icon: Keyboard,
+        shortcut: ["?"],
+        action: () => {
+          // Will implement shortcuts help dialog later
+          console.log("Show shortcuts");
         },
       },
     ],
@@ -94,9 +110,12 @@ export function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [, setLocation] = useLocation();
 
+  // Enable navigation shortcuts
+  useNavigationShortcuts();
+
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "?") {
         e.preventDefault();
         setOpen((open) => !open);
       }
@@ -129,9 +148,9 @@ export function CommandPalette() {
               >
                 <action.icon className="mr-2 h-4 w-4" />
                 {action.name}
-                {action.shortcut && (
+                {(action.shortcut || action.keyboardShortcut) && (
                   <CommandShortcut>
-                    {action.shortcut.map((key) => (
+                    {action.shortcut?.map((key) => (
                       <kbd
                         key={key}
                         className="pointer-events-none h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 inline-flex ml-1"
@@ -139,6 +158,15 @@ export function CommandPalette() {
                         {key}
                       </kbd>
                     ))}
+                    {action.keyboardShortcut && (
+                      <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 inline-flex ml-1">
+                        {formatShortcut({
+                          ...action.keyboardShortcut,
+                          action: () => {},
+                          description: "",
+                        })}
+                      </kbd>
+                    )}
                   </CommandShortcut>
                 )}
               </CommandItem>
