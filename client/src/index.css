@@ -18,6 +18,7 @@ header.linear-nav {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 14px;
+  border: 1px solid hsl(var(--border) / 0.1);
 }
 
 .linear-nav .nav-link {
