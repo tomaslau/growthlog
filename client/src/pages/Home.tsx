@@ -5,7 +5,7 @@ import { Logo } from "@/components/ui/logo";
 import { Timer, TrendingUp, Layers, Lightbulb } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { AnthropicLogo, ZapierLogo, CursorLogo, ResendLogo, LaravelLogo, CodeiumLogo } from "@/components/logos";
+import { CraftledLogo, AnthropicLogo, ZapierLogo, CursorLogo, ResendLogo, LaravelLogo, CodeiumLogo } from "@/components/logos";
 
 const container = {
   hidden: { opacity: 0 },
@@ -47,6 +47,7 @@ export default function Home() {
   ];
 
   const companies = [
+    { logo: CraftledLogo, name: "Craftled" },
     { logo: AnthropicLogo, name: "Anthropic" },
     { logo: ZapierLogo, name: "Zapier" },
     { logo: CursorLogo, name: "Cursor" },
