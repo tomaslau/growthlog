@@ -8,25 +8,28 @@ import TopNav from "@/components/layout/TopNav";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import { PomodoroProvider } from "@/contexts/PomodoroContext";
 import FloatingTimer from "@/components/pomodoro/FloatingTimer";
+import { ThemeProvider } from "@/hooks/use-theme";
 
 function App() {
   return (
-    <PomodoroProvider>
-      <div className="min-h-screen bg-background">
-        <TopNav />
-        <CommandPalette />
-        <FloatingTimer />
-        <main className="p-6">
-          <Switch>
-            <Route path="/" component={Dashboard} />
-            <Route path="/tasks" component={TaskBoard} />
-            <Route path="/ideas" component={GrowthIdeas} />
-            <Route path="/ideas/:id" component={GrowthIdeaView} />
-            <Route path="/profile" component={Profile} />
-          </Switch>
-        </main>
-      </div>
-    </PomodoroProvider>
+    <ThemeProvider defaultTheme="dark" storageKey="growthlog-theme">
+      <PomodoroProvider>
+        <div className="min-h-screen bg-background">
+          <TopNav />
+          <CommandPalette />
+          <FloatingTimer />
+          <main className="p-6">
+            <Switch>
+              <Route path="/" component={Dashboard} />
+              <Route path="/tasks" component={TaskBoard} />
+              <Route path="/ideas" component={GrowthIdeas} />
+              <Route path="/ideas/:id" component={GrowthIdeaView} />
+              <Route path="/profile" component={Profile} />
+            </Switch>
+          </main>
+        </div>
+      </PomodoroProvider>
+    </ThemeProvider>
   );
 }
 

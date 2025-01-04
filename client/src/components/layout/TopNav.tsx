@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Home, Lightbulb, User, CheckSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 const navItems = [
   { icon: Home, label: "Dashboard", href: "/" },
@@ -19,7 +20,7 @@ export default function TopNav() {
           <h1 className="text-lg font-semibold tracking-tight">Growthlog</h1>
         </div>
 
-        <nav className="flex gap-1">
+        <nav className="flex gap-1 flex-1">
           {navItems.map(({ icon: Icon, label, href }) => (
             <Link key={href} href={href}>
               <a className={cn(
@@ -34,6 +35,10 @@ export default function TopNav() {
             </Link>
           ))}
         </nav>
+
+        <div className="flex items-center">
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
