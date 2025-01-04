@@ -1,9 +1,10 @@
 import { Link, useLocation } from "wouter";
-import { Home, Lightbulb, User } from "lucide-react";
+import { Home, Lightbulb, User, CheckSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { icon: Home, label: "Dashboard", href: "/" },
+  { icon: CheckSquare, label: "Tasks", href: "/tasks" },
   { icon: Lightbulb, label: "Growth Ideas", href: "/ideas" },
   { icon: User, label: "Profile", href: "/profile" }
 ];
