@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Logo } from "@/components/ui/logo";
-import { Timer, TrendingUp, Layers, Target } from "lucide-react";
+import { Timer, TrendingUp, Layers, Lightbulb } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
@@ -39,9 +39,9 @@ export default function Home() {
       description: "Follow a proven methodology for sustainable growth, focusing on key areas like acquisition, retention, and revenue optimization."
     },
     {
-      icon: Target,
-      title: "Growth Analytics",
-      description: "Get actionable insights from your metrics with built-in analytics designed specifically for SaaS founders and marketers."
+      icon: Lightbulb,
+      title: "Growth Ideas Library",
+      description: "Access a curated collection of proven SaaS growth tactics and strategies, ready to be implemented in 25-minute focused sessions."
     }
   ];
 
@@ -105,28 +105,39 @@ export default function Home() {
           </div>
         </div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="grid md:grid-cols-2 gap-6 pb-24"
-        >
-          {features.map((feature, index) => (
-            <motion.div key={index} variants={item}>
-              <Card className="p-6 h-full hover:border-primary/50 transition-colors">
-                <div className="flex gap-4">
-                  <div className="mt-1">
-                    <feature.icon className="h-5 w-5 text-primary" />
+        <div className="pb-24 space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold tracking-tight">
+              Your Growth Toolkit
+            </h2>
+            <p className="text-muted-foreground max-w-[600px] mx-auto">
+              Everything you need to drive sustainable SaaS growth, from focused sprints to proven strategies
+            </p>
+          </div>
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="grid md:grid-cols-2 gap-6"
+          >
+            {features.map((feature, index) => (
+              <motion.div key={index} variants={item}>
+                <Card className="p-6 h-full hover:border-primary/50 transition-colors">
+                  <div className="flex gap-4">
+                    <div className="mt-1">
+                      <feature.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h2 className="font-semibold mb-2">{feature.title}</h2>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h2 className="font-semibold mb-2">{feature.title}</h2>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </main>
     </div>
   );
