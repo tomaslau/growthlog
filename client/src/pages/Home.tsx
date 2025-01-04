@@ -6,6 +6,7 @@ import { Timer, TrendingUp, Layers, Lightbulb, ChevronRight } from "lucide-react
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { CraftledLogo, BestWritingLogo } from "@/components/logos";
+import PomodoroTimer from "@/components/tasks/PomodoroTimer";
 
 const container = {
   hidden: { opacity: 0 },
@@ -170,17 +171,17 @@ export default function Home() {
 
           <div className="space-y-4 mb-12">
             <h2 className="text-4xl font-bold tracking-tight">
-              Issue tracking<br />
-              you'll enjoy using
+              25-Minute Growth Sprints
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-[600px]">
-              Optimized for speed and efficiency. Create tasks in seconds, discuss issues
-              in context, and breeze through your work in views tailored to you and your team.
+              Break down complex growth initiatives into focused, actionable tasks designed to fit within a single Pomodoro session.
             </p>
           </div>
 
-          <div className="bg-[#0A0A0A] rounded-lg p-8 min-h-[400px]">
-            <Timer />
+          <div className="bg-[#0A0A0A] rounded-lg p-8 min-h-[400px] flex items-center justify-center">
+            <div className="max-w-sm w-full">
+              <PomodoroTimer taskId={1} taskTitle="Sample Growth Sprint" />
+            </div>
           </div>
         </div>
       </main>
