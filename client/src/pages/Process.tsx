@@ -33,7 +33,8 @@ export default function Process() {
     <div className="min-h-screen bg-background">
       <MarketingTopNav />
 
-      <main className="container mx-auto px-4 sm:px-6 py-12">
+      <main className="container mx-auto px-4 sm:px-6">
+        <div className="pt-36 pb-24">
         <div className="max-w-[800px] mx-auto space-y-8">
           {/* Hero Section */}
           <div className="text-center space-y-4 mb-12">
@@ -147,6 +148,7 @@ export default function Process() {
             </p>
             <Button size="lg">Get Started Now</Button>
           </div>
+        </div>
         </div>
       </main>
       <MarketingFooter />
