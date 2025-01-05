@@ -281,11 +281,10 @@ export default function Process() {
               </Button>
             </div>
 
-            {/* Copyright Footer */}
-            <MarketingFooter /> {/* Replacement */}
-          </div>
+            </div>
         </div>
       </main>
+      <MarketingFooter />
     </div>
   );
 }
