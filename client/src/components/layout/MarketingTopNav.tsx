@@ -34,10 +34,10 @@ export function MarketingTopNav() {
                 onClick={user ? logout : loginWithGoogle} 
                 variant="secondary" 
                 size="sm" 
-                className="h-7 w-full rounded px-3 text-[13px] font-medium transition-opacity"
-                style={{ opacity: isLoading ? 0.5 : 1 }}
+                className="h-7 w-full rounded px-3 text-[13px] font-medium"
+                disabled={isLoading}
               >
-                {user ? "Log out" : "Sign in with Google"}
+                Sign in with Google
               </Button>
             </div>
           </div>
