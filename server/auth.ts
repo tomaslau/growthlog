@@ -41,6 +41,15 @@ async function setupUserSpreadsheet(sheets: any, userId: number) {
           },
           {
             properties: {
+              title: 'Growth Ideas',
+              gridProperties: {
+                rowCount: 500,
+                columnCount: 6,
+              },
+            },
+          },
+          {
+            properties: {
               title: 'Achievements',
               gridProperties: {
                 rowCount: 100,
@@ -54,14 +63,59 @@ async function setupUserSpreadsheet(sheets: any, userId: number) {
 
     const spreadsheetId = spreadsheet.data.spreadsheetId;
 
-    // Update initial headers
-    await sheets.spreadsheets.values.update({
-      spreadsheetId,
-      range: 'Tasks!A1:E1',
-      valueInputOption: 'RAW',
-      requestBody: {
-        values: [['Title', 'Description', 'Status', 'Points', 'Completed At']],
+    // Update headers for each sheet
+    const sheetsConfig = [
+      {
+        range: 'Tasks!A1:F1',
+        values: [['Title', 'Description', 'Status', 'Points', 'Completed At', 'Growth Idea ID']],
       },
+      {
+        range: 'Growth Ideas!A1:F1',
+        values: [['Title', 'Description', 'Category', 'Difficulty', 'Impact', 'Icon']],
+      },
+      {
+        range: 'Achievements!A1:E1',
+        values: [['Name', 'Description', 'Icon', 'Points Required', 'Unlocked At']],
+      },
+    ];
+
+    // Set up headers for all sheets
+    for (const config of sheetsConfig) {
+      await sheets.spreadsheets.values.update({
+        spreadsheetId,
+        range: config.range,
+        valueInputOption: 'RAW',
+        requestBody: {
+          values: config.values,
+        },
+      });
+    }
+
+    // Basic formatting for headers
+    const requests = sheetsConfig.map(config => ({
+      repeatCell: {
+        range: {
+          sheetId: spreadsheet.data.sheets.find(
+            (s: any) => s.properties.title === config.range.split('!')[0]
+          ).properties.sheetId,
+          startRowIndex: 0,
+          endRowIndex: 1,
+        },
+        cell: {
+          userEnteredFormat: {
+            backgroundColor: { red: 0.9, green: 0.9, blue: 0.9 },
+            textFormat: { bold: true },
+            horizontalAlignment: 'CENTER',
+          },
+        },
+        fields: 'userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)',
+      },
+    }));
+
+    // Apply formatting
+    await sheets.spreadsheets.batchUpdate({
+      spreadsheetId,
+      requestBody: { requests },
     });
 
     return spreadsheetId;
@@ -95,8 +149,7 @@ export function setupAuth(app: Express) {
   app.use(passport.session());
 
   passport.use(
-    new GoogleStrategy(
-      {
+    new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         callbackURL: "/api/auth/google/callback",
@@ -107,8 +160,8 @@ export function setupAuth(app: Express) {
         ],
         accessType: 'offline',
         prompt: 'consent',
-      },
-      async (accessToken, refreshToken, profile, done) => {
+      } as any,
+      async (accessToken: string, refreshToken: string, profile: any, done: any) => {
         try {
           let [user] = await db
             .select()

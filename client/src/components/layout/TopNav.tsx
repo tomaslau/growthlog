@@ -1,7 +1,16 @@
 import { Link, useLocation } from "wouter";
-import { Home, Lightbulb, User, CheckSquare, Trophy, BookOpen, BarChart } from "lucide-react";
+import { Home, Lightbulb, User, CheckSquare, Trophy, BookOpen, BarChart, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navItems = [
   { icon: Home, label: "Dashboard", href: "/dashboard" },
@@ -10,11 +19,11 @@ const navItems = [
   { icon: Trophy, label: "Achievements", href: "/achievements" },
   { icon: BookOpen, label: "Manifesto", href: "/manifesto" },
   { icon: BarChart, label: "SaaS Metrics", href: "/metrics" },
-  { icon: User, label: "Profile", href: "/profile" }
 ];
 
 export default function TopNav() {
   const [location] = useLocation();
+  const { user, isLoading, loginWithGoogle, logout } = useAuth();
 
   // Only show the navigation menu if we're not on the homepage
   if (location === "/") {
@@ -49,8 +58,39 @@ export default function TopNav() {
           })}
         </nav>
 
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
           <ThemeToggle />
+
+          {isLoading ? (
+            <div className="h-8 w-8 rounded-full bg-muted animate-pulse" />
+          ) : user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={user.profilePicture || ''} alt={user.displayName || ''} />
+                    <AvatarFallback>{user.displayName?.charAt(0) || 'U'}</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem>
+                  <Link href="/profile" className="flex items-center">
+                    <User className="mr-2 h-4 w-4" />
+                    <span>Profile</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => logout()}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
+              Sign in with Google
+            </Button>
+          )}
         </div>
       </div>
     </header>
