@@ -24,7 +24,7 @@ export function MarketingTopNav() {
             <MarketingNavLink href="/ideas">Growth Ideas</MarketingNavLink>
             <MarketingNavLink href="/updates">Updates</MarketingNavLink>
             <MarketingNavLink href="/pricing">Pricing</MarketingNavLink>
-            <MarketingNavLink href="mailto:support@growthlog.co">Support</MarketingNavLink>
+            <a href="mailto:support@growthlog.co" className="text-[13px] font-medium text-muted-foreground/80 hover:text-foreground transition-colors">Support</a>
           </nav>
 
           <div className="flex items-center gap-3">
