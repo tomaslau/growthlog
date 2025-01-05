@@ -3,14 +3,14 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
 import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
-import { Timer, ArrowRight, Brain, Target, BarChart2 } from "lucide-react";
+import { Timer, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PomodoroTimer from "@/components/tasks/PomodoroTimer";
 import { MarketingFooter } from "@/components/layout/MarketingFooter";
 
 export default function GrowthSprints() {
-  const { user, isLoading, loginWithGoogle, logout } = useAuth();
+  const { user, isLoading, loginWithGoogle } = useAuth();
 
   const benefits = [
     {
