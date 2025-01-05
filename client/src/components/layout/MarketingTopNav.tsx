@@ -29,17 +29,19 @@ export function MarketingTopNav() {
 
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            {isLoading ? (
-              <div className="h-7 w-24 rounded bg-muted animate-pulse" />
-            ) : user ? (
-              <Button onClick={() => logout()} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
-                Log out
-              </Button>
-            ) : (
-              <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
-                Sign in with Google
-              </Button>
-            )}
+            <div className="w-[130px]">
+              {isLoading ? (
+                <div className="h-7 w-full rounded bg-muted animate-pulse" />
+              ) : user ? (
+                <Button onClick={() => logout()} variant="secondary" size="sm" className="h-7 w-full rounded px-3 text-[13px] font-medium">
+                  Log out
+                </Button>
+              ) : (
+                <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 w-full rounded px-3 text-[13px] font-medium">
+                  Sign in with Google
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </header>
