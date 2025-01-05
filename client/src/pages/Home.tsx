@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/accordion";
 import { MarketingNavLink } from "@/components/ui/marketing-nav-link";
 import { useAuth } from "@/hooks/use-auth";
+import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 
 const container = {
   hidden: { opacity: 0 },
