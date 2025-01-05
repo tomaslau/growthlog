@@ -29,62 +29,70 @@ export default function Updates() {
   });
 
   useEffect(() => {
-    if (changelog.length > 0) {
-      // Already have cached data
+    const fetchChangelog = () => {
       fetch('/CHANGELOG.md')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch changelog');
-        return res.text();
-      })
-      .then(text => {
-        // Parse the markdown content
-        const sections = text.split('\n## ').slice(1);
-        const parsed = sections.map(section => {
-          const lines = section.split('\n');
-          const headerLine = lines[0];
-          
-          // Extract version and date
-          const versionMatch = headerLine.match(/\[(.*?)\]/);
-          const dateMatch = headerLine.match(/(\d{4}-\d{2}-\d{2})/);
-          
-          const version = versionMatch ? versionMatch[1] : '';
-          const date = dateMatch ? dateMatch[1] : '';
-          
-          const added: Update[] = [];
-          const improved: Update[] = [];
-          const fixed: Update[] = [];
-          
-          let currentSection = '';
-          
-          lines.forEach(line => {
-            if (line.includes('### Added')) currentSection = 'added';
-            else if (line.includes('### Improved')) currentSection = 'improved';
-            else if (line.includes('### Fixed')) currentSection = 'fixed';
-            else if (line.trim().startsWith('- ')) {
-              const update = {
-                date,
-                title: line.trim().substring(2),
-                description: line.trim().substring(2),
-                tag: currentSection === 'added' ? 'New' : 
-                     currentSection === 'improved' ? 'Improved' : 'Fixed' as Update['tag']
-              };
-              
-              if (currentSection === 'added') added.push(update);
-              if (currentSection === 'improved') improved.push(update);
-              if (currentSection === 'fixed') fixed.push(update);
-            }
-          });
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch changelog');
+          return res.text();
+        })
+        .then(text => {
+          // Parse the markdown content
+          const sections = text.split('\n## ').slice(1);
+          const parsed = sections.map(section => {
+            const lines = section.split('\n');
+            const headerLine = lines[0];
+            
+            // Extract version and date
+            const versionMatch = headerLine.match(/\[(.*?)\]/);
+            const dateMatch = headerLine.match(/(\d{4}-\d{2}-\d{2})/);
+            
+            const version = versionMatch ? versionMatch[1] : '';
+            const date = dateMatch ? dateMatch[1] : '';
+            
+            const added: Update[] = [];
+            const improved: Update[] = [];
+            const fixed: Update[] = [];
+            
+            let currentSection = '';
+            
+            lines.forEach(line => {
+              if (line.includes('### Added')) currentSection = 'added';
+              else if (line.includes('### Improved')) currentSection = 'improved';
+              else if (line.includes('### Fixed')) currentSection = 'fixed';
+              else if (line.trim().startsWith('- ')) {
+                const update = {
+                  date,
+                  title: line.trim().substring(2),
+                  description: line.trim().substring(2),
+                  tag: currentSection === 'added' ? 'New' : 
+                       currentSection === 'improved' ? 'Improved' : 'Fixed' as Update['tag']
+                };
+                
+                if (currentSection === 'added') added.push(update);
+                if (currentSection === 'improved') improved.push(update);
+                if (currentSection === 'fixed') fixed.push(update);
+              }
+            });
 
-          return { version, date, added, improved, fixed };
+            return { version, date, added, improved, fixed };
+          });
+          
+          setChangelog(parsed);
+          localStorage.setItem(CACHE_KEY, JSON.stringify(parsed));
+        })
+        .catch(error => {
+          console.error('Error loading changelog:', error);
         });
-        
-        setChangelog(parsed);
-        localStorage.setItem(CACHE_KEY, JSON.stringify(parsed));
-      })
-      .catch(error => {
-        console.error('Error loading changelog:', error);
-      });
-  }, [changelog.length]);
+    };
+
+    // If no cached data, fetch immediately
+    if (changelog.length === 0) {
+      fetchChangelog();
+    } else {
+      // If we have cached data, fetch in background
+      fetchChangelog();
+    }
+  }, []); // Remove changelog.length dependency
 
   return (
     <div className="min-h-screen bg-background">
