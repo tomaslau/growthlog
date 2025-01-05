@@ -6,7 +6,7 @@ import { Link } from "wouter";
 import { MarketingNavLink } from "@/components/ui/marketing-nav-link";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { useAuth } from "@/hooks/use-auth";
-import { MarketingFooter } from "@/components/ui/marketing-footer"; // Assuming MarketingFooter is defined elsewhere
+import { MarketingFooter } from "@/components/layout/MarketingFooter"; // Assuming MarketingFooter is defined elsewhere
 
 export default function Process() {
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
