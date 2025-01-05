@@ -6,6 +6,7 @@ import { Check } from "lucide-react";
 import { MarketingNavLink } from "@/components/ui/marketing-nav-link";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { useAuth } from "@/hooks/use-auth";
+import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 
 const PricingItem = ({ children }: { children: React.ReactNode }) => (
   <li className="flex items-center gap-2">
