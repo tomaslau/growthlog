@@ -3,6 +3,9 @@ import { Card } from "@/components/ui/card";
 import { Logo } from "@/components/ui/logo";
 import { Link } from "wouter";
 import { Check } from "lucide-react";
+import { MarketingNavLink } from "@/components/ui/marketing-nav-link";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { useAuth } from "@/hooks/use-auth";
 
 const PricingItem = ({ children }: { children: React.ReactNode }) => (
   <li className="flex items-center gap-2">
@@ -12,8 +15,46 @@ const PricingItem = ({ children }: { children: React.ReactNode }) => (
 );
 
 export default function Pricing() {
+  const { user, isLoading, loginWithGoogle, logout } = useAuth();
+  
   return (
     <div className="min-h-screen bg-background">
+      {/* Marketing Navbar */}
+      <div className="fixed top-0 left-0 right-0 flex justify-center px-6 pt-4">
+        <header className="w-full max-w-[1200px] h-14 border border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-md">
+          <div className="flex h-14 items-center px-6">
+            <Link href="/" className="flex items-center gap-2">
+              <Logo />
+              <h1 className="text-[13px] font-semibold tracking-tight">Growthlog</h1>
+            </Link>
+
+            <nav className="hidden md:flex flex-1 items-center justify-center gap-6">
+              <MarketingNavLink href="/features">Features</MarketingNavLink>
+              <MarketingNavLink href="/process">Process</MarketingNavLink>
+              <MarketingNavLink href="/ideas">Growth Ideas</MarketingNavLink>
+              <MarketingNavLink href="/updates">Updates</MarketingNavLink>
+              <MarketingNavLink href="/pricing">Pricing</MarketingNavLink>
+              <MarketingNavLink href="mailto:support@growthlog.co">Support</MarketingNavLink>
+            </nav>
+
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              {isLoading ? (
+                <div className="h-7 w-24 rounded bg-muted animate-pulse" />
+              ) : user ? (
+                <Button onClick={() => logout()} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
+                  Log out
+                </Button>
+              ) : (
+                <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
+                  Sign in with Google
+                </Button>
+              )}
+            </div>
+          </div>
+        </header>
+      </div>
+
       <main className="max-w-[1200px] mx-auto px-6">
         <div className="pt-36 pb-24">
           <div className="text-center space-y-4 mb-12">
