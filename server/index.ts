@@ -57,7 +57,6 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  app.use('/api', registerRoutes(app));
   app.use('/changelog', express.static(path.join(process.cwd(), 'CHANGELOG.md'))); // Serve CHANGELOG.md
 
   // ALWAYS serve the app on port 5000
