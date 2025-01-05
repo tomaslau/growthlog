@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Logo } from "@/components/ui/logo";
-import { Timer, TrendingUp, Layers, Lightbulb, ChevronRight, Users, Heart, BarChart3 } from "lucide-react";
+import { Timer, TrendingUp, Layers, Lightbulb, ChevronRight, Users, Heart, BarChart3, Check } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { CraftledLogo, BestWritingLogo } from "@/components/logos";
@@ -142,40 +142,6 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="pb-24 space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold tracking-tight">
-              Your Growth Toolkit
-            </h2>
-            <p className="text-muted-foreground max-w-[600px] mx-auto">
-              Everything you need to drive sustainable SaaS growth, from focused sprints to proven strategies
-            </p>
-          </div>
-
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="grid md:grid-cols-2 gap-6"
-          >
-            {features.map((feature, index) => (
-              <motion.div key={index} variants={item}>
-                <Card className="p-6 h-full hover:border-primary/50 transition-colors">
-                  <div className="flex gap-4">
-                    <div className="mt-1">
-                      <feature.icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h2 className="font-semibold mb-2">{feature.title}</h2>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
         {/* Pricing Section */}
         <div className="pb-24">
           <div className="text-center space-y-4 mb-12">
@@ -210,44 +176,34 @@ export default function Home() {
 
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                    <Check className="h-4 w-4 text-primary" />
                     Full access to growth ideas library
                   </li>
                   <li className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                    <Check className="h-4 w-4 text-primary" />
                     25-minute sprint framework
                   </li>
                   <li className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                    <Check className="h-4 w-4 text-primary" />
                     Personal progress tracking
                   </li>
                   <li className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                    <Check className="h-4 w-4 text-primary" />
                     SaaS metrics dashboard
                   </li>
                   <li className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                    <Check className="h-4 w-4 text-primary" />
                     Achievement system
                   </li>
                 </ul>
               </div>
             </Card>
 
-            {/* Organization Plan */}
+            {/* Business Plan */}
             <Card className="p-8 border-primary">
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Organization Plan</h3>
+                  <h3 className="text-xl font-semibold mb-2">Business Plan</h3>
                   <div className="space-y-2">
                     <h3 className="text-4xl font-bold">$500</h3>
                     <p className="text-sm text-muted-foreground">per year</p>
@@ -262,39 +218,29 @@ export default function Home() {
                     Scale Your Team
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">
-                    Everything in Pro, plus:
+                    Everything in Pro, plus organization-wide features:
                   </p>
                 </div>
 
                 <ul className="space-y-3 text-sm">
                   <li className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                    <Check className="h-4 w-4 text-primary" />
                     Unlimited team members
                   </li>
                   <li className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    Team-wide progress tracking
+                    <Check className="h-4 w-4 text-primary" />
+                    Organization-wide progress tracking
                   </li>
                   <li className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    Company-wide analytics
+                    <Check className="h-4 w-4 text-primary" />
+                    Organization-wide analytics
                   </li>
                   <li className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    Priority email support
+                    <Check className="h-4 w-4 text-primary" />
+                    Team leaderboards
                   </li>
                   <li className="flex items-center gap-2">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                    <Check className="h-4 w-4 text-primary" />
                     SSO with Google Workspace
                   </li>
                 </ul>

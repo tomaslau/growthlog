@@ -59,11 +59,11 @@ export default function Pricing() {
               </div>
             </Card>
 
-            {/* Organization Plan */}
+            {/* Business Plan */}
             <Card className="p-8 border-primary">
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Organization Plan</h3>
+                  <h3 className="text-xl font-semibold mb-2">Business Plan</h3>
                   <div className="space-y-2">
                     <h3 className="text-4xl font-bold">$500</h3>
                     <p className="text-sm text-muted-foreground">per year</p>
@@ -78,16 +78,16 @@ export default function Pricing() {
                     Scale Your Team
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">
-                    Everything in Pro, plus:
+                    Everything in Pro, plus organization-wide features:
                   </p>
                 </div>
 
                 <ul className="space-y-3 text-sm">
                   <PricingItem>Unlimited team members</PricingItem>
-                  <PricingItem>Team-wide progress tracking</PricingItem>
+                  <PricingItem>Organization-wide progress tracking</PricingItem>
+                  <PricingItem>Organization-wide analytics dashboard</PricingItem>
                   <PricingItem>Shared growth library</PricingItem>
-                  <PricingItem>Company-wide analytics</PricingItem>
-                  <PricingItem>Custom growth playbooks</PricingItem>
+                  <PricingItem>Cross-team performance insights</PricingItem>
                   <PricingItem>Team leaderboards</PricingItem>
                   <PricingItem>Priority email support</PricingItem>
                   <PricingItem>SSO with Google Workspace</PricingItem>
