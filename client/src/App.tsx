@@ -4,6 +4,7 @@ import Dashboard from "@/pages/Dashboard";
 import GrowthIdeaView from "@/pages/GrowthIdeaView";
 import Profile from "@/pages/Profile";
 import Achievements from "@/pages/features/Achievements";
+import Collaboration from "@/pages/features/Collaboration";
 import Process from "@/pages/Process";
 import SaasMetrics from "@/pages/SaasMetrics";
 import SharedDashboard from "@/pages/SharedDashboard";
@@ -49,6 +50,7 @@ function App() {
               <Route path="/features/framework" component={Framework} />
               <Route path="/features/growth-ideas" component={GrowthIdeas} />
               <Route path="/features/achievements" component={Achievements} />
+              <Route path="/features/collaboration" component={Collaboration} />
             </Switch>
           </main>
         </div>
