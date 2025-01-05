@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Timer, TrendingUp, Layers, Lightbulb, Heart, BarChart3, Users, Brain } from "lucide-react";
+import { Timer, TrendingUp, Layers, Lightbulb, Heart, BarChart3, Users, Brain, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/hooks/use-auth";
 import { MarketingFooter } from "@/components/layout/MarketingFooter";
@@ -63,6 +63,12 @@ const features = [
     title: "AI Growth Assistant",
     description: "Get intelligent suggestions and insights powered by machine learning to optimize your growth strategy.",
     href: "/features/ai-assistant"
+  },
+  {
+    icon: Github,
+    title: "Open Source",
+    description: "Fully open source under MIT license - inspect, modify and contribute to make Growthlog better for everyone.",
+    href: "https://github.com/yourusername/growthlog"
   }
 ];
 
