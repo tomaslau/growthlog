@@ -5,11 +5,9 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Timer, TrendingUp, Layers, Lightbulb, Heart, BarChart3, Users, Brain } from "lucide-react";
 import { motion } from "framer-motion";
-import { MarketingNavLink } from "@/components/ui/marketing-nav-link";
-import { Logo } from "@/components/ui/logo";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { useAuth } from "@/hooks/use-auth";
 import { MarketingFooter } from "@/components/layout/MarketingFooter";
+import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 
 const features = [
   {
@@ -66,41 +64,7 @@ export default function Features() {
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
   return (
     <div className="min-h-screen bg-background">
-      {/* Marketing Navbar */}
-      <div className="fixed top-0 left-0 right-0 flex justify-center px-6 pt-4">
-        <header className="w-full max-w-[1200px] h-14 border border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-md">
-          <div className="flex h-14 items-center px-6">
-            <Link href="/" className="flex items-center gap-2">
-              <Logo />
-              <h1 className="text-[13px] font-semibold tracking-tight">Growthlog</h1>
-            </Link>
-
-            <nav className="hidden md:flex flex-1 items-center justify-center gap-6">
-              <MarketingNavLink href="/features">Features</MarketingNavLink>
-              <MarketingNavLink href="/process">Process</MarketingNavLink>
-              <MarketingNavLink href="/ideas">Growth Ideas</MarketingNavLink>
-              <MarketingNavLink href="/updates">Updates</MarketingNavLink>
-              <MarketingNavLink href="/pricing">Pricing</MarketingNavLink>
-              <MarketingNavLink href="mailto:support@growthlog.co">Support</MarketingNavLink>
-            </nav>
-
-            <div className="flex items-center gap-3">
-              <ThemeToggle />
-              {isLoading ? (
-                <div className="h-7 w-24 rounded bg-muted animate-pulse" />
-              ) : user ? (
-                <Button onClick={() => logout()} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
-                  Log out
-                </Button>
-              ) : (
-                <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
-                  Sign in with Google
-                </Button>
-              )}
-            </div>
-          </div>
-        </header>
-      </div>
+      <MarketingTopNav />
 
       <main className="mx-auto px-6">
         <div className="pt-24 pb-16">
