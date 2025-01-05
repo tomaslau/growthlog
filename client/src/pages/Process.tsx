@@ -37,24 +37,6 @@ export default function Process() {
     <div className="min-h-screen bg-background">
       <MarketingTopNav />
 
-            <div className="flex items-center gap-3">
-              <ThemeToggle />
-              {isLoading ? (
-                <div className="h-7 w-24 rounded bg-muted animate-pulse" />
-              ) : user ? (
-                <Button onClick={() => logout()} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
-                  Log out
-                </Button>
-              ) : (
-                <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
-                  Sign in with Google
-                </Button>
-              )}
-            </div>
-          </div>
-        </header>
-      </div>
-
       <main className="max-w-[1200px] mx-auto px-6">
         <div className="pt-36 pb-24">
           <div className="max-w-[800px] mx-auto text-center space-y-8">
