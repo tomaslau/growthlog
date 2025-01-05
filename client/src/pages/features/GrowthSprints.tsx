@@ -1,3 +1,4 @@
+
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
@@ -47,14 +48,12 @@ export default function GrowthSprints() {
               </p>
             </div>
 
-            {/* Demo Timer Section */}
             <div className="bg-[#0A0A0A] rounded-lg p-8 flex items-center justify-center">
               <div className="max-w-sm w-full">
                 <PomodoroTimer taskId={1} taskTitle="Try a Growth Sprint" />
               </div>
             </div>
 
-            {/* Benefits Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-12">
               {benefits.map((benefit, index) => (
                 <Card key={index}>
@@ -69,7 +68,6 @@ export default function GrowthSprints() {
               ))}
             </div>
 
-            {/* Example Sprints */}
             <div className="space-y-6">
               <h2 className="text-2xl font-bold">Example Growth Sprints</h2>
               <div className="space-y-4">
@@ -88,7 +86,6 @@ export default function GrowthSprints() {
               </div>
             </div>
 
-            {/* CTA Section */}
             <div className="text-center space-y-4 py-12">
               <h2 className="text-2xl font-bold">Start Your First Sprint</h2>
               <p className="text-sm text-muted-foreground">
