@@ -31,13 +31,12 @@ export function MarketingTopNav() {
             <ThemeToggle />
             <div className="w-[130px]">
               <Button 
-                onClick={user ? logout : loginWithGoogle} 
+                onClick={loginWithGoogle} 
                 variant="secondary" 
                 size="sm" 
-                className="h-7 w-full rounded px-3 text-[13px] font-medium"
-                disabled={isLoading}
+                className="h-7 w-full rounded px-3 text-[13px] font-medium transition-opacity"
               >
-                Sign in with Google
+                {!isLoading && user ? "Log out" : "Sign in with Google"}
               </Button>
             </div>
           </div>
