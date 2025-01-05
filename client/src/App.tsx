@@ -23,12 +23,12 @@ import FloatingTimer from "@/components/pomodoro/FloatingTimer";
 import { ThemeProvider } from "@/hooks/use-theme.tsx";
 
 function App() {
-  const location = useLocation();
+  const [location] = useLocation();
   return (
     <ThemeProvider defaultTheme="dark" storageKey="growthlog-theme">
       <PomodoroProvider>
         <div className="min-h-screen bg-background">
-          {location.pathname.startsWith("/features") || location.pathname === "/" || location.pathname === "/pricing" || location.pathname === "/process" || location.pathname === "/updates" ? (
+          {location.startsWith("/features") || location === "/" || location === "/pricing" || location === "/process" || location === "/updates" ? (
             <MarketingTopNav />
           ) : (
             <>
