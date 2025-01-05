@@ -12,8 +12,8 @@ const features = [
     description: "Create shared workspaces for your team to collaborate on growth initiatives together"
   },
   {
-    title: "Real-time Comments",
-    description: "Discuss growth ideas and provide feedback directly within tasks and sprints"
+    title: "Collaboration Analytics",
+    description: "Track team engagement, contribution metrics, and collaboration patterns"
   },
   {
     title: "Progress Sharing",

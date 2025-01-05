@@ -27,9 +27,15 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="growthlog-theme">
       <PomodoroProvider>
         <div className="min-h-screen bg-background">
-          <TopNav />
-          <CommandPalette />
-          <FloatingTimer />
+          {location.startsWith("/features") || location === "/" || location === "/pricing" || location === "/process" || location === "/updates" ? (
+            <MarketingTopNav />
+          ) : (
+            <>
+              <TopNav />
+              <CommandPalette />
+              <FloatingTimer />
+            </>
+          )}
           <main>
             <Switch>
               <Route path="/" component={Home} />
