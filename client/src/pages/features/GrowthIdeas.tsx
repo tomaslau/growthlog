@@ -39,13 +39,13 @@ export default function GrowthIdeas() {
               <Badge variant="secondary" className="mb-2">
                 Core Feature
               </Badge>
-              <h1 className="text-4xl font-bold tracking-tight">Growth Ideas Library</h1>
-              <p className="text-lg text-muted-foreground leading-relaxed max-w-[600px] mx-auto">
+              <h1 className="text-3xl font-bold tracking-tight">Growth Ideas Library</h1>
+              <p className="text-base text-muted-foreground leading-relaxed max-w-[600px] mx-auto">
                 Access a curated collection of proven SaaS growth tactics and strategies, ready to be implemented in 25-minute focused sessions.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 py-12">
+            <div className="grid grid-cols-1 gap-6">
               {ideas.map((idea, index) => (
                 <Card key={index} className="p-6">
                   <div className="flex flex-col md:flex-row gap-6">
