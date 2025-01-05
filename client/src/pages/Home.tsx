@@ -1,13 +1,14 @@
 
 import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 import { MarketingFooter } from "@/components/layout/MarketingFooter";
+import { PoweredBy } from "@/components/logos/PoweredBy";
 
 export default function Home() {
   return (
     <div>
       <MarketingTopNav />
       <main>
-        {/* Add your home page content here */}
+        <PoweredBy />
       </main>
       <MarketingFooter />
     </div>
