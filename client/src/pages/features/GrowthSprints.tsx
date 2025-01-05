@@ -1,4 +1,3 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Logo } from "@/components/ui/logo";
 import { Link } from "wouter";
@@ -9,6 +8,7 @@ import { Timer, ArrowRight, Brain, Target, BarChart2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PomodoroTimer from "@/components/tasks/PomodoroTimer";
+import MarketingFooter from "@/components/MarketingFooter"; // Assuming this component exists
 
 export default function GrowthSprints() {
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
@@ -138,67 +138,7 @@ export default function GrowthSprints() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-200/80 mt-24">
-        <div className="container mx-auto px-6 py-8 max-w-6xl">
-          <div className="flex flex-col gap-8">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5 pb-8 border-b border-zinc-200/80">
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Logo className="text-[#2F363F]" />
-                  <h3 className="font-semibold text-[#2F363F]">Growthlog</h3>
-                </div>
-                <p className="text-sm text-zinc-500 max-w-[280px]">
-                  A platform for transforming business development processes into actionable insights.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <h4 className="font-medium text-sm">Features</h4>
-                <ul className="space-y-3 text-sm text-zinc-500">
-                  <li><Link href="/features/growth-sprints">25-Minute Growth Sprints</Link></li>
-                  <li><Link href="/features/progress-tracking">Progress Tracking</Link></li>
-                  <li><Link href="/features/framework">Structured Framework</Link></li>
-                  <li><Link href="/features/growth-ideas">Growth Ideas Library</Link></li>
-                </ul>
-              </div>
-
-              <div className="space-y-3">
-                <h4 className="font-medium text-sm">Product</h4>
-                <ul className="space-y-3 text-sm text-zinc-500">
-                  <li><Link href="/about">About</Link></li>
-                  <li><Link href="/pricing">Pricing</Link></li>
-                  <li><Link href="/process">Process</Link></li>
-                  <li><Link href="/documentation">Documentation</Link></li>
-                </ul>
-              </div>
-
-              <div className="space-y-3">
-                <h4 className="font-medium text-sm">Resources</h4>
-                <ul className="space-y-3 text-sm text-zinc-500">
-                  <li><Link href="/blog">Blog</Link></li>
-                  <li><Link href="/updates">Updates</Link></li>
-                  <li><Link href="/status">Status</Link></li>
-                </ul>
-              </div>
-
-              <div className="space-y-3">
-                <h4 className="font-medium text-sm">Legal</h4>
-                <ul className="space-y-3 text-sm text-zinc-500">
-                  <li><Link href="/terms">Terms</Link></li>
-                  <li><Link href="/privacy">Privacy</Link></li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between text-xs text-zinc-400">
-              <div>
-                2025 © Growthlog - Standing on the shoulders of giants.
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <MarketingFooter />
     </div>
   );
 }
