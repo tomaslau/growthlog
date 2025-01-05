@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight } from "lucide-react";
+import { MarketingFooter } from "@/components/layout/MarketingFooter";
 
 type Update = {
   date: string;
@@ -125,6 +126,7 @@ export default function Updates() {
           </div>
         </div>
       </main>
+      <MarketingFooter />
     </div>
   );
 }
