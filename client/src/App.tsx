@@ -10,7 +10,8 @@ import SaasMetrics from "@/pages/SaasMetrics";
 import SharedDashboard from "@/pages/SharedDashboard";
 import Pricing from "@/pages/Pricing";
 import Updates from "@/pages/Updates";
-import Features from "./pages/Features"; // Added import
+import Features from "./pages/Features";
+import GrowthSprints from "@/pages/features/GrowthSprints";
 import TaskBoard from "@/components/tasks/TaskBoard";
 import TopNav from "@/components/layout/TopNav";
 import { CommandPalette } from "@/components/command/CommandPalette";
@@ -40,7 +41,8 @@ function App() {
               <Route path="/share/:token" component={SharedDashboard} />
               <Route path="/pricing" component={Pricing} />
               <Route path="/updates" component={Updates} />
-              <Route path="/features" component={Features} /> {/* Added route */}
+              <Route path="/features" component={Features} />
+              <Route path="/features/growth-sprints" component={GrowthSprints} />
             </Switch>
           </main>
         </div>
