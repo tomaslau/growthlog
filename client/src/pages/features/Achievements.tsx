@@ -1,3 +1,4 @@
+
 import { Badge } from "@/components/ui/badge";
 import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 import { MarketingFooter } from "@/components/layout/MarketingFooter";
@@ -98,16 +99,18 @@ export default function Achievements() {
                   </div>
                 </div>
               </Card>
-        </div>
+            </div>
+          </div>
 
-        <div className="text-center space-y-4 py-12">
-          <h2 className="text-2xl font-bold">Start Earning Achievements</h2>
-          <p className="text-sm text-muted-foreground">
-            Join successful founders who use our achievement system to stay motivated and track progress.
-          </p>
-          <Button size="lg" className="mt-4">
-            Try it Now
-          </Button>
+          <div className="text-center space-y-4 py-12">
+            <h2 className="text-2xl font-bold">Start Earning Achievements</h2>
+            <p className="text-sm text-muted-foreground">
+              Join successful founders who use our achievement system to stay motivated and track progress.
+            </p>
+            <Button size="lg" className="mt-4">
+              Try it Now
+            </Button>
+          </div>
         </div>
       </main>
 
