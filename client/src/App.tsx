@@ -1,7 +1,6 @@
 import { Switch, Route } from "wouter";
 import Home from "@/pages/Home";
 import Dashboard from "@/pages/Dashboard";
-import GrowthIdeas from "@/pages/GrowthIdeas";
 import GrowthIdeaView from "@/pages/GrowthIdeaView";
 import Profile from "@/pages/Profile";
 import Achievements from "@/pages/Achievements";
