@@ -22,10 +22,16 @@ type ChangelogSection = {
 };
 
 export default function Updates() {
-  const [changelog, setChangelog] = useState<ChangelogSection[]>([]);
+  const CACHE_KEY = 'changelog_cache';
+  const [changelog, setChangelog] = useState<ChangelogSection[]>(() => {
+    const cached = localStorage.getItem(CACHE_KEY);
+    return cached ? JSON.parse(cached) : [];
+  });
 
   useEffect(() => {
-    fetch('/CHANGELOG.md')
+    if (changelog.length > 0) {
+      // Already have cached data
+      fetch('/CHANGELOG.md')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch changelog');
         return res.text();
@@ -73,11 +79,12 @@ export default function Updates() {
         });
         
         setChangelog(parsed);
+        localStorage.setItem(CACHE_KEY, JSON.stringify(parsed));
       })
       .catch(error => {
         console.error('Error loading changelog:', error);
       });
-  }, []);
+  }, [changelog.length]);
 
   return (
     <div className="min-h-screen bg-background">
