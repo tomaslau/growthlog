@@ -1,11 +1,9 @@
-import { Switch, Route, useLocation } from "wouter";
-import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
+import { Switch, Route } from "wouter";
 import Home from "@/pages/Home";
 import Dashboard from "@/pages/Dashboard";
 import GrowthIdeaView from "@/pages/GrowthIdeaView";
 import Profile from "@/pages/Profile";
 import Achievements from "@/pages/features/Achievements";
-import Collaboration from "@/pages/features/Collaboration";
 import Process from "@/pages/Process";
 import SaasMetrics from "@/pages/SaasMetrics";
 import SharedDashboard from "@/pages/SharedDashboard";
@@ -24,20 +22,13 @@ import FloatingTimer from "@/components/pomodoro/FloatingTimer";
 import { ThemeProvider } from "@/hooks/use-theme.tsx";
 
 function App() {
-  const [location] = useLocation();
   return (
     <ThemeProvider defaultTheme="dark" storageKey="growthlog-theme">
       <PomodoroProvider>
         <div className="min-h-screen bg-background">
-          {location.startsWith("/features") || location === "/" || location === "/pricing" || location === "/process" || location === "/updates" ? (
-            <MarketingTopNav />
-          ) : (
-            <>
-              <TopNav />
-              <CommandPalette />
-              <FloatingTimer />
-            </>
-          )}
+          <TopNav />
+          <CommandPalette />
+          <FloatingTimer />
           <main>
             <Switch>
               <Route path="/" component={Home} />
@@ -58,7 +49,6 @@ function App() {
               <Route path="/features/framework" component={Framework} />
               <Route path="/features/growth-ideas" component={GrowthIdeas} />
               <Route path="/features/achievements" component={Achievements} />
-              <Route path="/features/collaboration" component={Collaboration} />
             </Switch>
           </main>
         </div>
