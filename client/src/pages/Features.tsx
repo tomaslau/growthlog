@@ -11,6 +11,12 @@ import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 
 const features = [
   {
+    icon: TrendingUp,
+    title: "Full Data Ownership",
+    description: "Your data lives in your own Google Sheets - giving you complete control, portability, and freedom to analyze or extend it however you want.",
+    href: "/features/data-ownership"
+  },
+  {
     icon: Timer,
     title: "25-Minute Growth Sprints",
     description: "Break down complex growth initiatives into focused, actionable tasks designed to fit within a single Pomodoro session.",
