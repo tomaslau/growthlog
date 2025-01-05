@@ -11,20 +11,68 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 
-  :root {
-    --activity-0: hsl(0, 0%, 95%);
-    --activity-1: hsl(152, 62%, 82%);
-    --activity-2: hsl(152, 62%, 68%);
-    --activity-3: hsl(152, 62%, 54%);
-    --activity-4: hsl(152, 62%, 40%);
+  :root, .light, .light-theme, .radix-themes {
+    --color-background: #fff;
+
+    /* Green Scale */
+    --green-1: #fbfefb;
+    --green-2: #f5fbf6;
+    --green-3: #e7f7ea;
+    --green-4: #d6f1db;
+    --green-5: #c3e9cc;
+    --green-6: #97d3a5;
+    --green-7: #65b77c;
+    --green-8: #4a9962;
+    --green-9: #18794e;
+    --green-10: #116544;
+    --green-11: #0b4f34;
+    --green-12: #0b3829;
+
+    /* Gray Scale */
+    --gray-1: #fbfdfc;
+    --gray-2: #f7f9f8;
+    --gray-3: #eef1ef;
+    --gray-4: #e6e9e7;
+    --gray-5: #dce0de;
+    --gray-6: #ced3d0;
+    --gray-7: #9ea6a2;
+    --gray-8: #8b938f;
+    --gray-9: #717971;
+    --gray-10: #5f6661;
+    --gray-11: #4b524d;
+    --gray-12: #2e332f;
   }
 
-  .dark {
-    --activity-0: hsl(215, 21%, 11%);
-    --activity-1: hsl(152, 42%, 22%);
-    --activity-2: hsl(152, 42%, 32%);
-    --activity-3: hsl(152, 42%, 42%);
-    --activity-4: hsl(152, 42%, 52%);
+  .dark, .dark-theme, :is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
+    --color-background: #0d0d0d;
+
+    /* Green Scale */
+    --green-1: #070f09;
+    --green-2: #111a13;
+    --green-3: #152b1a;
+    --green-4: #1b3c22;
+    --green-5: #214f2b;
+    --green-6: #276434;
+    --green-7: #2f7b3e;
+    --green-8: #37944a;
+    --green-9: #3fb157;
+    --green-10: #48d066;
+    --green-11: #53f277;
+    --green-12: #c4f0d1;
+
+    /* Gray Scale */
+    --gray-1: #0d0d0d;
+    --gray-2: #181818;
+    --gray-3: #222222;
+    --gray-4: #292929;
+    --gray-5: #333333;
+    --gray-6: #3f3f3f;
+    --gray-7: #4d4d4d;
+    --gray-8: #5c5c5c;
+    --gray-9: #6e6e6e;
+    --gray-10: #818181;
+    --gray-11: #9a9a9a;
+    --gray-12: #f1f1f1;
   }
 }
 
