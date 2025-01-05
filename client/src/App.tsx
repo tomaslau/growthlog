@@ -5,7 +5,7 @@ import GrowthIdeas from "@/pages/GrowthIdeas";
 import GrowthIdeaView from "@/pages/GrowthIdeaView";
 import Profile from "@/pages/Profile";
 import Achievements from "@/pages/Achievements";
-import Manifesto from "@/pages/Manifesto";
+import Process from "@/pages/Process";
 import SaasMetrics from "@/pages/SaasMetrics";
 import SharedDashboard from "@/pages/SharedDashboard";
 import Pricing from "@/pages/Pricing";
@@ -33,7 +33,7 @@ function App() {
               <Route path="/ideas/:id" component={GrowthIdeaView} />
               <Route path="/profile" component={Profile} />
               <Route path="/achievements" component={Achievements} />
-              <Route path="/manifesto" component={Manifesto} />
+              <Route path="/process" component={Process} />
               <Route path="/metrics" component={SaasMetrics} />
               <Route path="/share/:token" component={SharedDashboard} />
               <Route path="/pricing" component={Pricing} />
