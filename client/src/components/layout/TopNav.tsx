@@ -26,7 +26,7 @@ export default function TopNav() {
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
 
   // Hide navigation on marketing pages
-  const marketingRoutes = ["/", "/features", "/process", "/updates", "/pricing", "/features/growth-sprints", "/features/progress-tracking"];
+  const marketingRoutes = ["/", "/features", "/process", "/updates", "/pricing", "/features/growth-sprints", "/features/progress-tracking", "/features/framework"];
   if (marketingRoutes.includes(location)) {
     return null;
   }
