@@ -14,6 +14,9 @@
   :root, .light, .light-theme, .radix-themes {
     --color-background: #fff;
 
+    /* Brand Colors */
+    --brand: 142 47% 29%;  /* #15803D */
+
     /* Green Scale */
     --green-1: #fbfefb;
     --green-2: #f5fbf6;
@@ -45,6 +48,9 @@
 
   .dark, .dark-theme, :is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
     --color-background: #0d0d0d;
+
+    /* Brand Colors */
+    --brand: 142 47% 29%;  /* #15803D */
 
     /* Green Scale */
     --green-1: #070f09;
