@@ -105,7 +105,7 @@ export default function Features() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Card className="p-6 h-full hover:border-primary/50 transition-colors">
+                  <Card className="p-6 h-[200px] hover:border-primary/50 transition-colors">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
                         <feature.icon className="h-4 w-4 text-primary" />
