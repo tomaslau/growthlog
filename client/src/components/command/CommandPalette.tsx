@@ -11,6 +11,7 @@ import {
   Home,
   Search,
   Keyboard,
+  BookOpen,
 } from "lucide-react";
 import {
   CommandDialog,
@@ -63,10 +64,10 @@ const groups: Group[] = [
         keyboardShortcut: { key: "i", ctrlKey: true },
       },
       {
-        id: "profile",
-        name: "View Profile",
-        icon: User,
-        href: "/profile",
+        id: "process",
+        name: "View Process",
+        icon: BookOpen,
+        href: "/process",
         keyboardShortcut: { key: "p", ctrlKey: true },
       },
     ],

@@ -184,7 +184,7 @@ export default function Pricing() {
                   <ul className="space-y-3 text-sm text-zinc-500">
                     <li><Link href="/about">About</Link></li>
                     <li><Link href="/pricing">Pricing</Link></li>
-                    <li><Link href="/manifesto">Manifesto</Link></li>
+                    <li><Link href="/process">Process</Link></li>
                     <li><Link href="/integrations">Integrations</Link></li>
                     <li><Link href="/documentation">Documentation</Link></li>
                     <li><Link href="/updates">Updates</Link></li>

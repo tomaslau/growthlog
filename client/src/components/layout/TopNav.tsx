@@ -17,7 +17,7 @@ const navItems = [
   { icon: CheckSquare, label: "Tasks", href: "/tasks" },
   { icon: Lightbulb, label: "Growth Ideas", href: "/ideas" },
   { icon: Trophy, label: "Achievements", href: "/achievements" },
-  { icon: BookOpen, label: "Manifesto", href: "/manifesto" },
+  { icon: BookOpen, label: "Process", href: "/process" },
   { icon: BarChart, label: "SaaS Metrics", href: "/metrics" },
 ];
 
