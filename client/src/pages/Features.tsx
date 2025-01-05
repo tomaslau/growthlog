@@ -97,23 +97,24 @@ export default function Features() {
         <div className="max-w-[1200px] mx-auto pb-24">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
-              <Link key={index} href={feature.href}>
+              <Link key={index} href={feature.href} className="h-full">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  className="h-full"
                 >
-                  <Card className="p-6 hover:border-primary/50 transition-colors h-full flex">
-                    <div className="flex flex-col flex-1">
+                  <Card className="p-6 hover:border-primary/50 transition-colors h-full">
+                    <div className="flex flex-col h-full">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
                           <feature.icon className="h-4 w-4 text-primary" />
                         </div>
                         <h3 className="font-medium">{feature.title}</h3>
                       </div>
-                      <p className="text-sm text-muted-foreground flex-1">
+                      <p className="text-sm text-muted-foreground flex-grow">
                         {feature.description}
                       </p>
                     </div>
