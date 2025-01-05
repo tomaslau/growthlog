@@ -1,4 +1,5 @@
 import { Switch, Route, useLocation } from "wouter";
+import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 import Home from "@/pages/Home";
 import Dashboard from "@/pages/Dashboard";
 import GrowthIdeaView from "@/pages/GrowthIdeaView";
