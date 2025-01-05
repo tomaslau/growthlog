@@ -1,0 +1,137 @@
+Title: Craftled
+
+URL Source: https://craftled.com/
+
+Markdown Content:
+Switch to light / dark version
+
+[![Image 31: Craftled](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcraftled.fdef0933.png&w=96&q=75)](https://craftled.com/)
+
+Independent remote team of makers, building digital products, services and tools for businesses.
+
+[Show Portfolio](https://craftled.com/#portfolio)
+
+![Image 32: Craftled OGs](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcraftled-ogs.b413a28b.jpg&w=640&q=75)![Image 33: Craftled Team](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcraftled-team.6e7301d3.jpg&w=640&q=75)![Image 34: Craftled Meetup in Alicante, Spain](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcraftled-meetup.56ff2636.jpg&w=640&q=75)
+
+Portfolio
+---------
+
+### [Marketful](https://marketful.com/)
+
+2024Active
+
+Digital marketing learning center.
+
+### [Big on X](https://bigonx.com/)
+
+2024Active
+
+Discover the rising stars of X!
+
+### [UI Things](https://uithings.com/)
+
+2024Active
+
+Free digital design learning center.
+
+### [Pynions](https://pynions.com/)
+
+2024Active
+
+An open-source Python framework for building AI-powered marketing workflows locally.
+
+### [Bordful](https://bordful.com/)
+
+2024Active
+
+Open-source job board starter kit built with Next.js and Airtable.
+
+### [Prodhire](https://prodhire.com/)
+
+2024Active
+
+Prodhire is a curated productized service directory.
+
+### [Expired Domains List](https://store.craftled.com/l/expired-domains)
+
+2024Active
+
+1000+ expired domain once featured in top publications like Forbes, TechCrunch, etc.
+
+### [Tools](https://tools.craftled.com/)
+
+2024Active
+
+Small useful tools for knowledge work and coding
+
+### [Writer News](https://www.writernews.co/)
+
+2021Discontinued
+
+Daily news aggregator for writers.
+
+Partners
+--------
+
+![Image 35: Edgaras Benediktavicius](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcraftled-edgaras-benediktavicius.a844d1ec.jpg&w=128&q=75)
+
+Freelance product designer and developer specializing in UX/UI design, no-code, and JavaScript development.
+
+Interests: UX, UI, web/app technologies, service systems design, digital concept development, traveling.
+
+Tools: Next.js, Tailwind, Bun, Figma
+
+![Image 36: Isabella Russi Gallon](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcraftled-isabella-russi.e4414c96.jpg&w=128&q=75)
+
+UX / UI designer and content writer specializing in user research, prototyping, copywriting, and graphic design for websites and apps.
+
+Interests: UX/UI design, fashion, traveling, fitness, music, movies.
+
+Tools: Figma, Webflow, WordPress, Airtable, Google Docs, Canva, Adobe Illustrator
+
+![Image 37: Tomas Laurinavicius](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcraftled-tomas-laurinavicius.532716e7.jpg&w=128&q=75)
+
+Growth marketer, designer, developer, and writer interested in calm micro software and digital media businesses.
+
+Interests: Reading, indie hacking, traveling, weightlifting, basketball.
+
+Tools: Next.js, Tailwind, Python, Pynions, Google Sheets, Ahrefs, Screaming Frog, WordPress, GitHub, Raycast, Cursor, HTTPie, Cloudflare, Vercel, Hetzner, Figma
+
+Testimonials
+------------
+
+![Image 38: Diego Bejarano Gerke](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdiego.e1fe6071.jpg&w=96&q=75)
+
+Tomas is a brilliant content marketer, always with a finger on the pulse of what's next in the industry. I can confidently say that Tomas is one of the most driven, growth-focused people I've worked with.
+
+![Image 39: Eduard Metzger](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Feduard.6463d890.jpg&w=96&q=75)
+
+His creativity and precision in design not only met but exceeded our expectations. The creative assets Edgaras created helped us to increase our conversion rate.
+
+![Image 40: Kasper Wandahl Fogh](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fkasper.38b57c36.jpg&w=96&q=75)
+
+Throughout the project, Edgaras remained committed to delivering the highest-quality work, and he was always willing to go above and beyond to ensure that we were completely satisfied with the end result.
+
+![Image 41: Ryan Hoover](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fryan.f7e570b4.jpg&w=96&q=75)
+
+Tomas was a pleasure to work with. He quickly adopted our voice to deliver consistent writing during our consulting agreement. I'd love to work with him again.
+
+![Image 42: Jeppe Knig](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fjeppe.815a357d.jpg&w=96&q=75)
+
+Edgaras is one of the best digital designers that I know. Knowledgeable of systems, processes, visual design but first and foremost he simply gets how people use technology and interfaces.
+
+![Image 43: Ane Wiese](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fane.cc0878e1.jpg&w=96&q=75)
+
+Working with Tomas has been great. I especially appreciate that he loves sharing ideas and his knowledge. Tomas is very passionate and enthusiastic about his work, which rubs off on everyone that works with him.
+
+![Image 44: Laura Spencer](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flaura.a5fe1e72.jpg&w=96&q=75)
+
+Tomas has been an important part of our content creation team at Envato Tuts+ Business. During his time with us Tomas successfully took on several different types of assignments. He learns quickly and was always responsive to suggestions and feedback.
+
+![Image 45: Melissa Dixon](https://craftled.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmelissa.229a0515.jpg&w=96&q=75)
+
+### [Melissa Dixon](https://www.linkedin.com/in/tomaslau/details/recommendations/?detailScreenTabIndex=0)
+
+Senior Director, Brand and Content Marketing, BigCommerce
+
+He is an exceptional content writer and editor. In addition to being a thorough researcher, his writing style is friendly and informative, and he delivers work on time.
