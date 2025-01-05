@@ -46,12 +46,7 @@ const features = [
     description: "Stay motivated with gamified progress tracking and unlock achievements as you hit growth milestones.",
     href: "/features/achievements"
   },
-  {
-    icon: BarChart3,
-    title: "SaaS Metrics Dashboard",
-    description: "Track key performance indicators and visualize your growth journey with beautiful, insightful charts.",
-    href: "/features/metrics"
-  },
+  
   {
     icon: Users,
     title: "Team Collaboration",
