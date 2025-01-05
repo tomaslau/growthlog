@@ -14,6 +14,7 @@ import Features from "./pages/Features";
 import GrowthSprints from "@/pages/features/GrowthSprints";
 import ProgressTracking from "@/pages/features/ProgressTracking";
 import Framework from "@/pages/features/Framework";
+import GrowthIdeas from "@/pages/features/GrowthIdeas";
 import TaskBoard from "@/components/tasks/TaskBoard";
 import TopNav from "@/components/layout/TopNav";
 import { CommandPalette } from "@/components/command/CommandPalette";
@@ -47,6 +48,7 @@ function App() {
               <Route path="/features/growth-sprints" component={GrowthSprints} />
               <Route path="/features/progress-tracking" component={ProgressTracking} />
               <Route path="/features/framework" component={Framework} />
+              <Route path="/features/growth-ideas" component={GrowthIdeas} />
             </Switch>
           </main>
         </div>
