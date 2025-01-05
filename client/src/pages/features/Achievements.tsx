@@ -28,13 +28,15 @@ export default function Achievements() {
     <div className="min-h-screen bg-background">
       <MarketingTopNav />
       
-      <main className="container max-w-[1000px] mx-auto px-6 pt-24 pb-24">
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-2">
-            Core Feature
-          </Badge>
-          <h1 className="text-3xl font-bold tracking-tight">Achievement System</h1>
-          <p className="text-base text-muted-foreground leading-relaxed max-w-[600px] mx-auto mt-3">
+      <main className="max-w-[1200px] mx-auto px-6">
+        <div className="pt-36 pb-24">
+          <div className="max-w-[800px] mx-auto space-y-8">
+            <div className="space-y-4 text-center">
+              <Badge variant="secondary" className="mb-2">
+                Core Feature
+              </Badge>
+              <h1 className="text-4xl font-bold tracking-tight">Achievement System</h1>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-[600px] mx-auto">
             Track your growth journey through meaningful milestones. Earn badges and unlock new ranks as you progress in your SaaS growth journey.
           </p>
         </div>
