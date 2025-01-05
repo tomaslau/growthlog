@@ -23,7 +23,7 @@ export default function Updates() {
   const [changelog, setChangelog] = useState<ChangelogSection[]>([]);
 
   useEffect(() => {
-    fetch('/CHANGELOG.md')
+    fetch('/changelog/CHANGELOG.md')
       .then(res => res.text())
       .then(text => {
         // Basic parser for the changelog format
