@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Timer, Target, ArrowRight, BarChart2, Brain } from "lucide-react";
+import { Timer, Target, ArrowRight, BarChart2, Brain, FileSpreadsheet, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Process() {
   const pillars = [
@@ -34,6 +35,37 @@ export default function Process() {
           Great SaaS companies aren't built through random acts of marketing. They're built through systematic, focused execution.
         </p>
       </div>
+
+      {/* Data Ownership Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <FileSpreadsheet className="h-5 w-5" />
+            Your Data, Your Way
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <p className="text-muted-foreground">
+              We believe in true data ownership and portability. With Growthlog's Google Sheets integration:
+            </p>
+            <ul className="space-y-2">
+              {[
+                "Your growth data lives in your own Google Sheets, giving you complete control and ownership",
+                "No vendor lock-in - your data is always accessible and portable",
+                "Work your way - customize and extend the spreadsheet to match your workflow",
+                "Seamless integration with other tools in your growth stack",
+                "Export, analyze, and visualize your data however you want"
+              ].map((point, index) => (
+                <li key={index} className="flex items-center gap-3">
+                  <ArrowRight className="h-4 w-4 text-primary flex-shrink-0" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Core Process */}
       <Card>
@@ -146,6 +178,47 @@ export default function Process() {
                 <li>• Celebrate wins</li>
                 <li>• Adjust based on results</li>
               </ul>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Open Source Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Github className="h-5 w-5" />
+            Open Source & Community-Driven
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <p className="text-muted-foreground">
+              Growthlog is proudly open source under the MIT license. We believe in transparency, collaboration, and giving back to the community:
+            </p>
+            <ul className="space-y-2">
+              {[
+                "Full source code available on GitHub",
+                "MIT licensed - use, modify, and distribute freely",
+                "Community contributions welcome",
+                "Transparent development process",
+                "Build and customize to fit your needs"
+              ].map((point, index) => (
+                <li key={index} className="flex items-center gap-3">
+                  <ArrowRight className="h-4 w-4 text-primary flex-shrink-0" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="pt-4">
+              <Button
+                variant="outline"
+                onClick={() => window.open('https://github.com/yourusername/growthlog', '_blank')}
+                className="gap-2"
+              >
+                <Github className="h-4 w-4" />
+                View on GitHub
+              </Button>
             </div>
           </div>
         </CardContent>
