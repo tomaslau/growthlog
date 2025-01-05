@@ -25,8 +25,9 @@ export default function TopNav() {
   const [location] = useLocation();
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
 
-  // Only show the navigation menu if we're not on the homepage
-  if (location === "/") {
+  // Hide navigation on marketing pages
+  const marketingRoutes = ["/", "/features", "/process", "/updates", "/pricing"];
+  if (marketingRoutes.includes(location)) {
     return null;
   }
 
