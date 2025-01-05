@@ -1,5 +1,5 @@
 
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -10,11 +10,15 @@ interface MarketingNavLinkProps {
 }
 
 export function MarketingNavLink({ href, children, className }: MarketingNavLinkProps) {
+  const [location] = useLocation();
+  const isActive = location === href;
+
   return (
     <Link href={href}>
       <motion.span
         className={cn(
           "relative cursor-pointer text-[13px] font-medium text-muted-foreground/80 transition-colors hover:text-foreground",
+          isActive && "text-foreground font-semibold",
           className
         )}
         whileHover={{ scale: 1.05 }}
