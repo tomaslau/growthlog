@@ -8,7 +8,7 @@ import { Timer, ArrowRight, Brain, Target, BarChart2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import PomodoroTimer from "@/components/tasks/PomodoroTimer";
-import MarketingFooter from "@/components/MarketingFooter"; // Assuming this component exists
+import { MarketingFooter } from "@/components/layout/MarketingFooter";
 
 export default function GrowthSprints() {
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
