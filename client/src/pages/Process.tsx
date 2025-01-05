@@ -35,23 +35,7 @@ export default function Process() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Marketing Navbar */}
-      <div className="fixed top-0 left-0 right-0 flex justify-center px-6 pt-4">
-        <header className="w-full max-w-[1200px] h-14 border border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-md">
-          <div className="flex h-14 items-center px-6">
-            <Link href="/" className="flex items-center gap-2">
-              <Logo />
-              <h1 className="text-[13px] font-semibold tracking-tight">Growthlog</h1>
-            </Link>
-
-            <nav className="hidden md:flex flex-1 items-center justify-center gap-6">
-              <MarketingNavLink href="/features">Features</MarketingNavLink>
-              <MarketingNavLink href="/process">Process</MarketingNavLink>
-              <MarketingNavLink href="/ideas">Growth Ideas</MarketingNavLink>
-              <MarketingNavLink href="/updates">Updates</MarketingNavLink>
-              <MarketingNavLink href="/pricing">Pricing</MarketingNavLink>
-              <MarketingNavLink href="mailto:support@growthlog.co">Support</MarketingNavLink>
-            </nav>
+      <MarketingTopNav />
 
             <div className="flex items-center gap-3">
               <ThemeToggle />
