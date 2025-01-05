@@ -4,20 +4,113 @@ import { db } from "@db";
 import { achievements, userAchievements, users, sharedDashboards, dashboardComponents, tasks } from "@db/schema";
 import { eq, and } from "drizzle-orm";
 import crypto from "crypto";
+import { google } from "googleapis";
+import { setupAuth } from "./auth";
+
+// Helper to create Sheets API client for a user
+function createSheetsAPI(accessToken: string) {
+  const auth = new google.auth.OAuth2();
+  auth.setCredentials({ access_token: accessToken });
+  return google.sheets({ version: 'v4', auth });
+}
 
 export function registerRoutes(app: Express): Server {
-  // Get completed tasks
+  // Set up auth routes
+  setupAuth(app);
+
+  // Get completed tasks (now fetches from Google Sheets)
   app.get('/api/tasks/completed', async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+
     try {
-      const completedTasks = await db.query.tasks.findMany({
-        where: and(
-          eq(tasks.completed, true),
-          eq(tasks.status, "completed")
-        )
+      const user = req.user as Express.User;
+      const sheets = createSheetsAPI(user.googleAccessToken!);
+
+      // Fetch tasks from Google Sheets
+      const response = await sheets.spreadsheets.values.get({
+        spreadsheetId: user.sheetsSpreadsheetId,
+        range: 'Tasks!A2:E',
       });
+
+      const values = response.data.values || [];
+      const completedTasks = values
+        .filter(row => row[2] === 'completed')
+        .map((row, index) => ({
+          id: index + 1,
+          title: row[0],
+          description: row[1],
+          status: row[2],
+          points: parseInt(row[3]),
+          completedAt: row[4],
+          userId: user.id,
+        }));
+
       res.json({ tasks: completedTasks });
     } catch (error) {
+      console.error('Error fetching tasks:', error);
       res.status(500).json({ message: "Error fetching completed tasks" });
+    }
+  });
+
+  // Create new task (saves to Google Sheets)
+  app.post('/api/tasks', async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+
+    try {
+      const user = req.user as Express.User;
+      const { title, description, status = 'today', points = 1 } = req.body;
+
+      const sheets = createSheetsAPI(user.googleAccessToken!);
+
+      // Append task to Google Sheets
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: user.sheetsSpreadsheetId,
+        range: 'Tasks!A2:E2',
+        valueInputOption: 'RAW',
+        requestBody: {
+          values: [[title, description, status, points, '']],
+        },
+      });
+
+      res.json({ message: "Task created successfully" });
+    } catch (error) {
+      console.error('Error creating task:', error);
+      res.status(500).json({ message: "Error creating task" });
+    }
+  });
+
+  // Update task status (updates Google Sheets)
+  app.put('/api/tasks/:taskId', async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+
+    try {
+      const user = req.user as Express.User;
+      const { status, completedAt } = req.body;
+      const taskId = parseInt(req.params.taskId);
+
+      const sheets = createSheetsAPI(user.googleAccessToken!);
+
+      // Update task in Google Sheets
+      // Note: taskId + 2 because row 1 is header and taskId starts from 0
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: user.sheetsSpreadsheetId,
+        range: `Tasks!C${taskId + 2}:E${taskId + 2}`,
+        valueInputOption: 'RAW',
+        requestBody: {
+          values: [[status, completedAt || '']],
+        },
+      });
+
+      res.json({ message: "Task updated successfully" });
+    } catch (error) {
+      console.error('Error updating task:', error);
+      res.status(500).json({ message: "Error updating task" });
     }
   });
 

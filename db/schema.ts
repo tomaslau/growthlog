@@ -4,8 +4,13 @@ import { sql } from "drizzle-orm";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
-  username: text("username").unique().notNull(),
-  password: text("password").notNull(),
+  googleId: text("google_id").unique(),
+  email: text("email").unique(),
+  displayName: text("display_name"),
+  profilePicture: text("profile_picture"),
+  googleAccessToken: text("google_access_token"),
+  googleRefreshToken: text("google_refresh_token"),
+  sheetsSpreadsheetId: text("sheets_spreadsheet_id"),
   totalPoints: integer("total_points").default(0).notNull(),
   currentStreak: integer("current_streak").default(0).notNull(),
   createdAt: timestamp("created_at").default(sql`NOW()`).notNull(),
