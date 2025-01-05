@@ -74,9 +74,9 @@ export default function Home() {
 
             <nav className="hidden md:flex flex-1 items-center justify-center gap-6">
               <MarketingNavLink href="/features">Features</MarketingNavLink>
-              <MarketingNavLink href="/updates">Updates</MarketingNavLink>
-              <MarketingNavLink href="/ideas">Growth Ideas</MarketingNavLink>
               <MarketingNavLink href="/process">Process</MarketingNavLink>
+              <MarketingNavLink href="/ideas">Growth Ideas</MarketingNavLink>
+              <MarketingNavLink href="/updates">Updates</MarketingNavLink>
               <MarketingNavLink href="/pricing">Pricing</MarketingNavLink>
               <MarketingNavLink href="mailto:support@growthlog.co">Support</MarketingNavLink>
             </nav>
