@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Home, Lightbulb, User, CheckSquare, Trophy, BookOpen, BarChart, LogOut } from "lucide-react";
+import { Home, Lightbulb, User, CheckSquare, Trophy, BookOpen, BarChart, LogOut, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Button } from "@/components/ui/button";
@@ -19,6 +19,7 @@ const navItems = [
   { icon: Trophy, label: "Achievements", href: "/achievements" },
   { icon: BookOpen, label: "Process", href: "/process" },
   { icon: BarChart, label: "SaaS Metrics", href: "/metrics" },
+  { icon: Mail, label: "Support", href: "mailto:support@growthlog.com" },
 ];
 
 export default function TopNav() {
@@ -47,8 +48,8 @@ export default function TopNav() {
               <Link key={href} href={href}>
                 <div className={cn(
                   "flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors cursor-pointer",
-                  isActive 
-                    ? "text-primary bg-secondary" 
+                  isActive
+                    ? "text-primary bg-secondary"
                     : "text-muted-foreground hover:text-foreground"
                 )}>
                   <Icon className="h-4 w-4" />
