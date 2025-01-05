@@ -27,10 +27,6 @@ export function MarketingTopNav() {
             <a 
               href="mailto:support@growthlog.co" 
               className="text-[13px] font-medium text-muted-foreground/80 hover:text-foreground transition-colors cursor-pointer"
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.href = "mailto:support@growthlog.co";
-              }}
             >
               Support
             </a>
