@@ -48,6 +48,7 @@ function App() {
               <Route path="/features/progress-tracking" component={ProgressTracking} />
               <Route path="/features/framework" component={Framework} />
               <Route path="/features/growth-ideas" component={GrowthIdeas} />
+              <Route path="/features/achievements" component={Achievements} />
             </Switch>
           </main>
         </div>
