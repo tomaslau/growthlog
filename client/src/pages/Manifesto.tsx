@@ -68,19 +68,15 @@ export default function Manifesto() {
             className="max-w-[700px] mx-auto text-center space-y-6"
           >
             <Badge variant="secondary" className="mb-2">
-              Our Philosophy
+              Effective SaaS Marketing Philosophy
             </Badge>
             <h1 className="text-3xl font-bold tracking-tight">
               The Growthlog Manifesto
             </h1>
-            <div className="space-y-3">
-              <p className="text-base text-muted-foreground leading-relaxed max-w-[600px] mx-auto">
-                A new approach to SaaS growth, designed for founders and marketers who believe in sustainable, focused progress.
-              </p>
-              <p className="text-base italic text-muted-foreground/80">
-                "Slow is smooth, and smooth is fast."
-              </p>
-            </div>
+            <p className="text-base text-muted-foreground leading-relaxed max-w-[600px] mx-auto">
+              A new approach to SaaS growth, designed for founders and marketers
+              who believe in sustainable, focused progress.
+            </p>
           </motion.div>
 
           <motion.div
