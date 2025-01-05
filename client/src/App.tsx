@@ -12,6 +12,7 @@ import Pricing from "@/pages/Pricing";
 import Updates from "@/pages/Updates";
 import Features from "./pages/Features";
 import GrowthSprints from "@/pages/features/GrowthSprints";
+import ProgressTracking from "@/pages/features/ProgressTracking";
 import TaskBoard from "@/components/tasks/TaskBoard";
 import TopNav from "@/components/layout/TopNav";
 import { CommandPalette } from "@/components/command/CommandPalette";
@@ -43,6 +44,7 @@ function App() {
               <Route path="/updates" component={Updates} />
               <Route path="/features" component={Features} />
               <Route path="/features/growth-sprints" component={GrowthSprints} />
+              <Route path="/features/progress-tracking" component={ProgressTracking} />
             </Switch>
           </main>
         </div>
