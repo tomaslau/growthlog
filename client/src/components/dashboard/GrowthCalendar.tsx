@@ -1,19 +1,53 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useQuery } from "@tanstack/react-query";
+import { startOfYear, eachDayOfInterval, format, parseISO, isEqual } from "date-fns";
+import { SelectTask } from "@db/schema";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function GrowthCalendar() {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const days = ["", "Mon", "Wed", "Fri"];
 
-  // Helper to generate activity levels (0-4)
-  const getActivityLevel = (i: number, j: number) => {
-    // Mock data - in reality this would come from API
-    const random = Math.random();
-    if (random > 0.8) return 4;
-    if (random > 0.6) return 3;
-    if (random > 0.4) return 2;
-    if (random > 0.2) return 1;
-    return 0;
+  // Fetch tasks data
+  const { data: tasksData, isLoading } = useQuery<{ tasks: SelectTask[] }>({
+    queryKey: ['/api/tasks/completed'],
+  });
+
+  const today = new Date();
+  const yearStart = startOfYear(today);
+  const dates = eachDayOfInterval({ start: yearStart, end: today });
+
+  // Calculate activity levels based on completed tasks
+  const getActivityLevel = (date: Date) => {
+    if (!tasksData?.tasks) return 0;
+
+    const completedTasks = tasksData.tasks.filter(task => {
+      const taskDate = parseISO(task.completedAt as unknown as string);
+      return isEqual(taskDate, date);
+    });
+
+    const count = completedTasks.length;
+    if (count === 0) return 0;
+    if (count <= 2) return 1;
+    if (count <= 4) return 2;
+    if (count <= 6) return 3;
+    return 4;
   };
+
+  if (isLoading) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Your Growth Journey</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            <Skeleton className="h-[200px] w-full" />
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Card>
@@ -53,8 +87,8 @@ export default function GrowthCalendar() {
           {/* Activity squares */}
           <div className="flex-1">
             <div className="grid grid-cols-[repeat(52,1fr)] gap-[3px]">
-              {Array.from({ length: 7 * 52 }).map((_, i) => {
-                const level = getActivityLevel(Math.floor(i / 7), i % 7);
+              {dates.map((date, i) => {
+                const level = getActivityLevel(date);
                 return (
                   <div
                     key={i}
@@ -63,6 +97,7 @@ export default function GrowthCalendar() {
                       backgroundColor: `var(--activity-${level})`,
                       opacity: level === 0 ? 0.2 : 1
                     }}
+                    title={`${format(date, 'MMM d, yyyy')}: ${level} activities`}
                   />
                 );
               })}

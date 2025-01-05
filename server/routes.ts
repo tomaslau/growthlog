@@ -1,11 +1,26 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { db } from "@db";
-import { achievements, userAchievements, users, sharedDashboards, dashboardComponents } from "@db/schema";
-import { eq } from "drizzle-orm";
+import { achievements, userAchievements, users, sharedDashboards, dashboardComponents, tasks } from "@db/schema";
+import { eq, and } from "drizzle-orm";
 import crypto from "crypto";
 
 export function registerRoutes(app: Express): Server {
+  // Get completed tasks
+  app.get('/api/tasks/completed', async (req, res) => {
+    try {
+      const completedTasks = await db.query.tasks.findMany({
+        where: and(
+          eq(tasks.completed, true),
+          eq(tasks.status, "completed")
+        )
+      });
+      res.json({ tasks: completedTasks });
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching completed tasks" });
+    }
+  });
+
   // Create a new shared dashboard
   app.post('/api/dashboards/share', async (req, res) => {
     try {
