@@ -89,33 +89,33 @@ export default function Updates() {
               <span>Product updates</span>
               <ChevronRight className="h-4 w-4" />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight">Latest Updates</h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <h1 className="text-2xl font-bold tracking-tight">Latest Updates</h1>
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Stay updated with new features and improvements to help you grow your SaaS business more effectively.
             </p>
           </div>
 
-          <div className="space-y-16">
+          <div className="space-y-8">
             {changelog.map((section) => (
-              <div key={section.version} className="space-y-8">
-                <h2 className="text-2xl font-semibold tracking-tight">
+              <div key={section.version} className="space-y-4">
+                <h2 className="text-base font-semibold tracking-tight">
                   Version {section.version} - {section.date}
                 </h2>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {[...section.added, ...section.improved, ...section.fixed].map((update, index) => (
-                    <Card key={index} className="p-6">
-                      <div className="space-y-4">
+                    <Card key={index} className="p-3">
+                      <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-2">
                             <Badge variant={
                               update.tag === "New" ? "default" :
                               update.tag === "Improved" ? "secondary" : "destructive"
-                            }>
+                            } className="text-xs">
                               {update.tag}
                             </Badge>
-                            <h3 className="font-medium">{update.title}</h3>
+                            <h3 className="text-sm">{update.title}</h3>
                           </div>
-                          <time className="text-sm text-muted-foreground">
+                          <time className="text-xs text-muted-foreground">
                             {update.date}
                           </time>
                         </div>
