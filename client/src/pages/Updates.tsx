@@ -1,3 +1,5 @@
+
+import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight } from "lucide-react";
@@ -9,56 +11,54 @@ type Update = {
   tag: "New" | "Improved" | "Fixed";
 };
 
-const updates: { month: string; items: Update[] }[] = [
-  {
-    month: "January 2025",
-    items: [
-      {
-        date: "Jan 5",
-        title: "Organization-wide analytics dashboard",
-        description: "Business plan users can now access comprehensive analytics across their entire organization, making it easier to track team performance and growth initiatives.",
-        tag: "New"
-      },
-      {
-        date: "Jan 3",
-        title: "Enhanced progress tracking",
-        description: "We've improved how we track and visualize your growth progress, making it easier to see your momentum over time.",
-        tag: "Improved"
-      },
-      {
-        date: "Jan 1",
-        title: "Streamlined onboarding experience",
-        description: "New users now get a guided tour of key features and quick setup tips to help them start their growth journey faster.",
-        tag: "Improved"
-      }
-    ]
-  },
-  {
-    month: "December 2024",
-    items: [
-      {
-        date: "Dec 28",
-        title: "Google Sheets Integration",
-        description: "Export your growth data directly to Google Sheets for custom analysis and reporting.",
-        tag: "New"
-      },
-      {
-        date: "Dec 15",
-        title: "Team Leaderboards",
-        description: "Business plan users can now foster healthy competition with team leaderboards based on completed growth tasks and achievements.",
-        tag: "New"
-      },
-      {
-        date: "Dec 10",
-        title: "Growth Ideas Library",
-        description: "Access our curated collection of proven SaaS growth tactics, each broken down into actionable 25-minute tasks.",
-        tag: "New"
-      }
-    ]
-  }
-];
+type ChangelogSection = {
+  version: string;
+  date: string;
+  added: Update[];
+  improved: Update[];
+  fixed: Update[];
+};
 
 export default function Updates() {
+  const [changelog, setChangelog] = useState<ChangelogSection[]>([]);
+
+  useEffect(() => {
+    fetch('/CHANGELOG.md')
+      .then(res => res.text())
+      .then(text => {
+        // Basic parser for the changelog format
+        const sections = text.split('\n## ').slice(1);
+        const parsed = sections.map(section => {
+          const [header, ...content] = section.split('\n');
+          const [version, date] = header.match(/\[(.*?)\].*?(\d{4}-\d{2}-\d{2})/)||[];
+          
+          const added = [], improved = [], fixed = [];
+          let currentSection = '';
+          
+          content.forEach(line => {
+            if (line.startsWith('### Added')) currentSection = 'added';
+            else if (line.startsWith('### Improved')) currentSection = 'improved';
+            else if (line.startsWith('### Fixed')) currentSection = 'fixed';
+            else if (line.startsWith('- ')) {
+              const update = {
+                date: date,
+                title: line.slice(2),
+                description: line.slice(2),
+                tag: currentSection === 'added' ? 'New' : 
+                     currentSection === 'improved' ? 'Improved' : 'Fixed'
+              };
+              if (currentSection === 'added') added.push(update);
+              if (currentSection === 'improved') improved.push(update);
+              if (currentSection === 'fixed') fixed.push(update);
+            }
+          });
+
+          return { version, date, added, improved, fixed };
+        });
+        setChangelog(parsed);
+      });
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <main className="max-w-[800px] mx-auto px-6">
@@ -75,13 +75,13 @@ export default function Updates() {
           </div>
 
           <div className="space-y-16">
-            {updates.map((monthGroup) => (
-              <div key={monthGroup.month} className="space-y-8">
+            {changelog.map((section) => (
+              <div key={section.version} className="space-y-8">
                 <h2 className="text-2xl font-semibold tracking-tight">
-                  {monthGroup.month}
+                  Version {section.version} - {section.date}
                 </h2>
                 <div className="space-y-4">
-                  {monthGroup.items.map((update, index) => (
+                  {[...section.added, ...section.improved, ...section.fixed].map((update, index) => (
                     <Card key={index} className="p-6">
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
@@ -98,9 +98,6 @@ export default function Updates() {
                             {update.date}
                           </time>
                         </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {update.description}
-                        </p>
                       </div>
                     </Card>
                   ))}
