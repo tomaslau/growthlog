@@ -3,7 +3,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2025-02-01
+## [0.1.0] - 2025-01-05
 ### Added
 - Custom dashboard layouts with drag-and-rearrange widgets
 - Organization-wide analytics dashboard for business plans
