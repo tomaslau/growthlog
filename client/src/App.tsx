@@ -3,7 +3,7 @@ import Home from "@/pages/Home";
 import Dashboard from "@/pages/Dashboard";
 import GrowthIdeaView from "@/pages/GrowthIdeaView";
 import Profile from "@/pages/Profile";
-import Achievements from "@/pages/Achievements";
+import Achievements from "@/pages/features/Achievements";
 import Process from "@/pages/Process";
 import SaasMetrics from "@/pages/SaasMetrics";
 import SharedDashboard from "@/pages/SharedDashboard";
