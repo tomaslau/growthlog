@@ -1,9 +1,9 @@
-
 import { Badge } from "@/components/ui/badge";
 import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 import { MarketingFooter } from "@/components/layout/MarketingFooter";
 import { Trophy, Star, Medal } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function Achievements() {
   const achievements = [
@@ -98,8 +98,16 @@ export default function Achievements() {
                   </div>
                 </div>
               </Card>
-            </div>
-          </div>
+        </div>
+
+        <div className="text-center space-y-4 py-12">
+          <h2 className="text-2xl font-bold">Start Earning Achievements</h2>
+          <p className="text-sm text-muted-foreground">
+            Join successful founders who use our achievement system to stay motivated and track progress.
+          </p>
+          <Button size="lg" className="mt-4">
+            Try it Now
+          </Button>
         </div>
       </main>
 
