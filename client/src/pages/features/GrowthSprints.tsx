@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { Timer, ArrowRight, Brain, Target, BarChart2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { PomodoroTimer } from "@/components/tasks/PomodoroTimer";
+import PomodoroTimer from "@/components/tasks/PomodoroTimer";
 
 export default function GrowthSprints() {
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
