@@ -70,12 +70,13 @@ export default function Process() {
         </header>
       </div>
 
-      <main className="mx-auto px-6">
-        <div className="max-w-[700px] mx-auto py-12 space-y-8">
+      <main className="max-w-[1200px] mx-auto px-6">
+        <div className="pt-36 pb-24">
+          <div className="max-w-[800px] mx-auto text-center space-y-8">
           {/* Hero Section */}
-          <div className="space-y-3 text-center">
-            <h1 className="text-2xl font-bold tracking-tight">The Growthlog Process</h1>
-            <p className="text-base text-muted-foreground">
+          <div className="space-y-4 text-center">
+            <h1 className="text-4xl font-bold tracking-[-0.02em] leading-[1.1]">The Growthlog Process</h1>
+            <p className="text-lg text-muted-foreground/80 leading-relaxed max-w-[600px] mx-auto">
               Great SaaS companies aren't built through random acts of marketing. They're built through systematic, focused execution.
             </p>
           </div>
@@ -280,8 +281,8 @@ export default function Process() {
           </div>
 
           {/* Copyright Footer */}
-          <footer className="border-t border-zinc-200/80 mt-16">
-            <div className="py-8">
+          <footer className="border-t border-zinc-200/80 mt-24">
+            <div className="container mx-auto px-6 py-8 max-w-6xl">
               <div className="flex flex-col gap-8">
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5 pb-8 border-b border-zinc-200/80">
                   <div className="space-y-3">
