@@ -8,6 +8,7 @@ import Achievements from "@/pages/Achievements";
 import Manifesto from "@/pages/Manifesto";
 import SaasMetrics from "@/pages/SaasMetrics";
 import SharedDashboard from "@/pages/SharedDashboard";
+import Pricing from "@/pages/Pricing";
 import TaskBoard from "@/components/tasks/TaskBoard";
 import TopNav from "@/components/layout/TopNav";
 import { CommandPalette } from "@/components/command/CommandPalette";
@@ -35,6 +36,7 @@ function App() {
               <Route path="/manifesto" component={Manifesto} />
               <Route path="/metrics" component={SaasMetrics} />
               <Route path="/share/:token" component={SharedDashboard} />
+              <Route path="/pricing" component={Pricing} />
             </Switch>
           </main>
         </div>

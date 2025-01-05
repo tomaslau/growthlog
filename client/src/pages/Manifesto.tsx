@@ -74,8 +74,9 @@ export default function Manifesto() {
               The Growthlog Manifesto
             </h1>
             <p className="text-base text-muted-foreground leading-relaxed max-w-[600px] mx-auto">
-              A new approach to SaaS growth, designed for founders and marketers
-              who believe in sustainable, focused progress.
+              Slow is smooth, and smooth is fast. A new approach to SaaS growth,
+              designed for founders and marketers who believe in sustainable,
+              focused progress.
             </p>
           </motion.div>
 
