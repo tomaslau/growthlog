@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight } from "lucide-react";
 import { MarketingFooter } from "@/components/layout/MarketingFooter";
+import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 
 type Update = {
   date: string;
@@ -80,6 +81,7 @@ export default function Updates() {
 
   return (
     <div className="min-h-screen bg-background">
+      <MarketingTopNav />
       <main className="max-w-[800px] mx-auto px-6">
         <div className="pt-36 pb-24">
           <div className="space-y-4 mb-12">
