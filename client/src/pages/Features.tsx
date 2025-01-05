@@ -2,10 +2,13 @@
 import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Timer, TrendingUp, Layers, Lightbulb, Heart, BarChart3, Users, Brain } from "lucide-react";
 import { motion } from "framer-motion";
 import { MarketingNavLink } from "@/components/ui/marketing-nav-link";
 import { Logo } from "@/components/ui/logo";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { useAuth } from "@/hooks/use-auth";
 
 const features = [
   {
@@ -59,6 +62,7 @@ const features = [
 ];
 
 export default function Features() {
+  const { user, isLoading, loginWithGoogle, logout } = useAuth();
   return (
     <div className="min-h-screen bg-background">
       {/* Marketing Navbar */}
@@ -78,6 +82,21 @@ export default function Features() {
               <MarketingNavLink href="/pricing">Pricing</MarketingNavLink>
               <MarketingNavLink href="mailto:support@growthlog.co">Support</MarketingNavLink>
             </nav>
+
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              {isLoading ? (
+                <div className="h-7 w-24 rounded bg-muted animate-pulse" />
+              ) : user ? (
+                <Button onClick={() => logout()} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
+                  Log out
+                </Button>
+              ) : (
+                <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
+                  Sign in with Google
+                </Button>
+              )}
+            </div>
           </div>
         </header>
       </div>
