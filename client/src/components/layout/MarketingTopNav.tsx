@@ -30,17 +30,15 @@ export function MarketingTopNav() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <div className="w-[130px]">
-              {isLoading ? (
-                <div className="h-7 w-full rounded bg-muted animate-pulse" />
-              ) : user ? (
-                <Button onClick={() => logout()} variant="secondary" size="sm" className="h-7 w-full rounded px-3 text-[13px] font-medium">
-                  Log out
-                </Button>
-              ) : (
-                <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 w-full rounded px-3 text-[13px] font-medium">
-                  Sign in with Google
-                </Button>
-              )}
+              <Button 
+                onClick={user ? logout : loginWithGoogle} 
+                variant="secondary" 
+                size="sm" 
+                className="h-7 w-full rounded px-3 text-[13px] font-medium transition-opacity"
+                style={{ opacity: isLoading ? 0.5 : 1 }}
+              >
+                {user ? "Log out" : "Sign in with Google"}
+              </Button>
             </div>
           </div>
         </div>
