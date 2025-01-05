@@ -23,30 +23,44 @@ export default function Updates() {
   const [changelog, setChangelog] = useState<ChangelogSection[]>([]);
 
   useEffect(() => {
-    fetch('/changelog/CHANGELOG.md')
-      .then(res => res.text())
+    fetch('/CHANGELOG.md')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch changelog');
+        return res.text();
+      })
       .then(text => {
-        // Basic parser for the changelog format
+        // Parse the markdown content
         const sections = text.split('\n## ').slice(1);
         const parsed = sections.map(section => {
-          const [header, ...content] = section.split('\n');
-          const [version, date] = header.match(/\[(.*?)\].*?(\d{4}-\d{2}-\d{2})/)||[];
+          const lines = section.split('\n');
+          const headerLine = lines[0];
           
-          const added = [], improved = [], fixed = [];
+          // Extract version and date
+          const versionMatch = headerLine.match(/\[(.*?)\]/);
+          const dateMatch = headerLine.match(/(\d{4}-\d{2}-\d{2})/);
+          
+          const version = versionMatch ? versionMatch[1] : '';
+          const date = dateMatch ? dateMatch[1] : '';
+          
+          const added: Update[] = [];
+          const improved: Update[] = [];
+          const fixed: Update[] = [];
+          
           let currentSection = '';
           
-          content.forEach(line => {
-            if (line.startsWith('### Added')) currentSection = 'added';
-            else if (line.startsWith('### Improved')) currentSection = 'improved';
-            else if (line.startsWith('### Fixed')) currentSection = 'fixed';
-            else if (line.startsWith('- ')) {
+          lines.forEach(line => {
+            if (line.includes('### Added')) currentSection = 'added';
+            else if (line.includes('### Improved')) currentSection = 'improved';
+            else if (line.includes('### Fixed')) currentSection = 'fixed';
+            else if (line.trim().startsWith('- ')) {
               const update = {
-                date: date,
-                title: line.slice(2),
-                description: line.slice(2),
+                date,
+                title: line.trim().substring(2),
+                description: line.trim().substring(2),
                 tag: currentSection === 'added' ? 'New' : 
-                     currentSection === 'improved' ? 'Improved' : 'Fixed'
+                     currentSection === 'improved' ? 'Improved' : 'Fixed' as Update['tag']
               };
+              
               if (currentSection === 'added') added.push(update);
               if (currentSection === 'improved') improved.push(update);
               if (currentSection === 'fixed') fixed.push(update);
@@ -55,7 +69,11 @@ export default function Updates() {
 
           return { version, date, added, improved, fixed };
         });
+        
         setChangelog(parsed);
+      })
+      .catch(error => {
+        console.error('Error loading changelog:', error);
       });
   }, []);
 

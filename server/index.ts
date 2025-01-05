@@ -1,3 +1,4 @@
+
 import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
 import { registerRoutes } from "./routes";
@@ -48,6 +49,9 @@ app.use((req, res, next) => {
     throw err;
   });
 
+  // Serve CHANGELOG.md as a static file
+  app.use(express.static(path.join(process.cwd())));
+
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
@@ -56,8 +60,6 @@ app.use((req, res, next) => {
   } else {
     serveStatic(app);
   }
-
-  app.use('/changelog', express.static(path.join(process.cwd(), 'CHANGELOG.md'))); // Serve CHANGELOG.md
 
   // ALWAYS serve the app on port 5000
   // this serves both the API and the client
