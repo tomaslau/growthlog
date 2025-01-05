@@ -10,7 +10,7 @@ export function MarketingTopNav() {
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
 
   return (
-    <div className="fixed top-0 left-0 right-0 flex justify-center px-6 pt-4">
+    <div className="fixed top-0 left-0 right-0 flex justify-center px-6 pt-4 z-50">
       <header className="w-full max-w-[1200px] h-14 border border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-md">
         <div className="flex h-14 items-center px-6">
           <Link href="/" className="flex items-center gap-2">
