@@ -105,16 +105,18 @@ export default function Features() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Card className="p-6 hover:border-primary/50 transition-colors">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
-                        <feature.icon className="h-4 w-4 text-primary" />
+                  <Card className="p-6 hover:border-primary/50 transition-colors h-full">
+                    <div className="flex flex-col h-full">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                          <feature.icon className="h-4 w-4 text-primary" />
+                        </div>
+                        <h3 className="font-medium">{feature.title}</h3>
                       </div>
-                      <h3 className="font-medium">{feature.title}</h3>
+                      <p className="text-sm text-muted-foreground flex-grow">
+                        {feature.description}
+                      </p>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      {feature.description}
-                    </p>
                   </Card>
                 </motion.div>
               </Link>
