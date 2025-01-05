@@ -30,3 +30,23 @@ export function MarketingNavLink({ href, children, className }: MarketingNavLink
     </Link>
   );
 }
+
+const items = [
+  { label: "Updates", href: "/updates" },
+  { label: "Growth Ideas", href: "/ideas" },
+  { label: "Support", href: "mailto:support@growthlog.co" },
+];
+
+export function TopMenu() {
+    return (
+        <nav>
+            <ul>
+                {items.map((item) => (
+                    <li key={item.label}>
+                        <MarketingNavLink href={item.href}>{item.label}</MarketingNavLink>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    )
+}
