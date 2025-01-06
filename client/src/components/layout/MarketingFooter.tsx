@@ -84,7 +84,7 @@ export function MarketingFooter() {
 
           <div className="flex items-center justify-between text-sm text-zinc-400 dark:text-zinc-500">
             <div>
-              2025 © Growthlog - A platform for transforming business development processes into actionable insights. Standing on the shoulders of giants.
+              2025 © Growthlog - Build marketing momentum. Standing on the shoulders of giants.
             </div>
             <div className="flex items-center gap-2">
               Built by{" "}
