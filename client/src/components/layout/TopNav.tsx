@@ -35,8 +35,9 @@ export default function TopNav() {
     <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
       <div className="flex h-14 items-center px-6">
         <div className="mr-8">
-          <Link href="/">
-            <h1 className="text-lg font-semibold tracking-tight cursor-pointer">Growthlog</h1>
+          <Link href="/" className="flex items-center gap-2">
+            <Logo className="h-5 w-5" />
+            <h1 className="text-lg font-semibold tracking-tight cursor-pointer text-foreground">Growthlog</h1>
           </Link>
         </div>
 

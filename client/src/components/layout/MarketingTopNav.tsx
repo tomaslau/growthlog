@@ -14,8 +14,8 @@ export function MarketingTopNav() {
       <header className="w-full max-w-[1200px] h-14 border border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-md">
         <div className="flex h-14 items-center px-6">
           <Link href="/" className="flex items-center gap-2">
-            <Logo />
-            <h1 className="text-[13px] font-semibold tracking-tight">Growthlog</h1>
+            <Logo className="h-5 w-5" />
+            <h1 className="text-[13px] font-semibold tracking-tight text-foreground">Growthlog</h1>
           </Link>
 
           <nav className="hidden md:flex flex-1 items-center justify-center gap-6">
