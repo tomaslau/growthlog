@@ -26,7 +26,6 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="growthlog-theme">
       <PomodoroProvider>
         <div className="min-h-screen bg-background">
-          <TopNav />
           <CommandPalette />
           <FloatingTimer />
           <main>
