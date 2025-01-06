@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { Home, Lightbulb, User, CheckSquare, Trophy, BookOpen, BarChart, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/ui/logo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
