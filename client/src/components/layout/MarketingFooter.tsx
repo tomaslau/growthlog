@@ -8,9 +8,9 @@ export function MarketingFooter() {
         <div className="flex flex-col gap-8">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5 pb-8 border-b border-zinc-200/80 dark:border-zinc-800">
             <div className="space-y-3">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-2">
                   <Logo className="h-5 w-5" />
-                  <h3 className="font-semibold text-foreground">Growthlog</h3>
+                  <h3 className="text-[13px] font-semibold tracking-tight text-foreground">Growthlog</h3>
                 </div>
               <p className="text-sm text-zinc-500 max-w-[280px] dark:text-zinc-300">
                 A platform for transforming business development processes into actionable insights through strategic tracking and optimization.
