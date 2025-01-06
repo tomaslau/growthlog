@@ -5,9 +5,14 @@ import { MarketingNavLink } from "@/components/ui/marketing-nav-link";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 export function MarketingTopNav() {
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   return (
     <div className="fixed top-0 left-0 right-0 flex justify-center px-6 pt-4 z-50">
@@ -34,7 +39,7 @@ export function MarketingTopNav() {
 
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <div className="w-[130px]">
+            <div className="hidden md:block w-[130px]">
               <Button 
                 onClick={loginWithGoogle} 
                 variant="secondary" 
@@ -44,8 +49,41 @@ export function MarketingTopNav() {
                 {!isLoading && user ? "Log out" : "Sign in with Google"}
               </Button>
             </div>
+            <button
+              onClick={toggleMobileMenu}
+              className="md:hidden"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden absolute top-[60px] left-0 right-0 mx-6 p-4 border border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-md">
+            <nav className="flex flex-col gap-4">
+              <MarketingNavLink href="/features">Features</MarketingNavLink>
+              <MarketingNavLink href="/process">Process</MarketingNavLink>
+              <MarketingNavLink href="/ideas">Growth Ideas</MarketingNavLink>
+              <MarketingNavLink href="/updates">Updates</MarketingNavLink>
+              <MarketingNavLink href="/pricing">Pricing</MarketingNavLink>
+              <a 
+                href="mailto:support@growthlog.co" 
+                className="text-[13px] font-medium text-muted-foreground/80 hover:text-foreground transition-colors cursor-pointer"
+              >
+                Support
+              </a>
+              <Button 
+                onClick={loginWithGoogle} 
+                variant="secondary" 
+                size="sm" 
+                className="h-7 w-full rounded px-3 text-[13px] font-medium transition-opacity mt-2"
+              >
+                {!isLoading && user ? "Log out" : "Sign in with Google"}
+              </Button>
+            </nav>
+          </div>
+        )}
       </header>
     </div>
   );
