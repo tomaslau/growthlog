@@ -38,7 +38,7 @@ export default function TopNav() {
         <div className="mr-8">
           <Link href="/" className="flex items-center gap-2">
             <Logo className="h-5 w-5" />
-            <h1 className="text-lg font-semibold tracking-tight cursor-pointer text-foreground">Growthlog</h1>
+            <h1 className="text-[13px] font-semibold tracking-tight text-foreground">Growthlog</h1>
           </Link>
         </div>
 
