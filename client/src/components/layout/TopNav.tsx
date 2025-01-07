@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Home, Lightbulb, User, CheckSquare, Trophy, BookOpen, BarChart, LogOut } from "lucide-react";
+import { Home, Lightbulb, User, CheckSquare, Trophy, BookOpen, BarChart, LogOut, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/ui/logo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -62,6 +62,17 @@ export default function TopNav() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="text-muted-foreground hover:text-foreground"
+          >
+            <a href="mailto:support@growthlog.app">
+              <Mail className="h-4 w-4 mr-2" />
+              <span>Support</span>
+            </a>
+          </Button>
           <ThemeToggle />
 
           {isLoading ? (
