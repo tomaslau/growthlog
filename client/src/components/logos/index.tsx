@@ -33,7 +33,7 @@ export function MarketfulLogo({ className }: LogoProps) {
     <img 
       src={marketfulLogo} 
       alt="Marketful" 
-      className={cn("h-5 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity", className)}
+      className={cn("h-5 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity max-h-[20px] px-1", className)}
     />
   );
 }
