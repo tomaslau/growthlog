@@ -42,13 +42,13 @@ export function MarketingTopNav() {
               onClick={loginWithGoogle} 
               variant="secondary" 
               size="sm" 
-              className="h-7 rounded px-3 text-[13px] font-medium transition-opacity"
+              className="h-7 rounded px-3 text-[13px] font-medium"
             >
               {!isLoading && user ? "Log out" : "Sign in with Google"}
             </Button>
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden"
+              className="md:hidden ml-2"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -57,7 +57,7 @@ export function MarketingTopNav() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-[60px] left-0 right-0 mx-6 p-4 border border-border bg-background rounded-md">
+          <div className="md:hidden absolute top-[60px] left-0 right-0 mx-6 p-4 border border-border bg-background/95 backdrop-blur-sm rounded-md">
             <nav className="flex flex-col gap-4">
               <MarketingNavLink href="/features">Features</MarketingNavLink>
               <MarketingNavLink href="/process">Process</MarketingNavLink>
