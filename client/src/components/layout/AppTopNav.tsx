@@ -32,12 +32,14 @@ export function AppTopNav() {
   return (
     <header className="app-header">
       <div className="app-header-inner">
-        <Link href="/dashboard" className="flex items-center gap-2 mr-6">
-          <Logo className="h-5 w-5" />
-          <span className="text-sm font-semibold">Growthlog</span>
-        </Link>
+        <div className="flex-shrink-0 px-4">
+          <Link href="/dashboard" className="flex items-center gap-2">
+            <Logo className="h-5 w-5" />
+            <span className="text-sm font-semibold">Growthlog</span>
+          </Link>
+        </div>
 
-        <nav className="app-header-nav">
+        <nav className="app-header-nav px-4">
           {navigationItems.map(({ href, label }) => (
             <Link
               key={href}
@@ -49,7 +51,7 @@ export function AppTopNav() {
           ))}
         </nav>
 
-        <div className="app-header-actions">
+        <div className="app-header-actions px-4">
           <ThemeToggle />
 
           <DropdownMenu>
