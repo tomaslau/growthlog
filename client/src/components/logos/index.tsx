@@ -1,5 +1,8 @@
-
 import { cn } from "@/lib/utils";
+import bestwritingLogo from "../../assets/bestwriting.png";
+import craftledLogo from "../../assets/craftled.png";
+import marketfulLogo from "../../assets/marketful.png";
+import uithingsLogo from "../../assets/uithings.png";
 
 interface LogoProps {
   className?: string;
@@ -8,7 +11,7 @@ interface LogoProps {
 export function BestWritingLogo({ className }: LogoProps) {
   return (
     <img 
-      src="/bestwriting.png" 
+      src={bestwritingLogo} 
       alt="BestWriting" 
       className={cn("h-7 w-auto opacity-60 hover:opacity-80 transition-opacity", className)}
     />
@@ -18,7 +21,7 @@ export function BestWritingLogo({ className }: LogoProps) {
 export function CraftledLogo({ className }: LogoProps) {
   return (
     <img 
-      src="/craftled.png" 
+      src={craftledLogo} 
       alt="Craftled" 
       className={cn("h-5 w-auto opacity-60 hover:opacity-80 transition-opacity", className)}
     />
@@ -28,7 +31,7 @@ export function CraftledLogo({ className }: LogoProps) {
 export function MarketfulLogo({ className }: LogoProps) {
   return (
     <img 
-      src="/marketful.png" 
+      src={marketfulLogo} 
       alt="Marketful" 
       className={cn("h-6 w-auto opacity-60 hover:opacity-80 transition-opacity", className)}
     />
@@ -38,7 +41,7 @@ export function MarketfulLogo({ className }: LogoProps) {
 export function UiThingsLogo({ className }: LogoProps) {
   return (
     <img 
-      src="/uithings.png" 
+      src={uithingsLogo} 
       alt="UI Things" 
       className={cn("h-6 w-auto opacity-60 hover:opacity-80 transition-opacity", className)}
     />
