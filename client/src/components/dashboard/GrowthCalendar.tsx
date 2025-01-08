@@ -8,9 +8,11 @@ export default function GrowthCalendar() {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const days = ["", "Mon", "Wed", "Fri"];
 
-  // Fetch tasks data
-  const { data: tasksData, isLoading } = useQuery<{ tasks: SelectTask[] }>({
+  // Fetch tasks data with error handling
+  const { data: tasksData, isLoading, isError } = useQuery<{ tasks: SelectTask[] }>({
     queryKey: ['/api/tasks/completed'],
+    retry: 1,
+    staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
   const today = new Date();
@@ -19,19 +21,24 @@ export default function GrowthCalendar() {
 
   // Calculate activity levels based on completed tasks
   const getActivityLevel = (date: Date) => {
-    if (!tasksData?.tasks) return 0;
+    try {
+      if (!tasksData?.tasks) return 0;
 
-    const completedTasks = tasksData.tasks.filter(task => {
-      const taskDate = parseISO(task.completedAt as unknown as string);
-      return isEqual(taskDate, date);
-    });
+      const completedTasks = tasksData.tasks.filter(task => {
+        const taskDate = task.completedAt ? parseISO(task.completedAt as unknown as string) : null;
+        return taskDate && isEqual(taskDate, date);
+      });
 
-    const count = completedTasks.length;
-    if (count === 0) return 0;
-    if (count <= 2) return 1;
-    if (count <= 4) return 2;
-    if (count <= 6) return 3;
-    return 4;
+      const count = completedTasks.length;
+      if (count === 0) return 0;
+      if (count <= 2) return 1;
+      if (count <= 4) return 2;
+      if (count <= 6) return 3;
+      return 4;
+    } catch (error) {
+      console.error('Error calculating activity level:', error);
+      return 0;
+    }
   };
 
   if (isLoading) {
@@ -43,6 +50,21 @@ export default function GrowthCalendar() {
         <CardContent>
           <div className="space-y-3">
             <Skeleton className="h-[200px] w-full" />
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (isError) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Your Growth Journey</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="text-sm text-muted-foreground text-center py-8">
+            Unable to load activity data. Please try again later.
           </div>
         </CardContent>
       </Card>

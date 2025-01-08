@@ -17,6 +17,13 @@
     /* Brand Colors */
     --brand: 142 47% 29%;  /* #15803D */
 
+    /* Activity Level Colors */
+    --activity-0: hsl(var(--muted));
+    --activity-1: hsl(142 70% 85%);
+    --activity-2: hsl(142 70% 75%);
+    --activity-3: hsl(142 70% 65%);
+    --activity-4: hsl(142 70% 55%);
+
     /* Green Scale */
     --green-1: #fbfefb;
     --green-2: #f5fbf6;
@@ -51,6 +58,13 @@
 
     /* Brand Colors */
     --brand: 142 47% 29%;  /* #15803D */
+
+    /* Activity Level Colors */
+    --activity-0: hsl(var(--muted));
+    --activity-1: hsl(142 30% 25%);
+    --activity-2: hsl(142 35% 35%);
+    --activity-3: hsl(142 40% 45%);
+    --activity-4: hsl(142 45% 55%);
 
     /* Green Scale */
     --green-1: #070f09;
@@ -92,15 +106,6 @@
   color: hsl(var(--foreground));
 }
 
-.login-button {
-  background: hsl(var(--secondary) / 0.3);
-  color: hsl(var(--foreground));
-}
-
-.login-button:hover {
-  background: hsl(var(--secondary) / 0.4);
-}
-
 /* Button hover animations */
 .button-hover {
   transition: transform 0.15s ease;
@@ -112,18 +117,12 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  header {
-    left: 1rem;
-    right: 1rem;
-    border-color: hsl(var(--border) / 0.8);
-  }
-
-  .flex {
+  .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
-  nav {
-    display: none;
+  .dashboard-grid {
+    grid-template-columns: 1fr;
   }
 }

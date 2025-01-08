@@ -9,20 +9,31 @@ export default function Dashboard() {
   const userId = 1; // Mock user ID for now
 
   return (
-    <div className="flex gap-6">
-      <ProfileSidebar />
-      <div className="flex-1 space-y-6">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-2xl font-bold mb-1">Growth Activity</h1>
-            <p className="text-sm text-muted-foreground">Track your progress and get personalized insights</p>
-          </div>
-          <ProfileVisibilityToggle userId={userId} />
-        </div>
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-6">
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Sidebar */}
+          <aside className="w-full lg:w-64">
+            <ProfileSidebar />
+          </aside>
 
-        <ProgressStats />
-        <GrowthLog />
-        <GrowthCalendar />
+          {/* Main Content */}
+          <main className="flex-1 min-w-0">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+              <div>
+                <h1 className="text-3xl font-bold tracking-tight mb-2">Growth Activity</h1>
+                <p className="text-sm text-muted-foreground">Track your progress and get personalized insights</p>
+              </div>
+              <ProfileVisibilityToggle userId={userId} />
+            </div>
+
+            <div className="space-y-6">
+              <ProgressStats />
+              <GrowthLog />
+              <GrowthCalendar />
+            </div>
+          </main>
+        </div>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { Clock, MapPin, Link2, Twitter, Linkedin, Trophy, Star } from "lucide-re
 
 export default function ProfileSidebar() {
   return (
-    <div className="w-64 space-y-4">
+    <div className="sticky top-4 space-y-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
       {/* Profile Info */}
       <Card>
         <CardContent className="pt-6">
@@ -24,20 +24,24 @@ export default function ProfileSidebar() {
 
           <div className="space-y-2 text-sm">
             <p className="text-muted-foreground flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              Active for 3 months
+              <Clock className="h-4 w-4 shrink-0" />
+              <span className="truncate">Active for 3 months</span>
             </p>
             <p className="text-muted-foreground flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
-              San Francisco, CA
+              <MapPin className="h-4 w-4 shrink-0" />
+              <span className="truncate">San Francisco, CA</span>
             </p>
             <p className="text-muted-foreground flex items-center gap-2">
-              <Link2 className="h-4 w-4" />
-              growthmarketer.com
+              <Link2 className="h-4 w-4 shrink-0" />
+              <span className="truncate">growthmarketer.com</span>
             </p>
             <div className="flex items-center gap-2 pt-2">
-              <Twitter className="h-4 w-4" />
-              <Linkedin className="h-4 w-4" />
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <Twitter className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                <Linkedin className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </CardContent>
@@ -88,7 +92,7 @@ export default function ProfileSidebar() {
       </Card>
 
       {/* Recent Achievements */}
-      <Card>
+      <Card className="hidden lg:block">
         <CardContent className="pt-6">
           <div className="flex items-center gap-2 mb-4">
             <Trophy className="h-5 w-5 text-yellow-500" />
@@ -117,7 +121,7 @@ export default function ProfileSidebar() {
       </Card>
 
       {/* Quick Links */}
-      <Card>
+      <Card className="hidden lg:block">
         <CardContent className="pt-6">
           <h3 className="font-medium mb-4">Quick Links</h3>
           <div className="space-y-2 text-sm">
