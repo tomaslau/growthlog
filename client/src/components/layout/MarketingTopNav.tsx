@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export function MarketingTopNav() {
-  const { user, isLoading, loginWithGoogle, logout } = useAuth();
+  const { user, isLoading, loginWithGoogle } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
@@ -70,14 +70,6 @@ export function MarketingTopNav() {
               >
                 Support
               </a>
-              <Button 
-                onClick={loginWithGoogle} 
-                variant="secondary" 
-                size="sm" 
-                className="h-7 w-full rounded px-3 text-[13px] font-medium transition-opacity mt-2"
-              >
-                {!isLoading && user ? "Log out" : "Sign in with Google"}
-              </Button>
             </nav>
           </div>
         )}
