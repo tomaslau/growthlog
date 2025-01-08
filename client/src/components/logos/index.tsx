@@ -13,7 +13,7 @@ export function BestWritingLogo({ className }: LogoProps) {
     <img 
       src={bestwritingLogo} 
       alt="BestWriting" 
-      className={cn("h-7 w-auto opacity-60 hover:opacity-80 transition-opacity", className)}
+      className={cn("h-4 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity", className)}
     />
   );
 }
@@ -23,7 +23,7 @@ export function CraftledLogo({ className }: LogoProps) {
     <img 
       src={craftledLogo} 
       alt="Craftled" 
-      className={cn("h-5 w-auto opacity-60 hover:opacity-80 transition-opacity", className)}
+      className={cn("h-3 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity", className)}
     />
   );
 }
@@ -33,7 +33,7 @@ export function MarketfulLogo({ className }: LogoProps) {
     <img 
       src={marketfulLogo} 
       alt="Marketful" 
-      className={cn("h-6 w-auto opacity-60 hover:opacity-80 transition-opacity", className)}
+      className={cn("h-3 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity", className)}
     />
   );
 }
@@ -43,7 +43,7 @@ export function UiThingsLogo({ className }: LogoProps) {
     <img 
       src={uithingsLogo} 
       alt="UI Things" 
-      className={cn("h-6 w-auto opacity-60 hover:opacity-80 transition-opacity", className)}
+      className={cn("h-3 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity", className)}
     />
   );
 }

@@ -117,15 +117,16 @@ export default function Home() {
             Growing by logging marketing sprints
           </p>
 
-          <div className="flex justify-center gap-12">
+          <div className="flex items-center justify-center gap-16">
             {companies.map((company, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 }}
+                className="flex items-center"
               >
-                <company.logo className="text-muted-foreground/60 hover:text-muted-foreground/80 transition-colors" />
+                <company.logo />
               </motion.div>
             ))}
           </div>
