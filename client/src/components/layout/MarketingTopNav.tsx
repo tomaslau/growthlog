@@ -19,12 +19,17 @@ export function MarketingTopNav() {
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const handleLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    await logout();
+  };
+
   return (
     <div className="fixed top-0 left-0 right-0 flex justify-center px-6 pt-4 z-50">
       <header className="w-full max-w-[1200px] h-14 border border-border bg-background rounded-md">
         <div className="flex h-14 items-center px-6">
           <Link href="/" className="flex items-center gap-2">
-            <Logo className="h-5 w-5" />
+            <Logo className="h-4 w-4" />
             <h1 className="text-[13px] font-semibold tracking-tight text-foreground">
               Growthlog
             </h1>
@@ -57,7 +62,7 @@ export function MarketingTopNav() {
                   <Link href="/dashboard">Dashboard</Link>
                 </Button>
                 <Button
-                  onClick={logout}
+                  onClick={handleLogout}
                   variant="secondary"
                   size="sm"
                   className="h-7 rounded px-3 text-[13px] font-medium"
@@ -68,7 +73,7 @@ export function MarketingTopNav() {
             )}
             {!isLoading && !user && (
               <Button
-                onClick={loginWithGoogle}
+                onClick={() => loginWithGoogle()}
                 variant="secondary"
                 size="sm"
                 className="h-7 rounded px-3 text-[13px] font-medium"

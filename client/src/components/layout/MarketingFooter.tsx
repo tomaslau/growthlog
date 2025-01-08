@@ -9,7 +9,7 @@ export function MarketingFooter() {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-5 pb-8 border-b border-zinc-200/80 dark:border-zinc-800">
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <Logo className="h-5 w-5" />
+                <Logo className="h-4 w-4" />
                 <span className="text-sm font-semibold tracking-tight text-foreground">
                   Growthlog
                 </span>

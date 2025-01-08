@@ -36,13 +36,18 @@ export default function TopNav() {
     window.open('mailto:support@growthlog.app', '_blank');
   };
 
+  const handleLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    await logout();
+  };
+
   return (
     <header className="border-b border-border bg-background sticky top-0 z-50">
       <div className="max-w-[1200px] mx-auto">
         <div className="flex h-14 items-center px-6">
           <Link href="/" className="flex items-center gap-2 mr-8">
-            <Logo className="h-5 w-5" />
-            <span className="text-sm font-semibold tracking-tight text-foreground">
+            <Logo className="h-4 w-4" />
+            <span className="text-[13px] font-semibold tracking-tight text-foreground">
               Growthlog
             </span>
           </Link>
@@ -97,14 +102,14 @@ export default function TopNav() {
                       <span>Profile</span>
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => logout()}>
+                  <DropdownMenuItem onClick={handleLogout}>
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Log out</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
+              <Button onClick={() => loginWithGoogle()} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
                 Sign in with Google
               </Button>
             )}
