@@ -118,14 +118,14 @@ export default function Home() {
             Growing by logging marketing sprints
           </p>
 
-          <div className="flex items-center justify-center gap-16 flex-wrap max-w-4xl mx-auto">
+          <div className="flex items-center justify-center gap-12 flex-wrap max-w-3xl mx-auto">
             {companies.map((company, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 }}
-                className="flex items-center justify-center h-12"
+                className="flex items-center justify-center h-8"
               >
                 <company.logo />
               </motion.div>

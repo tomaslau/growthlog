@@ -7,8 +7,8 @@ interface LogoProps {
   className?: string;
 }
 
-// Common logo style for consistency - slightly bigger than before
-const logoStyles = "h-8 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity";
+// Common logo style for consistency - smaller and more subtle
+const logoStyles = "h-5 w-auto object-contain opacity-50 hover:opacity-70 transition-opacity";
 
 export function BestWritingLogo({ className }: LogoProps) {
   return (
@@ -35,8 +35,8 @@ export function MarketfulLogo({ className }: LogoProps) {
     <img 
       src="/marketful.png"
       alt="Marketful" 
-      className={cn(logoStyles, "px-2", className)}
-      style={{ objectFit: "contain", maxHeight: "2rem" }}
+      className={cn(logoStyles, className)}
+      style={{ maxHeight: "1.25rem" }}
     />
   );
 }
@@ -57,7 +57,7 @@ export function PynionsLogo({ className }: LogoProps) {
       src="/pynions.png"
       alt="Pynions" 
       className={cn(logoStyles, className)}
-      style={{ objectFit: "contain", maxHeight: "2rem" }}
+      style={{ maxHeight: "1.25rem" }}
     />
   );
 }
