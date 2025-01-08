@@ -1,19 +1,21 @@
 import { cn } from "@/lib/utils";
 import bestwritingLogo from "../../assets/bestwriting.png";
 import craftledLogo from "../../assets/craftled.png";
-import marketfulLogo from "../../assets/marketful.png";
 import uithingsLogo from "../../assets/uithings.png";
 
 interface LogoProps {
   className?: string;
 }
 
+// Common logo style for consistency - slightly bigger than before
+const logoStyles = "h-8 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity";
+
 export function BestWritingLogo({ className }: LogoProps) {
   return (
     <img 
       src={bestwritingLogo} 
       alt="BestWriting" 
-      className={cn("h-6 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity", className)}
+      className={cn(logoStyles, className)}
     />
   );
 }
@@ -23,7 +25,7 @@ export function CraftledLogo({ className }: LogoProps) {
     <img 
       src={craftledLogo} 
       alt="Craftled" 
-      className={cn("h-5 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity", className)}
+      className={cn(logoStyles, className)}
     />
   );
 }
@@ -31,9 +33,10 @@ export function CraftledLogo({ className }: LogoProps) {
 export function MarketfulLogo({ className }: LogoProps) {
   return (
     <img 
-      src={marketfulLogo} 
+      src="/marketful.png"
       alt="Marketful" 
-      className={cn("h-5 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity max-h-[20px] px-1", className)}
+      className={cn(logoStyles, "px-2", className)}
+      style={{ objectFit: "contain", maxHeight: "2rem" }}
     />
   );
 }
@@ -43,7 +46,18 @@ export function UiThingsLogo({ className }: LogoProps) {
     <img 
       src={uithingsLogo} 
       alt="UI Things" 
-      className={cn("h-5 w-auto object-contain opacity-60 hover:opacity-80 transition-opacity", className)}
+      className={cn(logoStyles, className)}
+    />
+  );
+}
+
+export function PynionsLogo({ className }: LogoProps) {
+  return (
+    <img 
+      src="/pynions.png"
+      alt="Pynions" 
+      className={cn(logoStyles, className)}
+      style={{ objectFit: "contain", maxHeight: "2rem" }}
     />
   );
 }

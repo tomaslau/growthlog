@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { CraftledLogo, BestWritingLogo, MarketfulLogo, UiThingsLogo } from "@/components/logos";
+import { CraftledLogo, BestWritingLogo, MarketfulLogo, UiThingsLogo, PynionsLogo } from "@/components/logos";
 import PomodoroTimer from "@/components/tasks/PomodoroTimer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -78,6 +78,7 @@ export default function Home() {
     { logo: BestWritingLogo, name: "Best Writing" },
     { logo: MarketfulLogo, name: "Marketful" },
     { logo: UiThingsLogo, name: "UI Things" },
+    { logo: PynionsLogo, name: "Pynions" },
   ];
 
   return (
@@ -117,14 +118,14 @@ export default function Home() {
             Growing by logging marketing sprints
           </p>
 
-          <div className="flex items-center justify-center gap-16">
+          <div className="flex items-center justify-center gap-16 flex-wrap max-w-4xl mx-auto">
             {companies.map((company, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 }}
-                className="flex items-center"
+                className="flex items-center justify-center h-12"
               >
                 <company.logo />
               </motion.div>
