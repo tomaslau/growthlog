@@ -57,7 +57,7 @@ export function MarketingTopNav() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-[60px] left-0 right-0 mx-6 p-4 border border-border bg-background/95 backdrop-blur-sm rounded-md">
+          <div className="md:hidden absolute top-[60px] left-0 right-0 mx-6 p-4 border border-border bg-background/80 backdrop-blur-xl rounded-md">
             <nav className="flex flex-col gap-4">
               <MarketingNavLink href="/features">Features</MarketingNavLink>
               <MarketingNavLink href="/process">Process</MarketingNavLink>
