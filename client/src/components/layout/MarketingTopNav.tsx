@@ -1,4 +1,3 @@
-
 import { Link } from "wouter";
 import { Logo } from "@/components/ui/logo";
 import { MarketingNavLink } from "@/components/ui/marketing-nav-link";
@@ -16,7 +15,7 @@ export function MarketingTopNav() {
 
   return (
     <div className="fixed top-0 left-0 right-0 flex justify-center px-6 pt-4 z-50">
-      <header className="w-full max-w-[1200px] h-14 border border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-md">
+      <header className="w-full max-w-[1200px] h-14 border border-border bg-background rounded-md">
         <div className="flex h-14 items-center px-6">
           <Link href="/" className="flex items-center gap-2">
             <Logo className="h-5 w-5" />
@@ -37,18 +36,16 @@ export function MarketingTopNav() {
             </a>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 ml-auto">
             <ThemeToggle />
-            <div className="hidden md:block w-[130px]">
-              <Button 
-                onClick={loginWithGoogle} 
-                variant="secondary" 
-                size="sm" 
-                className="h-7 w-full rounded px-3 text-[13px] font-medium transition-opacity"
-              >
-                {!isLoading && user ? "Log out" : "Sign in with Google"}
-              </Button>
-            </div>
+            <Button 
+              onClick={loginWithGoogle} 
+              variant="secondary" 
+              size="sm" 
+              className="h-7 rounded px-3 text-[13px] font-medium transition-opacity"
+            >
+              {!isLoading && user ? "Log out" : "Sign in with Google"}
+            </Button>
             <button
               onClick={toggleMobileMenu}
               className="md:hidden"
@@ -60,7 +57,7 @@ export function MarketingTopNav() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-[60px] left-0 right-0 mx-6 p-4 border border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-md">
+          <div className="md:hidden absolute top-[60px] left-0 right-0 mx-6 p-4 border border-border bg-background rounded-md">
             <nav className="flex flex-col gap-4">
               <MarketingNavLink href="/features">Features</MarketingNavLink>
               <MarketingNavLink href="/process">Process</MarketingNavLink>
