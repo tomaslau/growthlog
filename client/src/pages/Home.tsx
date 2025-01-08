@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { CraftledLogo, BestWritingLogo } from "@/components/logos";
+import { CraftledLogo, BestWritingLogo, MarketfulLogo, UiThingsLogo } from "@/components/logos";
 import PomodoroTimer from "@/components/tasks/PomodoroTimer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -76,6 +76,8 @@ export default function Home() {
   const companies = [
     { logo: CraftledLogo, name: "Craftled" },
     { logo: BestWritingLogo, name: "Best Writing" },
+    { logo: MarketfulLogo, name: "Marketful" },
+    { logo: UiThingsLogo, name: "UI Things" },
   ];
 
   return (
