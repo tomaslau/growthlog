@@ -1,7 +1,7 @@
 import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
-import GrowthLog from "@/components/dashboard/GrowthLog";
+import { GrowthLog } from "@/components/dashboard/GrowthLog";
 import AchievementGrid from "@/components/achievements/AchievementGrid";
 import TaskBoard from "@/components/tasks/TaskBoard";
 import { Lock } from "lucide-react";
@@ -33,8 +33,8 @@ export default function SharedDashboard() {
   if (!dashboard) return null;
 
   const sortedComponents = dashboard.components
-    .filter(c => c.visible)
-    .sort((a, b) => a.position - b.position);
+    .filter((c: any) => c.visible)
+    .sort((a: any, b: any) => a.position - b.position);
 
   return (
     <div className="space-y-6">
@@ -46,7 +46,7 @@ export default function SharedDashboard() {
       </div>
 
       <div className="space-y-6">
-        {sortedComponents.map(component => {
+        {sortedComponents.map((component: any) => {
           switch (component.componentType) {
             case "growth_log":
               return <GrowthLog key={component.id} />;
