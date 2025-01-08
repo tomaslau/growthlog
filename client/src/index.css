@@ -13,116 +13,55 @@
 
   :root, .light, .light-theme, .radix-themes {
     --color-background: #fff;
-
-    /* Brand Colors */
     --brand: 142 47% 29%;  /* #15803D */
-
-    /* Activity Level Colors */
     --activity-0: hsl(var(--muted));
     --activity-1: hsl(142 70% 85%);
     --activity-2: hsl(142 70% 75%);
     --activity-3: hsl(142 70% 65%);
     --activity-4: hsl(142 70% 55%);
-
-    /* Green Scale */
-    --green-1: #fbfefb;
-    --green-2: #f5fbf6;
-    --green-3: #e7f7ea;
-    --green-4: #d6f1db;
-    --green-5: #c3e9cc;
-    --green-6: #97d3a5;
-    --green-7: #65b77c;
-    --green-8: #4a9962;
-    --green-9: #18794e;
-    --green-10: #116544;
-    --green-11: #0b4f34;
-    --green-12: #0b3829;
-
-    /* Gray Scale */
-    --gray-1: #fbfdfc;
-    --gray-2: #f7f9f8;
-    --gray-3: #eef1ef;
-    --gray-4: #e6e9e7;
-    --gray-5: #dce0de;
-    --gray-6: #ced3d0;
-    --gray-7: #9ea6a2;
-    --gray-8: #8b938f;
-    --gray-9: #717971;
-    --gray-10: #5f6661;
-    --gray-11: #4b524d;
-    --gray-12: #2e332f;
   }
 
   .dark, .dark-theme, :is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
     --color-background: #0d0d0d;
-
-    /* Brand Colors */
     --brand: 142 47% 29%;  /* #15803D */
-
-    /* Activity Level Colors */
     --activity-0: hsl(var(--muted));
     --activity-1: hsl(142 30% 25%);
     --activity-2: hsl(142 35% 35%);
     --activity-3: hsl(142 40% 45%);
     --activity-4: hsl(142 45% 55%);
-
-    /* Green Scale */
-    --green-1: #070f09;
-    --green-2: #111a13;
-    --green-3: #152b1a;
-    --green-4: #1b3c22;
-    --green-5: #214f2b;
-    --green-6: #276434;
-    --green-7: #2f7b3e;
-    --green-8: #37944a;
-    --green-9: #3fb157;
-    --green-10: #48d066;
-    --green-11: #53f277;
-    --green-12: #c4f0d1;
-
-    /* Gray Scale */
-    --gray-1: #0d0d0d;
-    --gray-2: #181818;
-    --gray-3: #222222;
-    --gray-4: #292929;
-    --gray-5: #333333;
-    --gray-6: #3f3f3f;
-    --gray-7: #4d4d4d;
-    --gray-8: #5c5c5c;
-    --gray-9: #6e6e6e;
-    --gray-10: #818181;
-    --gray-11: #9a9a9a;
-    --gray-12: #f1f1f1;
   }
 }
 
-/* Navigation styles */
-.nav-link {
-  color: hsl(var(--muted-foreground) / 0.8);
-  transition: color 0.15s ease;
-}
-
-.nav-link:hover {
-  color: hsl(var(--foreground));
-}
-
-/* Button hover animations */
-.button-hover {
-  transition: transform 0.15s ease;
-}
-
-.button-hover:hover {
-  transform: translateY(-1px);
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+@layer components {
+  .nav-link {
+    @apply text-muted-foreground hover:text-foreground transition-colors;
   }
 
-  .dashboard-grid {
-    grid-template-columns: 1fr;
+  .app-header {
+    @apply sticky top-0 z-50 w-full border-b bg-background bg-opacity-75 backdrop-blur;
+  }
+
+  .app-header-inner {
+    @apply container flex h-14 items-center;
+  }
+
+  .app-header-nav {
+    @apply hidden md:flex items-center space-x-6 text-sm font-medium flex-1;
+  }
+
+  .app-header-actions {
+    @apply flex items-center gap-2;
+  }
+}
+
+@layer utilities {
+  @media (max-width: 768px) {
+    .container {
+      @apply px-4;
+    }
+
+    .dashboard-grid {
+      @apply grid-cols-1;
+    }
   }
 }

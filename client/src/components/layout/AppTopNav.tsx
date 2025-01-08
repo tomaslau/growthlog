@@ -30,28 +30,28 @@ export function AppTopNav() {
     .toUpperCase() || "??";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
+    <header className="app-header">
+      <div className="app-header-inner">
         <Link href="/dashboard" className="flex items-center gap-2 mr-6">
           <Logo className="h-5 w-5" />
           <span className="text-sm font-semibold">Growthlog</span>
         </Link>
 
-        <nav className="flex items-center space-x-6 text-sm font-medium flex-1">
+        <nav className="app-header-nav">
           {navigationItems.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className="transition-colors hover:text-foreground/80 text-foreground/60"
+              className="nav-link"
             >
               {label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="app-header-actions">
           <ThemeToggle />
-          
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-8 w-8 rounded-full">
