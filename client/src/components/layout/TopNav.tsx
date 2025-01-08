@@ -32,8 +32,12 @@ export default function TopNav() {
     return null;
   }
 
+  const handleEmailClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    window.open('mailto:support@growthlog.app', '_blank');
+  };
+
   return (
-    <header className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+    <header className="border-b border-border bg-background sticky top-0 z-50">
       <div className="flex h-14 items-center px-6">
         <div className="mr-8">
           <Link href="/" className="flex items-center gap-2">
@@ -42,7 +46,7 @@ export default function TopNav() {
           </Link>
         </div>
 
-        <nav className="flex gap-1 flex-1">
+        <nav className="hidden md:flex gap-1 flex-1">
           {navItems.map(({ icon: Icon, label, href }) => {
             const isActive = location === href;
             return (
@@ -61,17 +65,15 @@ export default function TopNav() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ml-auto">
           <Button
             variant="ghost"
             size="sm"
-            asChild
-            className="text-muted-foreground hover:text-foreground"
+            onClick={handleEmailClick}
+            className="text-muted-foreground hover:text-foreground hidden md:flex"
           >
-            <a href="mailto:support@growthlog.app">
-              <Mail className="h-4 w-4 mr-2" />
-              <span>Support</span>
-            </a>
+            <Mail className="h-4 w-4 mr-2" />
+            <span>Support</span>
           </Button>
           <ThemeToggle />
 
@@ -87,7 +89,7 @@ export default function TopNav() {
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" className="bg-popover">
                 <DropdownMenuItem>
                   <Link href="/profile" className="flex items-center">
                     <User className="mr-2 h-4 w-4" />
