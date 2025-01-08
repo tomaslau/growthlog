@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Clock, Star } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import MomentumGraph from "./MomentumGraph";
+import { MomentumGraph } from "./MomentumGraph";
 
 const activities = [
   { 
@@ -29,7 +29,7 @@ const activities = [
   }
 ];
 
-export default function GrowthLog() {
+export function GrowthLog() {
   const [view, setView] = useState<"activity" | "momentum">("activity");
 
   return (

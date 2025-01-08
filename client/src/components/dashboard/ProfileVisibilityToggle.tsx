@@ -22,7 +22,7 @@ interface DashboardResponse {
   dashboard: Dashboard | null;
 }
 
-export default function ProfileVisibilityToggle({ userId }: ProfileVisibilityToggleProps) {
+export function ProfileVisibilityToggle({ userId }: ProfileVisibilityToggleProps) {
   const { toast } = useToast();
 
   // Fetch existing dashboard if any

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Clock, MapPin, Link2, Twitter, Linkedin, Trophy, Star } from "lucide-react";
 
-export default function ProfileSidebar() {
+export function ProfileSidebar() {
   return (
     <div className="sticky top-4 space-y-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
       {/* Profile Info */}

@@ -10,46 +10,39 @@ const data = [
   { date: "Jan 4", score: 55 }
 ];
 
-export default function MomentumGraph() {
+export function MomentumGraph() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Growth Momentum</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="h-[200px] mt-4">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={data}>
-              <XAxis 
-                dataKey="date" 
-                stroke="#888888"
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-              />
-              <YAxis
-                stroke="#888888"
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-                tickFormatter={(value) => `${value}`}
-              />
-              <Tooltip />
-              <Line
-                type="monotone"
-                dataKey="score"
-                strokeWidth={2}
-                stroke="hsl(var(--primary))"
-                dot={false}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-        
-        <div className="mt-4 text-sm text-muted-foreground">
-          Your momentum is trending upward! Keep completing daily growth tasks to maintain this progress.
-        </div>
-      </CardContent>
-    </Card>
+    <div className="h-[200px] mt-4">
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={data}>
+          <XAxis 
+            dataKey="date" 
+            stroke="#888888"
+            fontSize={12}
+            tickLine={false}
+            axisLine={false}
+          />
+          <YAxis
+            stroke="#888888"
+            fontSize={12}
+            tickLine={false}
+            axisLine={false}
+            tickFormatter={(value) => `${value}`}
+          />
+          <Tooltip />
+          <Line
+            type="monotone"
+            dataKey="score"
+            strokeWidth={2}
+            stroke="hsl(var(--primary))"
+            dot={false}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+
+      <div className="mt-4 text-sm text-muted-foreground">
+        Your momentum is trending upward! Keep completing daily growth tasks to maintain this progress.
+      </div>
+    </div>
   );
 }

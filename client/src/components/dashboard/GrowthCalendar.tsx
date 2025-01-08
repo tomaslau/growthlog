@@ -4,7 +4,7 @@ import { startOfYear, eachDayOfInterval, format, parseISO, isEqual } from "date-
 import { SelectTask } from "@db/schema";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function GrowthCalendar() {
+export function GrowthCalendar() {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const days = ["", "Mon", "Wed", "Fri"];
 
