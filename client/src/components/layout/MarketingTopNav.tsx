@@ -46,6 +46,16 @@ export function MarketingTopNav() {
 
           <div className="flex items-center gap-3 ml-auto">
             <ThemeToggle />
+            {!isLoading && user && (
+              <Button
+                asChild
+                variant="default"
+                size="sm"
+                className="h-7 rounded px-3 text-[13px] font-medium bg-green-600 hover:bg-green-700 text-white"
+              >
+                <Link href="/dashboard">Dashboard</Link>
+              </Button>
+            )}
             <Button
               onClick={loginWithGoogle}
               variant="secondary"
