@@ -15,7 +15,6 @@ import ProgressTracking from "@/pages/features/ProgressTracking";
 import Framework from "@/pages/features/Framework";
 import GrowthIdeas from "@/pages/features/GrowthIdeas";
 import TaskBoard from "@/components/tasks/TaskBoard";
-import TopNav from "@/components/layout/TopNav";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import { PomodoroProvider } from "@/contexts/PomodoroContext";
 import FloatingTimer from "@/components/pomodoro/FloatingTimer";

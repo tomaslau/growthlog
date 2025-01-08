@@ -3,6 +3,7 @@ import ProgressStats from "@/components/dashboard/ProgressStats";
 import GrowthLog from "@/components/dashboard/GrowthLog";
 import ProfileSidebar from "@/components/dashboard/ProfileSidebar";
 import ProfileVisibilityToggle from "@/components/dashboard/ProfileVisibilityToggle";
+import { AppTopNav } from "@/components/layout/AppTopNav";
 
 export default function Dashboard() {
   // TODO: Get actual user ID from auth context
@@ -10,6 +11,8 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
+      <AppTopNav />
+
       <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Sidebar */}
