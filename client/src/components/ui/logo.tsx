@@ -1,4 +1,3 @@
-
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -8,12 +7,12 @@ interface LogoProps {
 export function Logo({ className }: LogoProps) {
   return (
     <svg 
-      width="18" 
-      height="18" 
+      width="20" 
+      height="20" 
       viewBox="0 0 101 76" 
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
-      className={cn("text-foreground", className)}
+      className={cn("text-foreground shrink-0", className)}
     >
       <path 
         fillRule="evenodd" 

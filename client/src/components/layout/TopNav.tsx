@@ -38,75 +38,77 @@ export default function TopNav() {
 
   return (
     <header className="border-b border-border bg-background sticky top-0 z-50">
-      <div className="flex h-14 items-center px-6">
-        <div className="mr-8">
-          <Link href="/" className="flex items-center gap-2">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="flex h-14 items-center px-6">
+          <Link href="/" className="flex items-center gap-2 mr-8">
             <Logo className="h-5 w-5" />
-            <h1 className="text-[13px] font-semibold tracking-tight text-foreground">Growthlog</h1>
+            <span className="text-sm font-semibold tracking-tight text-foreground">
+              Growthlog
+            </span>
           </Link>
-        </div>
 
-        <nav className="hidden md:flex gap-1 flex-1">
-          {navItems.map(({ icon: Icon, label, href }) => {
-            const isActive = location === href;
-            return (
-              <Link key={href} href={href}>
-                <div className={cn(
-                  "flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors cursor-pointer",
-                  isActive 
-                    ? "text-primary bg-secondary" 
-                    : "text-muted-foreground hover:text-foreground"
-                )}>
-                  <Icon className="h-4 w-4" />
-                  <span>{label}</span>
-                </div>
-              </Link>
-            );
-          })}
-        </nav>
+          <nav className="hidden md:flex gap-1 flex-1">
+            {navItems.map(({ icon: Icon, label, href }) => {
+              const isActive = location === href;
+              return (
+                <Link key={href} href={href}>
+                  <div className={cn(
+                    "flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors cursor-pointer",
+                    isActive
+                      ? "text-primary bg-secondary"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}>
+                    <Icon className="h-4 w-4" />
+                    <span>{label}</span>
+                  </div>
+                </Link>
+              );
+            })}
+          </nav>
 
-        <div className="flex items-center gap-3 ml-auto">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleEmailClick}
-            className="text-muted-foreground hover:text-foreground hidden md:flex"
-          >
-            <Mail className="h-4 w-4 mr-2" />
-            <span>Support</span>
-          </Button>
-          <ThemeToggle />
-
-          {isLoading ? (
-            <div className="h-8 w-8 rounded-full bg-muted animate-pulse" />
-          ) : user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={user.profilePicture || ''} alt={user.displayName || ''} />
-                    <AvatarFallback>{user.displayName?.charAt(0) || 'U'}</AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-popover">
-                <DropdownMenuItem>
-                  <Link href="/profile" className="flex items-center">
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => logout()}>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
-              Sign in with Google
+          <div className="flex items-center gap-3 ml-auto">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleEmailClick}
+              className="text-muted-foreground hover:text-foreground hidden md:flex"
+            >
+              <Mail className="h-4 w-4 mr-2" />
+              <span>Support</span>
             </Button>
-          )}
+            <ThemeToggle />
+
+            {isLoading ? (
+              <div className="h-8 w-8 rounded-full bg-muted animate-pulse" />
+            ) : user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user.profilePicture || ''} alt={user.displayName || ''} />
+                      <AvatarFallback>{user.displayName?.charAt(0) || 'U'}</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-popover">
+                  <DropdownMenuItem>
+                    <Link href="/profile" className="flex items-center">
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => logout()}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button onClick={loginWithGoogle} variant="secondary" size="sm" className="h-7 rounded px-3 text-[13px] font-medium">
+                Sign in with Google
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </header>
