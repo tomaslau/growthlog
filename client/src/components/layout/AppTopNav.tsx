@@ -51,7 +51,7 @@ export function AppTopNav() {
           ))}
         </nav>
 
-        <div className="app-header-actions px-4">
+        <div className="app-header-actions px-6">
           <ThemeToggle />
 
           <DropdownMenu>

@@ -42,7 +42,7 @@
   }
 
   .app-header-inner {
-    @apply container flex h-14 items-center;
+    @apply container flex h-14 max-w-[1400px] items-center mx-auto;
   }
 
   .app-header-nav {
