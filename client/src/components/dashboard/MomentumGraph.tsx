@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const data = [
@@ -10,7 +9,7 @@ const data = [
   { date: "Jan 4", score: 55 }
 ];
 
-export function MomentumGraph() {
+export const MomentumGraph = () => {
   return (
     <div className="h-[200px] mt-4">
       <ResponsiveContainer width="100%" height="100%">
@@ -45,4 +44,4 @@ export function MomentumGraph() {
       </div>
     </div>
   );
-}
+};
