@@ -42,7 +42,10 @@
   }
 
   .app-header-inner {
-    @apply container flex h-14 max-w-[1400px] items-center mx-auto;
+    @apply flex h-14 items-center mx-auto;
+    max-width: min(100%, 1400px);
+    padding-left: max(1rem, calc((100% - 1400px) / 2 + 1rem));
+    padding-right: max(1rem, calc((100% - 1400px) / 2 + 1rem));
   }
 
   .app-header-nav {
