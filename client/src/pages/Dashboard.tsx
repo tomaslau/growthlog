@@ -2,7 +2,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { GrowthCalendar } from "@/components/dashboard/GrowthCalendar";
 import { ProgressStats } from "@/components/dashboard/ProgressStats";
-import { GrowthLog } from "@/components/dashboard/GrowthLog";
+import GrowthLog from "@/components/dashboard/GrowthLog";
 import { ProfileSidebar } from "@/components/dashboard/ProfileSidebar";
 import { TopNav } from "@/components/layout/TopNav";
 

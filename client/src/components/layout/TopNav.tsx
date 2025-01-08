@@ -22,7 +22,7 @@ const navItems = [
   { icon: BarChart, label: "SaaS Metrics", href: "/metrics" },
 ];
 
-export default function TopNav() {
+export function TopNav() {
   const [location] = useLocation();
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
 

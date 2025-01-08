@@ -29,13 +29,13 @@ const activities = [
   }
 ];
 
-export function GrowthLog() {
+export default function GrowthLog() {
   const [view, setView] = useState<"activity" | "momentum">("activity");
 
   return (
     <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>Growth Activity</CardTitle>
+      <CardHeader className="flex flex-row items-center justify-between py-4">
+        <CardTitle className="text-base font-semibold">Growth Activity</CardTitle>
         <ToggleGroup type="single" value={view} onValueChange={(value) => value && setView(value as "activity" | "momentum")}>
           <ToggleGroupItem value="activity" size="sm">Activity</ToggleGroupItem>
           <ToggleGroupItem value="momentum" size="sm">Momentum</ToggleGroupItem>
@@ -43,11 +43,11 @@ export function GrowthLog() {
       </CardHeader>
       <CardContent>
         {view === "activity" ? (
-          <div className="space-y-8">
+          <div className="space-y-4">
             {activities.map(activity => (
-              <div key={activity.id} className="flex gap-4">
+              <div key={activity.id} className="flex gap-3">
                 <div className="mt-1">
-                  <Clock className="h-5 w-5 text-muted-foreground" />
+                  <Clock className="h-4 w-4 text-muted-foreground" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
@@ -55,7 +55,7 @@ export function GrowthLog() {
                       <span className="font-medium">You</span> {activity.description}
                     </p>
                     <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4 text-yellow-500" />
+                      <Star className="h-3 w-3 text-yellow-500" />
                       <span className="text-sm font-medium">+{activity.points}</span>
                     </div>
                   </div>
