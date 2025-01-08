@@ -4,7 +4,7 @@ import { GrowthCalendar } from "@/components/dashboard/GrowthCalendar";
 import { ProgressStats } from "@/components/dashboard/ProgressStats";
 import GrowthLog from "@/components/dashboard/GrowthLog";
 import { ProfileSidebar } from "@/components/dashboard/ProfileSidebar";
-import { TopNav } from "@/components/layout/TopNav";
+import TopNav from "@/components/layout/TopNav";
 
 export default function Dashboard() {
   const { user } = useAuth();

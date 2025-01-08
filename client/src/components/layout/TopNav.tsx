@@ -22,7 +22,7 @@ const navItems = [
   { icon: BarChart, label: "SaaS Metrics", href: "/metrics" },
 ];
 
-export function TopNav() {
+export default function TopNav() {
   const [location] = useLocation();
   const { user, isLoading, loginWithGoogle, logout } = useAuth();
 
@@ -32,13 +32,12 @@ export function TopNav() {
     return null;
   }
 
-  const handleEmailClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleEmailClick = () => {
     window.open('mailto:support@growthlog.app', '_blank');
   };
 
-  const handleLogout = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    await logout();
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -96,10 +95,12 @@ export function TopNav() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="bg-popover">
-                  <DropdownMenuItem>
-                    <Link href="/profile" className="flex items-center">
-                      <User className="mr-2 h-4 w-4" />
-                      <span>Profile</span>
+                  <DropdownMenuItem asChild>
+                    <Link href="/profile">
+                      <div className="flex items-center">
+                        <User className="mr-2 h-4 w-4" />
+                        <span>Profile</span>
+                      </div>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={handleLogout}>
