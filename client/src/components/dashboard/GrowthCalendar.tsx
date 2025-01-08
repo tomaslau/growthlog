@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
-import { startOfYear, eachDayOfInterval, format, parseISO, isEqual } from "date-fns";
+import { startOfYear, subMonths, eachDayOfInterval, format, parseISO, isEqual } from "date-fns";
 import { SelectTask } from "@db/schema";
 
 // Demo data generator for when no real data is available
@@ -9,16 +9,31 @@ const generateDemoData = (startDate: Date, endDate: Date) => {
   const demoData: Record<string, number> = {};
 
   dates.forEach(date => {
+    // Create more realistic patterns
+    const dayOfWeek = date.getDay();
     const rand = Math.random();
+
+    // More activity during weekdays
     let activity = 0;
-    if (rand > 0.7) activity = Math.floor(Math.random() * 4) + 1;
+    if (dayOfWeek !== 0 && dayOfWeek !== 6) { // Not weekend
+      if (rand > 0.6) activity = Math.floor(Math.random() * 4) + 1;
+    } else {
+      if (rand > 0.8) activity = Math.floor(Math.random() * 2) + 1;
+    }
+
+    // Create streaks
+    const previousDay = format(new Date(date.getTime() - 86400000), 'yyyy-MM-dd');
+    if (demoData[previousDay] && demoData[previousDay] > 0 && rand > 0.3) {
+      activity = Math.min(4, demoData[previousDay] + (Math.random() > 0.5 ? 1 : -1));
+    }
+
     demoData[format(date, 'yyyy-MM-dd')] = activity;
   });
 
   return demoData;
 };
 
-export function GrowthCalendar() {
+export const GrowthCalendar = () => {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const days = ["", "Mon", "", "Wed", "", "Fri", ""];
 
@@ -30,7 +45,8 @@ export function GrowthCalendar() {
   });
 
   const today = new Date();
-  const yearStart = startOfYear(today);
+  // Show last 12 months of data
+  const yearStart = subMonths(today, 12);
   const dates = eachDayOfInterval({ start: yearStart, end: today });
 
   // Use demo data if no real data is available
@@ -64,13 +80,13 @@ export function GrowthCalendar() {
         {/* Months row */}
         <div className="flex text-xs mb-1">
           <div className="w-8" /> {/* Spacer for day labels */}
-          <div className="flex-1 grid grid-cols-[repeat(52,1fr)] gap-[2px]">
+          <div className="flex-1 grid grid-cols-[repeat(53,1fr)] gap-[2px]">
             {months.map((month, i) => (
               <div
                 key={month}
                 className="text-xs text-muted-foreground"
                 style={{
-                  gridColumn: Math.floor((i * 52) / 12) + 1
+                  gridColumn: Math.floor((i * 53) / 12) + 1
                 }}
               >
                 {month}
@@ -92,7 +108,7 @@ export function GrowthCalendar() {
 
           {/* Activity squares */}
           <div className="flex-1">
-            <div className="grid grid-cols-[repeat(52,1fr)] gap-[2px]">
+            <div className="grid grid-cols-[repeat(53,1fr)] gap-[2px]">
               {dates.map((date, i) => {
                 const level = getActivityLevel(date);
                 return (
@@ -101,7 +117,9 @@ export function GrowthCalendar() {
                     className="h-[10px] w-[10px] rounded-[2px] transition-colors duration-200"
                     style={{
                       backgroundColor: `var(--activity-${level})`,
-                      opacity: level === 0 ? 0.2 : 1
+                      opacity: level === 0 ? 0.2 : 1,
+                      gridRow: date.getDay() + 1,
+                      gridColumn: Math.floor((date.getTime() - yearStart.getTime()) / (7 * 24 * 60 * 60 * 1000)) + 1
                     }}
                     title={`${format(date, 'MMM d, yyyy')}: ${level} activities`}
                   />
@@ -129,6 +147,4 @@ export function GrowthCalendar() {
       </CardContent>
     </Card>
   );
-}
-
-export default GrowthCalendar;
+};

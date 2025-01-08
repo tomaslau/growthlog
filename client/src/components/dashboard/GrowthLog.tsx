@@ -29,7 +29,7 @@ const activities = [
   }
 ];
 
-const GrowthLog = () => {
+export const GrowthLog = () => {
   const [view, setView] = useState<"activity" | "momentum">("activity");
 
   return (
@@ -78,5 +78,3 @@ const GrowthLog = () => {
     </Card>
   );
 };
-
-export default GrowthLog;
