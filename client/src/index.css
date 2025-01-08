@@ -22,7 +22,7 @@
   }
 
   .dark, .dark-theme, :is(.dark, .dark-theme) :where(.radix-themes:not(.light, .light-theme)) {
-    --color-background: #000;
+    --color-background: #0d0d0d;
     --brand: 142 47% 29%;  /* #15803D */
     --activity-0: hsl(var(--muted));
     --activity-1: hsl(142 30% 25%);
@@ -34,12 +34,11 @@
 
 @layer components {
   .nav-link {
-    @apply text-muted-foreground/60 hover:text-foreground transition-colors px-3 py-2 text-sm;
+    @apply text-muted-foreground hover:text-foreground transition-colors;
   }
 
   .app-header {
-    @apply sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur;
-    background: rgba(var(--background), 0.95);
+    @apply sticky top-0 z-50 w-full border-b bg-background bg-opacity-75 backdrop-blur;
   }
 
   .app-header-inner {
@@ -48,7 +47,7 @@
   }
 
   .app-header-nav {
-    @apply hidden md:flex items-center space-x-1 text-sm font-medium flex-1;
+    @apply hidden md:flex items-center space-x-6 text-sm font-medium flex-1;
   }
 
   .app-header-actions {
