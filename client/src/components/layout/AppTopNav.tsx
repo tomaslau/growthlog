@@ -23,6 +23,11 @@ const navigationItems = [
 export function AppTopNav() {
   const { user, logout } = useAuth();
 
+  const handleLogout = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    logout();
+  };
+
   const initials = user?.displayName
     ?.split(" ")
     .map((n) => n[0])
@@ -31,12 +36,14 @@ export function AppTopNav() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur">
-      <div className="container mx-auto max-w-[1200px]">
-        <div className="flex h-14 items-center justify-between px-4">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="flex h-14 items-center px-6">
           <div className="flex items-center gap-6">
             <Link href="/dashboard" className="flex items-center gap-2">
-              <Logo className="h-5 w-5" />
-              <span className="text-sm font-semibold">Growthlog</span>
+              <Logo className="h-4 w-4" />
+              <span className="text-[13px] font-semibold tracking-tight">
+                Growthlog
+              </span>
             </Link>
 
             <nav className="hidden md:flex items-center space-x-6">
@@ -44,7 +51,7 @@ export function AppTopNav() {
                 <Link
                   key={href}
                   href={href}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {label}
                 </Link>
@@ -52,7 +59,7 @@ export function AppTopNav() {
             </nav>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 ml-auto">
             <ThemeToggle />
 
             <DropdownMenu>
@@ -91,7 +98,7 @@ export function AppTopNav() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   className="cursor-pointer"
-                  onClick={() => logout()}
+                  onClick={handleLogout}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>
