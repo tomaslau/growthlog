@@ -74,7 +74,7 @@ export const GrowthCalendar = () => {
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-semibold">Your Growth Journey</CardTitle>
+        <CardTitle className="text-base font-semibold">Growthlog</CardTitle>
       </CardHeader>
       <CardContent>
         {/* Months row */}
@@ -111,13 +111,19 @@ export const GrowthCalendar = () => {
             <div className="grid grid-cols-[repeat(53,1fr)] gap-[2px]">
               {dates.map((date, i) => {
                 const level = getActivityLevel(date);
+                const opacity = level === 0 ? 0.35 : 1; // Increased empty square visibility
+                const color = level === 0 
+                  ? 'var(--muted)'  // Use muted color for empty squares
+                  : 'var(--primary)'; // Use primary color for active squares
+                const intensityOpacity = level === 0 ? 1 : (0.4 + (level * 0.15)); // Adjust intensity based on level
+
                 return (
                   <div
                     key={i}
                     className="h-[10px] w-[10px] rounded-[2px] transition-colors duration-200"
                     style={{
-                      backgroundColor: `var(--activity-${level})`,
-                      opacity: level === 0 ? 0.2 : 1,
+                      backgroundColor: color,
+                      opacity: level === 0 ? opacity : intensityOpacity,
                       gridRow: date.getDay() + 1,
                       gridColumn: Math.floor((date.getTime() - yearStart.getTime()) / (7 * 24 * 60 * 60 * 1000)) + 1
                     }}
@@ -137,8 +143,8 @@ export const GrowthCalendar = () => {
               key={level}
               className="h-[10px] w-[10px] rounded-[2px]"
               style={{
-                backgroundColor: `var(--activity-${level})`,
-                opacity: level === 0 ? 0.2 : 1
+                backgroundColor: level === 0 ? 'var(--muted)' : 'var(--primary)',
+                opacity: level === 0 ? 0.35 : (0.4 + (level * 0.15))
               }}
             />
           ))}
