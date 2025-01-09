@@ -85,6 +85,17 @@ export const userAchievements = pgTable("user_achievements", {
   unlockedAt: timestamp("unlocked_at").default(sql`NOW()`).notNull(),
 });
 
+// New table for mood tracking
+export const moodEntries = pgTable("mood_entries", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  taskId: integer("task_id").references(() => tasks.id).notNull(),
+  mood: text("mood").notNull(), // "energized", "focused", "tired", "distracted"
+  productivity: integer("productivity").notNull(), // 1-5 scale
+  notes: text("notes"),
+  createdAt: timestamp("created_at").default(sql`NOW()`).notNull(),
+});
+
 // Schema definitions for Zod validation
 export const insertUserSchema = createInsertSchema(users);
 export const selectUserSchema = createSelectSchema(users);
@@ -98,6 +109,8 @@ export const insertSharedDashboardSchema = createInsertSchema(sharedDashboards);
 export const selectSharedDashboardSchema = createSelectSchema(sharedDashboards);
 export const insertDashboardComponentSchema = createInsertSchema(dashboardComponents);
 export const selectDashboardComponentSchema = createSelectSchema(dashboardComponents);
+export const insertMoodEntrySchema = createInsertSchema(moodEntries);
+export const selectMoodEntrySchema = createSelectSchema(moodEntries);
 
 // TypeScript types
 export type InsertUser = typeof users.$inferInsert;
@@ -112,3 +125,5 @@ export type InsertSharedDashboard = typeof sharedDashboards.$inferInsert;
 export type SelectSharedDashboard = typeof sharedDashboards.$inferSelect;
 export type InsertDashboardComponent = typeof dashboardComponents.$inferInsert;
 export type SelectDashboardComponent = typeof dashboardComponents.$inferSelect;
+export type InsertMoodEntry = typeof moodEntries.$inferInsert;
+export type SelectMoodEntry = typeof moodEntries.$inferSelect;
