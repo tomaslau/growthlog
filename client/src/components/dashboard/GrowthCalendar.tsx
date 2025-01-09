@@ -19,18 +19,18 @@ const generateDemoData = (startDate: Date, endDate: Date) => {
     const dayOfWeek = date.getDay();
     const rand = Math.random();
 
-    // More activity during weekdays
+    // Higher activity during weekdays
     let activity = 0;
     if (dayOfWeek !== 0 && dayOfWeek !== 6) { // Not weekend
-      if (rand > 0.6) activity = Math.floor(Math.random() * 4) + 1;
+      if (rand > 0.4) activity = Math.floor(Math.random() * 4) + 1; // Increased activity chance
     } else {
-      if (rand > 0.8) activity = Math.floor(Math.random() * 2) + 1;
+      if (rand > 0.7) activity = Math.floor(Math.random() * 2) + 1; // Some weekend activity
     }
 
-    // Create streaks
+    // Create streaks (consecutive days of activity)
     const previousDay = format(new Date(date.getTime() - 86400000), 'yyyy-MM-dd');
     if (demoData[previousDay] && demoData[previousDay] > 0 && rand > 0.3) {
-      activity = Math.min(4, demoData[previousDay] + (Math.random() > 0.5 ? 1 : -1));
+      activity = Math.max(1, Math.min(4, demoData[previousDay] + (Math.random() > 0.5 ? 1 : -1)));
     }
 
     demoData[format(date, 'yyyy-MM-dd')] = activity;
@@ -135,11 +135,10 @@ export const GrowthCalendar = () => {
               <div className="grid grid-cols-[repeat(53,1fr)] gap-[2px]">
                 {dates.map((date, i) => {
                   const level = getActivityLevel(date);
-                  const opacity = level === 0 ? 0.35 : 1; // Increased empty square visibility
-                  const color = level === 0 
+                  const color = level === 0
                     ? 'var(--muted)'  // Use muted color for empty squares
                     : 'var(--primary)'; // Use primary color for active squares
-                  const intensityOpacity = level === 0 ? 1 : (0.4 + (level * 0.15)); // Adjust intensity based on level
+                  const intensityOpacity = level === 0 ? 0.15 : (0.6 + (level * 0.1)); // Adjusted opacity for better visibility
 
                   return (
                     <Tooltip key={i}>
@@ -148,7 +147,7 @@ export const GrowthCalendar = () => {
                           className="h-[10px] w-[10px] rounded-[2px] transition-colors duration-200 cursor-pointer hover:ring-2 hover:ring-ring hover:ring-offset-1"
                           style={{
                             backgroundColor: color,
-                            opacity: level === 0 ? opacity : intensityOpacity,
+                            opacity: intensityOpacity,
                             gridRow: date.getDay() + 1,
                             gridColumn: Math.floor((date.getTime() - yearStart.getTime()) / (7 * 24 * 60 * 60 * 1000)) + 1
                           }}
@@ -181,7 +180,7 @@ export const GrowthCalendar = () => {
                 className="h-[10px] w-[10px] rounded-[2px]"
                 style={{
                   backgroundColor: level === 0 ? 'var(--muted)' : 'var(--primary)',
-                  opacity: level === 0 ? 0.35 : (0.4 + (level * 0.15))
+                  opacity: level === 0 ? 0.15 : (0.6 + (level * 0.1))
                 }}
               />
             ))}
