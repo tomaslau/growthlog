@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { DollarSign, Users, Activity, BarChart, Megaphone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { DollarSign, Users, Activity, BarChart } from "lucide-react";
 import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 import { MarketingFooter } from "@/components/layout/MarketingFooter";
 import { motion } from "framer-motion";
@@ -108,28 +109,6 @@ const metricCategories = [
         example: "Score based on product usage, support tickets, NPS, and payment history"
       }
     ]
-  },
-  {
-    title: "Marketing & Growth Metrics",
-    icon: Megaphone,
-    description: "Key metrics for tracking marketing and growth initiatives",
-    metrics: [
-      {
-        name: "Email Marketing Performance",
-        description: "Core metrics for email campaign effectiveness",
-        example: "Open Rate: 25%, CTR: 3.2%, List Growth: +5%/month"
-      },
-      {
-        name: "Ad Performance",
-        description: "Key advertising metrics across platforms",
-        example: "ROAS: 3.5x, CPC: $2.50, CPL: $50, Conversion Rate: 2.5%"
-      },
-      {
-        name: "SEO Health",
-        description: "Organic search performance indicators",
-        example: "Organic Traffic Growth: +20% MoM, Domain Authority: 45"
-      }
-    ]
   }
 ];
 
@@ -159,7 +138,7 @@ export default function SaasMetrics() {
             >
               {metricCategories.map((category, categoryIndex) => (
                 <motion.div key={categoryIndex} variants={item}>
-                  <Card className="overflow-hidden">
+                  <Card className="hover:border-primary/50 transition-colors">
                     <CardContent className="pt-6">
                       <div className="flex items-center gap-3 mb-6">
                         <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
@@ -188,6 +167,16 @@ export default function SaasMetrics() {
                 </motion.div>
               ))}
             </motion.div>
+
+            <div className="text-center space-y-4 py-12">
+              <h2 className="text-2xl font-bold">Start Tracking Your Metrics</h2>
+              <p className="text-sm text-muted-foreground">
+                Join successful founders who use Growthlog to track and optimize their SaaS metrics.
+              </p>
+              <Button size="lg" className="mt-4">
+                Try it Now
+              </Button>
+            </div>
           </div>
         </div>
       </main>

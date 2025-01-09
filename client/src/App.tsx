@@ -5,7 +5,6 @@ import GrowthIdeaView from "@/pages/GrowthIdeaView";
 import Profile from "@/pages/Profile";
 import Achievements from "@/pages/features/Achievements";
 import Process from "@/pages/Process";
-import SaasMetrics from "@/pages/SaasMetrics";
 import SharedDashboard from "@/pages/SharedDashboard";
 import Pricing from "@/pages/Pricing";
 import Updates from "@/pages/Updates";
@@ -14,6 +13,7 @@ import GrowthSprints from "@/pages/features/GrowthSprints";
 import ProgressTracking from "@/pages/features/ProgressTracking";
 import Framework from "@/pages/features/Framework";
 import GrowthIdeas from "@/pages/features/GrowthIdeas";
+import SaasMetrics from "@/pages/features/SaasMetrics";
 import Tasks from "@/pages/Tasks";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import { PomodoroProvider } from "@/contexts/PomodoroContext";
@@ -37,7 +37,6 @@ function App() {
               <Route path="/profile" component={Profile} />
               <Route path="/achievements" component={Achievements} />
               <Route path="/process" component={Process} />
-              <Route path="/metrics" component={SaasMetrics} />
               <Route path="/share/:token" component={SharedDashboard} />
               <Route path="/pricing" component={Pricing} />
               <Route path="/updates" component={Updates} />
@@ -47,6 +46,7 @@ function App() {
               <Route path="/features/framework" component={Framework} />
               <Route path="/features/growth-ideas" component={GrowthIdeas} />
               <Route path="/features/achievements" component={Achievements} />
+              <Route path="/features/saas-metrics" component={SaasMetrics} />
             </Switch>
           </main>
         </div>
