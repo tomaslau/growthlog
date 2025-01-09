@@ -85,14 +85,9 @@ export const GrowthCalendar = () => {
 
   // Get descriptive text for activity level
   const getActivityDescription = (level: number): string => {
-    switch (level) {
-      case 0: return "No activities";
-      case 1: return "Light activity";
-      case 2: return "Moderate activity";
-      case 3: return "High activity";
-      case 4: return "Very high activity";
-      default: return "Unknown activity level";
-    }
+    const sprintText = level === 1 ? "growth sprint" : "growth sprints";
+    if (level === 0) return "No growth sprints completed";
+    return `${level} ${sprintText} completed`;
   };
 
   // Calculate color based on activity level
@@ -171,12 +166,7 @@ export const GrowthCalendar = () => {
                       <TooltipContent side="top" className="text-xs">
                         <div className="px-2 py-1">
                           <div className="font-medium">{format(date, 'MMMM d, yyyy')}</div>
-                          <div className="text-muted-foreground mt-1">
-                            {getActivityDescription(level)}
-                            <div className="mt-0.5">
-                              {level === 0 ? 'No tasks completed' : `${level} task${level === 1 ? '' : 's'} completed`}
-                            </div>
-                          </div>
+                          <div className="text-muted-foreground">{getActivityDescription(level)}</div>
                         </div>
                       </TooltipContent>
                     </Tooltip>
