@@ -16,6 +16,8 @@ import { useConfetti } from "@/hooks/useConfetti";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import debounce from "lodash/debounce";
 
+type Priority = "high" | "medium" | "low";
+
 // Mock data - will be replaced with API data
 const initialTasks = [
   {
@@ -23,37 +25,47 @@ const initialTasks = [
     title: "Research competitor pricing",
     description: "Analyze top 5 competitors' pricing models",
     status: "today",
-    sourceIdeaTitle: "Cloneable Templates"
+    sourceIdeaTitle: "Cloneable Templates",
+    priority: "high" as Priority
   },
   {
     id: "2", 
     title: "Create social media calendar",
     description: "Plan next week's content",
     status: "today",
-    sourceIdeaTitle: "SEO Content Strategy"
+    sourceIdeaTitle: "SEO Content Strategy",
+    priority: "medium" as Priority
   },
   {
     id: "3",
     title: "Review analytics dashboard",
     description: "Check key metrics and create report",
     status: "later",
-    sourceIdeaTitle: "Product Analytics"
+    sourceIdeaTitle: "Product Analytics",
+    priority: "low" as Priority
   },
 ];
 
 type TaskStatus = "today" | "later" | "completed";
-type SortField = "title" | "source";
+type SortField = "title" | "source" | "priority";
 type SortOrder = "asc" | "desc";
 type FilterCriteria = {
   search: string;
   status: TaskStatus | "all";
   source: string | "all";
+  priority: Priority | "all";
 };
 
 const columns: { id: TaskStatus; title: string; icon: any }[] = [
   { id: "today", title: "Today", icon: Clock },
   { id: "later", title: "Later", icon: Clock },
   { id: "completed", title: "Completed", icon: CheckCircle2 },
+];
+
+const priorities: { value: Priority; label: string; color: string }[] = [
+  { value: "high", label: "High Priority", color: "destructive" },
+  { value: "medium", label: "Medium Priority", color: "default" },
+  { value: "low", label: "Low Priority", color: "secondary" },
 ];
 
 export default function TaskBoard() {
@@ -65,10 +77,11 @@ export default function TaskBoard() {
   const [filters, setFilters] = useState<FilterCriteria>({
     search: "",
     status: "all",
-    source: "all"
+    source: "all",
+    priority: "all"
   });
-  const [sortField, setSortField] = useState<SortField>("title");
-  const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
+  const [sortField, setSortField] = useState<SortField>("priority");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
 
   const handleCompleteTask = (taskId: string) => {
     setTasks(prev => 
@@ -143,15 +156,20 @@ export default function TaskBoard() {
 
         const matchesStatus = filters.status === "all" || task.status === filters.status;
         const matchesSource = filters.source === "all" || task.sourceIdeaTitle === filters.source;
+        const matchesPriority = filters.priority === "all" || task.priority === filters.priority;
 
-        return matchesSearch && matchesStatus && matchesSource;
+        return matchesSearch && matchesStatus && matchesSource && matchesPriority;
       })
       .sort((a, b) => {
         const direction = sortOrder === "asc" ? 1 : -1;
         if (sortField === "title") {
           return a.title.localeCompare(b.title) * direction;
-        } else {
+        } else if (sortField === "source") {
           return a.sourceIdeaTitle.localeCompare(b.sourceIdeaTitle) * direction;
+        } else {
+          // Priority sorting (high -> medium -> low)
+          const priorityOrder = { high: 3, medium: 2, low: 1 };
+          return (priorityOrder[a.priority] - priorityOrder[b.priority]) * direction;
         }
       });
   }, [tasks, filters, sortField, sortOrder]);
@@ -161,8 +179,23 @@ export default function TaskBoard() {
     setFilters({
       search: "",
       status: "all",
-      source: "all"
+      source: "all",
+      priority: "all"
     });
+  };
+
+  // Get priority border class
+  const getPriorityBorderClass = (priority: Priority) => {
+    switch (priority) {
+      case "high":
+        return "hover:border-destructive/50";
+      case "medium":
+        return "hover:border-primary/50";
+      case "low":
+        return "hover:border-secondary/50";
+      default:
+        return "hover:border-primary/50";
+    }
   };
 
   return (
@@ -191,6 +224,23 @@ export default function TaskBoard() {
           </div>
 
           <div className="flex gap-2 items-center">
+            <Select
+              value={filters.priority}
+              onValueChange={(value) => setFilters(prev => ({ ...prev, priority: value as Priority | "all" }))}
+            >
+              <SelectTrigger className="w-40">
+                <SelectValue placeholder="Filter by priority" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Priorities</SelectItem>
+                {priorities.map(priority => (
+                  <SelectItem key={priority.value} value={priority.value}>
+                    {priority.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
             <Select
               value={filters.source}
               onValueChange={(value) => setFilters(prev => ({ ...prev, source: value }))}
@@ -229,6 +279,7 @@ export default function TaskBoard() {
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="priority">Priority</SelectItem>
                 <SelectItem value="title">Title</SelectItem>
                 <SelectItem value="source">Source</SelectItem>
               </SelectContent>
@@ -245,7 +296,7 @@ export default function TaskBoard() {
         </div>
 
         {/* Active Filters Display */}
-        {(filters.search || filters.status !== "all" || filters.source !== "all") && (
+        {(filters.search || filters.status !== "all" || filters.source !== "all" || filters.priority !== "all") && (
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground">Active filters:</span>
             {filters.search && (
@@ -272,6 +323,15 @@ export default function TaskBoard() {
                 <X 
                   className="h-3 w-3 ml-1 cursor-pointer" 
                   onClick={() => setFilters(prev => ({ ...prev, source: "all" }))}
+                />
+              </Badge>
+            )}
+            {filters.priority !== "all" && (
+              <Badge variant="secondary" className="text-xs">
+                Priority: {filters.priority}
+                <X 
+                  className="h-3 w-3 ml-1 cursor-pointer" 
+                  onClick={() => setFilters(prev => ({ ...prev, priority: "all" }))}
                 />
               </Badge>
             )}
@@ -331,7 +391,7 @@ export default function TaskBoard() {
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
                             >
-                              <Card className="group hover:border-primary/50 transition-colors">
+                              <Card className={`group transition-colors ${getPriorityBorderClass(task.priority)}`}>
                                 <CardContent className="p-4">
                                   <div className="flex items-start justify-between">
                                     <div className="space-y-1">
@@ -355,6 +415,13 @@ export default function TaskBoard() {
                                   </div>
 
                                   <div className="flex items-center gap-2 mt-3">
+                                    <Badge variant={
+                                      task.priority === "high" ? "destructive" :
+                                      task.priority === "medium" ? "default" :
+                                      "secondary"
+                                    } className="text-xs">
+                                      {task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}
+                                    </Badge>
                                     <Badge variant="outline" className="text-xs">
                                       From: {task.sourceIdeaTitle}
                                     </Badge>
