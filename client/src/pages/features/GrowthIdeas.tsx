@@ -1,29 +1,60 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Lightbulb, Timer, TrendingUp, ChevronRight } from "lucide-react";
 import { MarketingTopNav } from "@/components/layout/MarketingTopNav";
 import { MarketingFooter } from "@/components/layout/MarketingFooter";
+import { motion } from "framer-motion";
+import { Link } from "wouter";
 
-const ideas = [
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
+
+const features = [
   {
     icon: Lightbulb,
-    title: "Proven Growth Tactics",
-    description: "Access battle-tested strategies backed by real-world success stories and implementation guides.",
-    metrics: ["Success Rate", "Time to ROI", "Implementation Cost", "Difficulty Level"]
+    title: "Ready-to-Use Growth Ideas",
+    description: "Access a curated library of proven SaaS growth tactics, each broken down into actionable tasks and supported by real-world examples.",
+    benefits: [
+      "Proven strategies from successful SaaS companies",
+      "Complete implementation guides",
+      "ROI and difficulty indicators",
+      "Success metrics tracking"
+    ]
   },
   {
     icon: Timer,
-    title: "Ready-to-Execute Tasks",
-    description: "Each strategy broken down into focused 25-minute implementation sprints for immediate action.",
-    metrics: ["Time per Task", "Tasks per Strategy", "Completion Rate", "Task Dependencies"]
+    title: "25-Minute Implementation",
+    description: "Every growth idea is structured into focused 25-minute tasks, making it easy to execute even with a busy schedule.",
+    benefits: [
+      "Focused execution blocks",
+      "Clear task priorities",
+      "Progress tracking",
+      "Time-boxed activities"
+    ]
   },
   {
     icon: TrendingUp,
-    title: "Impact Tracking",
-    description: "Track the effectiveness of implemented strategies with built-in metrics and analytics.",
-    metrics: ["Growth Rate", "Conversion Impact", "Revenue Delta", "User Engagement"]
+    title: "Results Tracking",
+    description: "Monitor the impact of each implemented idea with built-in metrics tracking and success indicators.",
+    benefits: [
+      "Key metrics dashboard",
+      "Success rate tracking",
+      "Impact assessment",
+      "ROI calculations"
+    ]
   }
 ];
 
@@ -39,49 +70,63 @@ export default function GrowthIdeas() {
               <Badge variant="secondary" className="mb-2">
                 Core Feature
               </Badge>
-              <h1 className="text-3xl font-bold tracking-tight">Growth Ideas Library</h1>
-              <p className="text-base text-muted-foreground leading-relaxed max-w-[600px] mx-auto">
-                Access a curated collection of proven SaaS growth tactics and strategies, ready to be implemented in 25-minute focused sessions.
+              <h1 className="text-4xl font-bold tracking-tight">Growth Ideas Library</h1>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-[600px] mx-auto">
+                Transform your SaaS growth with our curated collection of proven tactics, each designed for focused 25-minute implementation sessions.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-6">
-              {ideas.map((idea, index) => (
-                <Card key={index} className="p-6">
-                  <div className="flex flex-col md:flex-row gap-6">
-                    <div className="flex-1 space-y-4">
-                      <div className="flex items-center gap-3">
-                        <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
-                          <idea.icon className="h-4 w-4 text-primary" />
-                        </div>
-                        <h3 className="text-xl font-medium">{idea.title}</h3>
-                      </div>
-                      <p className="text-muted-foreground">{idea.description}</p>
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-sm font-medium mb-3">Key Metrics</h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {idea.metrics.map((metric, i) => (
-                          <div key={i} className="flex items-center gap-2">
-                            <ChevronRight className="h-3 w-3 text-primary" />
-                            <span className="text-sm text-muted-foreground">{metric}</span>
+            <motion.div
+              variants={container}
+              initial="hidden"
+              animate="show"
+              className="grid gap-6 py-12"
+            >
+              {features.map((feature, index) => (
+                <motion.div key={index} variants={item}>
+                  <Card className="hover:border-primary/50 transition-colors">
+                    <CardContent className="pt-6">
+                      <div className="flex flex-col md:flex-row gap-6">
+                        <div className="flex-1 space-y-4">
+                          <div className="flex items-center gap-3">
+                            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                              <feature.icon className="h-4 w-4 text-primary" />
+                            </div>
+                            <h3 className="text-xl font-medium">{feature.title}</h3>
                           </div>
-                        ))}
+                          <p className="text-muted-foreground">{feature.description}</p>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-sm font-medium mb-3">Key Benefits</h4>
+                          <div className="grid grid-cols-1 gap-2">
+                            {feature.benefits.map((benefit, i) => (
+                              <div key={i} className="flex items-center gap-2">
+                                <ChevronRight className="h-3 w-3 text-primary" />
+                                <span className="text-sm text-muted-foreground">{benefit}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
             <div className="text-center space-y-4 py-12">
-              <h2 className="text-2xl font-bold">Start Growing Strategically</h2>
+              <h2 className="text-2xl font-bold">Start Growing Today</h2>
               <p className="text-sm text-muted-foreground">
-                Join successful founders who use our growth ideas to drive systematic growth.
+                Join successful founders who use our growth ideas to drive systematic, predictable growth.
               </p>
-              <Button size="lg" className="mt-4">
-                Try it Now
-              </Button>
+              <div className="flex items-center justify-center gap-4 mt-4">
+                <Button asChild size="lg">
+                  <Link href="/signup">Try It Now</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/features">View All Features</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
