@@ -12,9 +12,10 @@ import Features from "./pages/Features";
 import GrowthSprints from "@/pages/features/GrowthSprints";
 import ProgressTracking from "@/pages/features/ProgressTracking";
 import Framework from "@/pages/features/Framework";
-import GrowthIdeas from "@/pages/features/GrowthIdeas";
+import Library from "@/pages/features/Library";
 import SaasMetrics from "@/pages/features/SaasMetrics";
 import Tasks from "@/pages/Tasks";
+import GrowthIdeas from "@/pages/GrowthIdeas";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import { PomodoroProvider } from "@/contexts/PomodoroContext";
 import FloatingTimer from "@/components/pomodoro/FloatingTimer";
@@ -44,7 +45,7 @@ function App() {
               <Route path="/features/growth-sprints" component={GrowthSprints} />
               <Route path="/features/progress-tracking" component={ProgressTracking} />
               <Route path="/features/framework" component={Framework} />
-              <Route path="/features/growth-ideas" component={GrowthIdeas} />
+              <Route path="/features/library" component={Library} />
               <Route path="/features/achievements" component={Achievements} />
               <Route path="/features/saas-metrics" component={SaasMetrics} />
             </Switch>

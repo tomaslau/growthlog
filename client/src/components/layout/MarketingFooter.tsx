@@ -49,7 +49,7 @@ export function MarketingFooter() {
                 <li><Link href="/features/growth-sprints">25-Minute Growth Sprints</Link></li>
                 <li><Link href="/features/progress-tracking">Progress Tracking</Link></li>
                 <li><Link href="/features/framework">Structured Framework</Link></li>
-                <li><Link href="/features/growth-ideas">Growth Ideas Library</Link></li>
+                <li><Link href="/features/library">Growth Ideas Library</Link></li>
                 <li><Link href="/features/saas-metrics">SaaS Metrics</Link></li>
               </ul>
             </div>
