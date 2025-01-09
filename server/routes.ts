@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { db } from "@db";
-import { achievements, userAchievements, users, sharedDashboards, dashboardComponents, tasks } from "@db/schema";
+import { achievements, userAchievements, users, sharedDashboards, dashboardComponents, tasks, moodEntries } from "@db/schema";
 import { eq, and } from "drizzle-orm";
 import crypto from "crypto";
 import { google } from "googleapis";
@@ -160,10 +160,10 @@ export function registerRoutes(app: Express): Server {
 
       const dashboard = await db
         .update(sharedDashboards)
-        .set({ 
-          isPublic, 
-          customizeableLayout, 
-          title, 
+        .set({
+          isPublic,
+          customizeableLayout,
+          title,
           description,
           updatedAt: new Date()
         })
@@ -212,7 +212,7 @@ export function registerRoutes(app: Express): Server {
       for (const component of components) {
         await db
           .update(dashboardComponents)
-          .set({ 
+          .set({
             position: component.position,
             visible: component.visible,
             settings: component.settings,
@@ -266,7 +266,7 @@ export function registerRoutes(app: Express): Server {
 
       // Check if user already has this achievement
       const existing = await db.query.userAchievements.findFirst({
-        where: (ua) => 
+        where: (ua) =>
           eq(ua.userId, userId) && eq(ua.achievementId, achievementId)
       });
 
@@ -285,14 +285,54 @@ export function registerRoutes(app: Express): Server {
         where: eq(achievements.id, achievementId)
       });
 
-      res.json({ 
+      res.json({
         message: "Achievement awarded",
-        achievement 
+        achievement
       });
     } catch (error) {
       res.status(500).json({ message: "Error awarding achievement" });
     }
   });
+
+  // Create a new mood entry for a task
+  app.post('/api/mood-entries', async (req, res) => {
+    try {
+      const { taskId, mood, productivity, notes } = req.body;
+
+      // Get current user
+      const userId = 1; // For development, in production this would come from auth
+
+      const moodEntry = await db.insert(moodEntries).values({
+        userId,
+        taskId,
+        mood,
+        productivity,
+        notes,
+      }).returning();
+
+      res.json({ moodEntry: moodEntry[0] });
+    } catch (error) {
+      console.error('Error creating mood entry:', error);
+      res.status(500).json({ message: "Error saving mood data" });
+    }
+  });
+
+  // Get mood entries for a task
+  app.get('/api/mood-entries/task/:taskId', async (req, res) => {
+    try {
+      const taskId = parseInt(req.params.taskId);
+      const entries = await db.query.moodEntries.findMany({
+        where: eq(moodEntries.taskId, taskId),
+        orderBy: (moodEntries, { desc }) => [desc(moodEntries.createdAt)],
+      });
+
+      res.json({ entries });
+    } catch (error) {
+      console.error('Error fetching mood entries:', error);
+      res.status(500).json({ message: "Error fetching mood data" });
+    }
+  });
+
 
   // Mock API endpoints for the static prototype
   app.get('/api/activities', (req, res) => {
@@ -316,7 +356,7 @@ export function registerRoutes(app: Express): Server {
         },
         {
           id: 2,
-          title: "Co-Marketing Campaigns", 
+          title: "Co-Marketing Campaigns",
           description: "Partner with complementary businesses to increase reach",
           icon: "🤝"
         },
