@@ -9,36 +9,33 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus, CheckCircle2, Clock, ArrowRight, Search, ArrowUpDown } from "lucide-react";
+import { Plus, CheckCircle2, Clock, Search, ArrowUpDown } from "lucide-react";
 import PomodoroTimer from "./PomodoroTimer";
 import { useState } from "react";
-import { Link } from "wouter";
 import { useConfetti } from "@/hooks/useConfetti";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 // Mock data - will be replaced with API data
-const tasks = [
+const initialTasks = [
   {
-    id: 1,
+    id: "1",
     title: "Research competitor pricing",
     description: "Analyze top 5 competitors' pricing models",
     status: "today",
-    sourceIdeaId: 1, // Links to "Cloneable Templates" idea
     sourceIdeaTitle: "Cloneable Templates"
   },
   {
-    id: 2, 
+    id: "2", 
     title: "Create social media calendar",
     description: "Plan next week's content",
     status: "today",
-    sourceIdeaId: 5, // Links to "SEO Content Strategy" idea
     sourceIdeaTitle: "SEO Content Strategy"
   },
   {
-    id: 3,
+    id: "3",
     title: "Review analytics dashboard",
     description: "Check key metrics and create report",
     status: "later",
-    sourceIdeaId: 9, // Links to "Product Analytics" idea
     sourceIdeaTitle: "Product Analytics"
   },
 ];
@@ -49,13 +46,13 @@ type SortOrder = "asc" | "desc";
 
 const columns: { id: TaskStatus; title: string; icon: any }[] = [
   { id: "today", title: "Today", icon: Clock },
-  { id: "later", title: "Later", icon: CheckCircle2 },
+  { id: "later", title: "Later", icon: Clock },
   { id: "completed", title: "Completed", icon: CheckCircle2 },
 ];
 
 export default function TaskBoard() {
-  const [activeTaskId, setActiveTaskId] = useState<number | null>(null);
-  const [taskStates, setTaskStates] = useState(tasks);
+  const [activeTaskId, setActiveTaskId] = useState<string | null>(null);
+  const [tasks, setTasks] = useState(initialTasks);
   const { fireConfetti } = useConfetti();
 
   // Filtering state
@@ -63,8 +60,8 @@ export default function TaskBoard() {
   const [sortField, setSortField] = useState<SortField>("title");
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
 
-  const handleCompleteTask = (taskId: number) => {
-    setTaskStates(prev => 
+  const handleCompleteTask = (taskId: string) => {
+    setTasks(prev => 
       prev.map(task => 
         task.id === taskId 
           ? { ...task, status: "completed" as TaskStatus }
@@ -78,7 +75,39 @@ export default function TaskBoard() {
     });
   };
 
-  const filteredAndSortedTasks = taskStates
+  const onDragEnd = (result: any) => {
+    const { destination, source, draggableId } = result;
+
+    if (!destination) return;
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const updatedTasks = [...tasks];
+    const task = updatedTasks.find(t => t.id === draggableId);
+    if (!task) return;
+
+    // Remove from source
+    updatedTasks.splice(updatedTasks.findIndex(t => t.id === draggableId), 1);
+
+    // Add to destination
+    const insertIndex = updatedTasks.filter(t => t.status === destination.droppableId).length;
+    task.status = destination.droppableId as TaskStatus;
+
+    // If moving to completed, trigger confetti
+    if (destination.droppableId === 'completed' && source.droppableId !== 'completed') {
+      handleCompleteTask(task.id);
+    }
+
+    updatedTasks.splice(insertIndex, 0, task);
+    setTasks(updatedTasks);
+  };
+
+  const filteredTasks = tasks
     .filter(task => {
       const matchesSearch = 
         task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -142,88 +171,91 @@ export default function TaskBoard() {
         <div className="max-w-sm mx-auto">
           <PomodoroTimer 
             taskId={activeTaskId}
-            taskTitle={taskStates.find(t => t.id === activeTaskId)?.title || "Task"}
+            taskTitle={tasks.find(t => t.id === activeTaskId)?.title || "Task"}
             onComplete={() => {
-              console.log("Pomodoro completed for task:", activeTaskId);
               setActiveTaskId(null);
             }}
           />
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {columns.map(column => (
-          <div key={column.id} className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <column.icon className="h-5 w-5 text-muted-foreground" />
-                <h2 className="font-semibold">{column.title}</h2>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {columns.map(column => (
+            <div key={column.id} className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <column.icon className="h-5 w-5 text-muted-foreground" />
+                  <h2 className="font-semibold">{column.title}</h2>
+                </div>
+                <Badge variant="secondary">
+                  {filteredTasks.filter(t => t.status === column.id).length}
+                </Badge>
               </div>
-              <Badge variant="secondary">
-                {filteredAndSortedTasks.filter(t => t.status === column.id).length}
-              </Badge>
-            </div>
 
-            <div className="space-y-4">
-              {filteredAndSortedTasks
-                .filter(task => task.status === column.id)
-                .map(task => (
-                  <Link key={task.id} to={`/ideas/${task.sourceIdeaId}`}>
-                    <Card className="group hover:border-primary/50 transition-colors cursor-pointer">
-                      <CardContent className="p-4">
-                        <div className="flex items-start justify-between">
-                          <div className="space-y-1">
-                            <h3 className="font-medium">{task.title}</h3>
-                            <p className="text-sm text-muted-foreground">
-                              {task.description}
-                            </p>
-                          </div>
-                          <div className="flex gap-2">
-                            {task.status === "today" && (
-                              <>
-                                <Button
-                                  variant="outline"
-                                  size="icon"
-                                  className={`${activeTaskId === task.id ? 'text-primary' : ''}`}
-                                  onClick={(e) => {
-                                    e.preventDefault(); // Prevent navigation
-                                    setActiveTaskId(activeTaskId === task.id ? null : task.id);
-                                  }}
-                                >
-                                  <Clock className="h-4 w-4" />
-                                </Button>
-                                <Button
-                                  variant="outline"
-                                  size="icon"
-                                  onClick={(e) => {
-                                    e.preventDefault(); // Prevent navigation
-                                    handleCompleteTask(task.id);
-                                  }}
-                                >
-                                  <CheckCircle2 className="h-4 w-4" />
-                                </Button>
-                              </>
-                            )}
-                            <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </div>
-                        </div>
+              <Droppable droppableId={column.id}>
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                    className="space-y-4"
+                  >
+                    {filteredTasks
+                      .filter(task => task.status === column.id)
+                      .map((task, index) => (
+                        <Draggable
+                          key={task.id}
+                          draggableId={task.id}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <Card className="group hover:border-primary/50 transition-colors">
+                                <CardContent className="p-4">
+                                  <div className="flex items-start justify-between">
+                                    <div className="space-y-1">
+                                      <h3 className="font-medium">{task.title}</h3>
+                                      <p className="text-sm text-muted-foreground">
+                                        {task.description}
+                                      </p>
+                                    </div>
+                                    <div className="flex gap-2">
+                                      {task.status === "today" && (
+                                        <Button
+                                          variant="outline"
+                                          size="icon"
+                                          className={`${activeTaskId === task.id ? 'text-primary' : ''}`}
+                                          onClick={() => setActiveTaskId(activeTaskId === task.id ? null : task.id)}
+                                        >
+                                          <Clock className="h-4 w-4" />
+                                        </Button>
+                                      )}
+                                    </div>
+                                  </div>
 
-                        <div className="flex items-center gap-2 mt-3">
-                          <Badge variant="secondary" className="text-xs">
-                            1 pt
-                          </Badge>
-                          <Badge variant="outline" className="text-xs">
-                            From: {task.sourceIdeaTitle}
-                          </Badge>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
+                                  <div className="flex items-center gap-2 mt-3">
+                                    <Badge variant="outline" className="text-xs">
+                                      From: {task.sourceIdeaTitle}
+                                    </Badge>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </DragDropContext>
     </div>
   );
 }
