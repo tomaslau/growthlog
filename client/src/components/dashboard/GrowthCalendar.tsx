@@ -44,10 +44,16 @@ export const GrowthCalendar = () => {
   const days = ["", "Mon", "", "Wed", "", "Fri", ""];
 
   // Fetch tasks data with error handling
-  const { data: tasksData } = useQuery<{ tasks: SelectTask[] }>({
+  const { data: tasksData, isError } = useQuery<{ tasks: SelectTask[] }>({
     queryKey: ['/api/tasks/completed'],
     retry: 1,
     staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+
+  // Check Google Sheets connection status
+  const { data: sheetsStatus } = useQuery<{ connected: boolean }>({
+    queryKey: ['/api/sheets/status'],
+    retry: 1,
   });
 
   const today = new Date();
@@ -93,7 +99,7 @@ export const GrowthCalendar = () => {
     <Card>
       <CardHeader className="pb-2">
         <CardTitle className="text-base font-semibold">Growthlog</CardTitle>
-        {!tasksData?.tasks && (
+        {!sheetsStatus?.connected && (
           <p className="text-sm text-muted-foreground">
             Demo data shown. Connect Google Sheets to track your actual growth journey.
           </p>
