@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Home, Lightbulb, User, CheckSquare, Trophy, BookOpen, BarChart, LogOut, Mail } from "lucide-react";
+import { Home, Lightbulb, User, CheckSquare, BookOpen, BarChart, LogOut, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/ui/logo";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -17,7 +17,6 @@ const navItems = [
   { icon: Home, label: "Dashboard", href: "/dashboard" },
   { icon: CheckSquare, label: "Tasks", href: "/tasks" },
   { icon: Lightbulb, label: "Growth Ideas", href: "/ideas" },
-  { icon: Trophy, label: "Achievements", href: "/features/achievements" },
   { icon: BookOpen, label: "Process", href: "/process" },
 ];
 
@@ -36,7 +35,6 @@ export function TopNav() {
     "/features/progress-tracking", 
     "/features/framework", 
     "/features/library",
-    "/features/achievements",
     "/features/saas-metrics"
   ];
 

@@ -2,6 +2,15 @@ import { Link } from "wouter";
 import { Logo } from "@/components/ui/logo";
 
 export function MarketingFooter() {
+  const featuresLinks = [
+    { href: "/features/growth-sprints", label: "25-Minute Growth Sprints" },
+    { href: "/features/progress-tracking", label: "Progress Tracking" },
+    { href: "/features/framework", label: "Structured Framework" },
+    { href: "/features/library", label: "Growth Ideas Library" },
+    { href: "/features/saas-metrics", label: "SaaS Metrics" },
+    { href: "/features/achievements", label: "Achievements" }
+  ];
+
   return (
     <footer className="border-t border-zinc-200/80 mt-24 dark:border-zinc-800">
       <div className="container mx-auto px-6 py-8 max-w-[1200px]">
@@ -46,11 +55,11 @@ export function MarketingFooter() {
             <div className="space-y-3">
               <h4 className="font-medium text-zinc-700 dark:text-zinc-200">Features</h4>
               <ul className="space-y-3 text-sm text-zinc-500 dark:text-zinc-400">
-                <li><Link href="/features/growth-sprints">25-Minute Growth Sprints</Link></li>
-                <li><Link href="/features/progress-tracking">Progress Tracking</Link></li>
-                <li><Link href="/features/framework">Structured Framework</Link></li>
-                <li><Link href="/features/library">Growth Ideas Library</Link></li>
-                <li><Link href="/features/saas-metrics">SaaS Metrics</Link></li>
+                {featuresLinks.map((link, index) => (
+                  <li key={index}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
