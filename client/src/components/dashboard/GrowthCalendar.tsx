@@ -2,6 +2,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { startOfYear, endOfYear, eachDayOfInterval, format, parseISO, isEqual } from "date-fns";
 import { SelectTask } from "@db/schema";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 // Demo data generator for when no real data is available
 const generateDemoData = (startDate: Date, endDate: Date) => {
@@ -71,6 +77,18 @@ export const GrowthCalendar = () => {
     return 4;
   };
 
+  // Get descriptive text for activity level
+  const getActivityDescription = (level: number): string => {
+    switch (level) {
+      case 0: return "No activities";
+      case 1: return "Light activity";
+      case 2: return "Moderate activity";
+      case 3: return "High activity";
+      case 4: return "Very high activity";
+      default: return "Unknown activity level";
+    }
+  };
+
   return (
     <Card>
       <CardHeader className="pb-2">
@@ -108,30 +126,45 @@ export const GrowthCalendar = () => {
 
           {/* Activity squares */}
           <div className="flex-1">
-            <div className="grid grid-cols-[repeat(53,1fr)] gap-[2px]">
-              {dates.map((date, i) => {
-                const level = getActivityLevel(date);
-                const opacity = level === 0 ? 0.35 : 1; // Increased empty square visibility
-                const color = level === 0 
-                  ? 'var(--muted)'  // Use muted color for empty squares
-                  : 'var(--primary)'; // Use primary color for active squares
-                const intensityOpacity = level === 0 ? 1 : (0.4 + (level * 0.15)); // Adjust intensity based on level
+            <TooltipProvider>
+              <div className="grid grid-cols-[repeat(53,1fr)] gap-[2px]">
+                {dates.map((date, i) => {
+                  const level = getActivityLevel(date);
+                  const opacity = level === 0 ? 0.35 : 1; // Increased empty square visibility
+                  const color = level === 0 
+                    ? 'var(--muted)'  // Use muted color for empty squares
+                    : 'var(--primary)'; // Use primary color for active squares
+                  const intensityOpacity = level === 0 ? 1 : (0.4 + (level * 0.15)); // Adjust intensity based on level
 
-                return (
-                  <div
-                    key={i}
-                    className="h-[10px] w-[10px] rounded-[2px] transition-colors duration-200"
-                    style={{
-                      backgroundColor: color,
-                      opacity: level === 0 ? opacity : intensityOpacity,
-                      gridRow: date.getDay() + 1,
-                      gridColumn: Math.floor((date.getTime() - yearStart.getTime()) / (7 * 24 * 60 * 60 * 1000)) + 1
-                    }}
-                    title={`${format(date, 'MMM d, yyyy')}: ${level} activities`}
-                  />
-                );
-              })}
-            </div>
+                  return (
+                    <Tooltip key={i}>
+                      <TooltipTrigger asChild>
+                        <div
+                          className="h-[10px] w-[10px] rounded-[2px] transition-colors duration-200 cursor-pointer hover:ring-2 hover:ring-ring hover:ring-offset-1"
+                          style={{
+                            backgroundColor: color,
+                            opacity: level === 0 ? opacity : intensityOpacity,
+                            gridRow: date.getDay() + 1,
+                            gridColumn: Math.floor((date.getTime() - yearStart.getTime()) / (7 * 24 * 60 * 60 * 1000)) + 1
+                          }}
+                        />
+                      </TooltipTrigger>
+                      <TooltipContent side="top" className="text-xs">
+                        <div className="px-2 py-1">
+                          <div className="font-medium">{format(date, 'MMMM d, yyyy')}</div>
+                          <div className="text-muted-foreground mt-1">
+                            {getActivityDescription(level)}
+                            <div className="mt-0.5">
+                              {level === 0 ? 'No tasks completed' : `${level} task${level === 1 ? '' : 's'} completed`}
+                            </div>
+                          </div>
+                        </div>
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                })}
+              </div>
+            </TooltipProvider>
           </div>
         </div>
 
