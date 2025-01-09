@@ -95,6 +95,20 @@ export const GrowthCalendar = () => {
     }
   };
 
+  // Calculate color based on activity level
+  const getSquareColor = (level: number) => {
+    if (level === 0) return 'rgb(var(--muted))';
+    // Use primary color with HSL for better control over opacity
+    return `hsl(var(--primary))`;
+  };
+
+  // Calculate opacity based on activity level
+  const getSquareOpacity = (level: number) => {
+    if (level === 0) return 0.1;
+    // Increase opacity for better visibility
+    return 0.3 + (level * 0.175); // This gives us a range from 0.475 to 1
+  };
+
   return (
     <Card>
       <CardHeader className="pb-2">
@@ -141,19 +155,14 @@ export const GrowthCalendar = () => {
               <div className="grid grid-cols-[repeat(53,1fr)] gap-[2px]">
                 {dates.map((date, i) => {
                   const level = getActivityLevel(date);
-                  const color = level === 0
-                    ? 'var(--muted)'  // Use muted color for empty squares
-                    : 'var(--primary)'; // Use primary color for active squares
-                  const intensityOpacity = level === 0 ? 0.15 : (0.6 + (level * 0.1)); // Adjusted opacity for better visibility
-
                   return (
                     <Tooltip key={i}>
                       <TooltipTrigger asChild>
                         <div
                           className="h-[10px] w-[10px] rounded-[2px] transition-colors duration-200 cursor-pointer hover:ring-2 hover:ring-ring hover:ring-offset-1"
                           style={{
-                            backgroundColor: color,
-                            opacity: intensityOpacity,
+                            backgroundColor: getSquareColor(level),
+                            opacity: getSquareOpacity(level),
                             gridRow: date.getDay() + 1,
                             gridColumn: Math.floor((date.getTime() - yearStart.getTime()) / (7 * 24 * 60 * 60 * 1000)) + 1
                           }}
@@ -185,8 +194,8 @@ export const GrowthCalendar = () => {
                 key={level}
                 className="h-[10px] w-[10px] rounded-[2px]"
                 style={{
-                  backgroundColor: level === 0 ? 'var(--muted)' : 'var(--primary)',
-                  opacity: level === 0 ? 0.15 : (0.6 + (level * 0.1))
+                  backgroundColor: getSquareColor(level),
+                  opacity: getSquareOpacity(level)
                 }}
               />
             ))}
