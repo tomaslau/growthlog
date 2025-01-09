@@ -20,15 +20,16 @@ import { CommandPalette } from "@/components/command/CommandPalette";
 import { PomodoroProvider } from "@/contexts/PomodoroContext";
 import FloatingTimer from "@/components/pomodoro/FloatingTimer";
 import { ThemeProvider } from "@/hooks/use-theme.tsx";
+import { Footer } from "@/components/layout/Footer";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="growthlog-theme">
       <PomodoroProvider>
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen bg-background flex flex-col">
           <CommandPalette />
           <FloatingTimer />
-          <main>
+          <main className="flex-1">
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/dashboard" component={Dashboard} />
@@ -50,6 +51,7 @@ function App() {
               <Route path="/features/saas-metrics" component={SaasMetrics} />
             </Switch>
           </main>
+          <Footer />
         </div>
       </PomodoroProvider>
     </ThemeProvider>
