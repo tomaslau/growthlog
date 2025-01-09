@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
-import { AppTopNav } from "@/components/layout/AppTopNav";
+import { TopNav } from "@/components/layout/TopNav";
 
 interface GrowthIdea {
   id: number;
@@ -62,7 +62,7 @@ export default function GrowthIdeas() {
   if (error) {
     return (
       <div className="min-h-screen bg-background">
-        <AppTopNav />
+        <TopNav />
         <div className="p-8 text-center">
           <p className="text-red-500">Error loading growth ideas</p>
           <Button
@@ -79,7 +79,7 @@ export default function GrowthIdeas() {
 
   return (
     <div className="min-h-screen bg-background">
-      <AppTopNav />
+      <TopNav />
 
       <div className="mx-auto max-w-[1200px] p-6 space-y-6">
         <div className="flex justify-between items-center">
