@@ -287,6 +287,8 @@ export default function TaskBoard() {
           <PomodoroTimer 
             taskId={activeTaskId}
             taskTitle={tasks.find(t => t.id === activeTaskId)?.title || "Task"}
+            taskDescription={tasks.find(t => t.id === activeTaskId)?.description}
+            sourceIdeaTitle={tasks.find(t => t.id === activeTaskId)?.sourceIdeaTitle}
             onComplete={() => {
               setActiveTaskId(null);
             }}

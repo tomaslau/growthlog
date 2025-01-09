@@ -1,17 +1,26 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Play, Pause, RotateCcw } from "lucide-react";
 import { usePomodoroTimer } from "@/contexts/PomodoroContext";
+import { Badge } from "@/components/ui/badge";
 
 interface PomodoroTimerProps {
   onComplete?: () => void;
   taskId: string;
   taskTitle: string;
+  taskDescription?: string;
+  sourceIdeaTitle?: string;
 }
 
-export default function PomodoroTimer({ onComplete, taskId, taskTitle }: PomodoroTimerProps) {
+export default function PomodoroTimer({ 
+  onComplete, 
+  taskId, 
+  taskTitle,
+  taskDescription,
+  sourceIdeaTitle
+}: PomodoroTimerProps) {
   const totalTime = 25 * 60; // 25 minutes in seconds
   const { activeTimer, setActiveTimer, toggleTimer, resetTimer } = usePomodoroTimer();
   const [progress, setProgress] = useState(0);
@@ -52,11 +61,25 @@ export default function PomodoroTimer({ onComplete, taskId, taskTitle }: Pomodor
 
   return (
     <Card className="w-full">
-      <CardContent className="pt-6">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg">{taskTitle}</CardTitle>
+        {taskDescription && (
+          <CardDescription>{taskDescription}</CardDescription>
+        )}
+        {sourceIdeaTitle && (
+          <Badge variant="outline" className="mt-2 text-xs">
+            From: {sourceIdeaTitle}
+          </Badge>
+        )}
+      </CardHeader>
+      <CardContent>
         <div className="space-y-4">
           <div className="flex flex-col items-center">
-            <div className="text-3xl font-mono mb-2">{formatTime(timeLeft)}</div>
+            <div className="text-4xl font-mono mb-3 font-semibold">{formatTime(timeLeft)}</div>
             <Progress value={progress} className="w-full h-2" />
+            <p className="text-sm text-muted-foreground mt-2">
+              {isRunning ? "Focus on your task" : "Ready to start?"}
+            </p>
           </div>
 
           <div className="flex justify-center gap-2">
