@@ -1,116 +1,63 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { db } from "@db";
-import { achievements, userAchievements, users, sharedDashboards, dashboardComponents, tasks } from "@db/schema";
+import { achievements, userAchievements, users, sharedDashboards, dashboardComponents, tasks, growthIdeas } from "@db/schema";
 import { eq, and } from "drizzle-orm";
 import crypto from "crypto";
-import { google } from "googleapis";
 import { setupAuth } from "./auth";
-
-// Helper to create Sheets API client for a user
-function createSheetsAPI(accessToken: string) {
-  const auth = new google.auth.OAuth2();
-  auth.setCredentials({ access_token: accessToken });
-  return google.sheets({ version: 'v4', auth });
-}
 
 export function registerRoutes(app: Express): Server {
   // Set up auth routes
   setupAuth(app);
 
-  // Get completed tasks (now fetches from Google Sheets)
-  app.get('/api/tasks/completed', async (req, res) => {
-    if (!req.isAuthenticated()) {
-      return res.status(401).json({ message: "Not authenticated" });
-    }
-
+  // Get growth ideas
+  app.get('/api/growth-ideas', async (req, res) => {
     try {
-      const user = req.user as Express.User;
-      const sheets = createSheetsAPI(user.googleAccessToken!);
-
-      // Fetch tasks from Google Sheets
-      const response = await sheets.spreadsheets.values.get({
-        spreadsheetId: user.sheetsSpreadsheetId,
-        range: 'Tasks!A2:E',
+      const ideas = await db.query.growthIdeas.findMany({
+        orderBy: (growthIdeas, { asc }) => [asc(growthIdeas.title)]
       });
-
-      const values = response.data.values || [];
-      const completedTasks = values
-        .filter(row => row[2] === 'completed')
-        .map((row, index) => ({
-          id: index + 1,
-          title: row[0],
-          description: row[1],
-          status: row[2],
-          points: parseInt(row[3]),
-          completedAt: row[4],
-          userId: user.id,
-        }));
-
-      res.json({ tasks: completedTasks });
+      res.json(ideas);
     } catch (error) {
-      console.error('Error fetching tasks:', error);
-      res.status(500).json({ message: "Error fetching completed tasks" });
+      console.error('Error fetching growth ideas:', error);
+      res.status(500).json({ message: "Error fetching growth ideas" });
     }
   });
 
-  // Create new task (saves to Google Sheets)
-  app.post('/api/tasks', async (req, res) => {
-    if (!req.isAuthenticated()) {
-      return res.status(401).json({ message: "Not authenticated" });
-    }
-
+  // Create or update a growth idea
+  app.post('/api/growth-ideas', async (req, res) => {
     try {
-      const user = req.user as Express.User;
-      const { title, description, status = 'today', points = 1 } = req.body;
-
-      const sheets = createSheetsAPI(user.googleAccessToken!);
-
-      // Append task to Google Sheets
-      await sheets.spreadsheets.values.append({
-        spreadsheetId: user.sheetsSpreadsheetId,
-        range: 'Tasks!A2:E2',
-        valueInputOption: 'RAW',
-        requestBody: {
-          values: [[title, description, status, points, '']],
-        },
-      });
-
-      res.json({ message: "Task created successfully" });
+      const { title, description, category, difficulty, impact, icon } = req.body;
+      const idea = await db.insert(growthIdeas).values({
+        title,
+        description,
+        category,
+        difficulty,
+        impact,
+        icon
+      }).returning();
+      res.json(idea[0]);
     } catch (error) {
-      console.error('Error creating task:', error);
-      res.status(500).json({ message: "Error creating task" });
+      console.error('Error creating growth idea:', error);
+      res.status(500).json({ message: "Error creating growth idea" });
     }
   });
 
-  // Update task status (updates Google Sheets)
-  app.put('/api/tasks/:taskId', async (req, res) => {
-    if (!req.isAuthenticated()) {
-      return res.status(401).json({ message: "Not authenticated" });
-    }
-
+  // Get a single growth idea
+  app.get('/api/growth-ideas/:id', async (req, res) => {
     try {
-      const user = req.user as Express.User;
-      const { status, completedAt } = req.body;
-      const taskId = parseInt(req.params.taskId);
-
-      const sheets = createSheetsAPI(user.googleAccessToken!);
-
-      // Update task in Google Sheets
-      // Note: taskId + 2 because row 1 is header and taskId starts from 0
-      await sheets.spreadsheets.values.update({
-        spreadsheetId: user.sheetsSpreadsheetId,
-        range: `Tasks!C${taskId + 2}:E${taskId + 2}`,
-        valueInputOption: 'RAW',
-        requestBody: {
-          values: [[status, completedAt || '']],
-        },
+      const id = parseInt(req.params.id);
+      const idea = await db.query.growthIdeas.findFirst({
+        where: eq(growthIdeas.id, id)
       });
 
-      res.json({ message: "Task updated successfully" });
+      if (!idea) {
+        return res.status(404).json({ message: "Growth idea not found" });
+      }
+
+      res.json(idea);
     } catch (error) {
-      console.error('Error updating task:', error);
-      res.status(500).json({ message: "Error updating task" });
+      console.error('Error fetching growth idea:', error);
+      res.status(500).json({ message: "Error fetching growth idea" });
     }
   });
 
@@ -118,8 +65,6 @@ export function registerRoutes(app: Express): Server {
   app.post('/api/dashboards/share', async (req, res) => {
     try {
       const { userId, title, description, isPublic, customizeableLayout } = req.body;
-
-      // Generate a unique share token
       const shareToken = crypto.randomBytes(16).toString('hex');
 
       const dashboard = await db.insert(sharedDashboards).values({
@@ -131,7 +76,6 @@ export function registerRoutes(app: Express): Server {
         customizeableLayout
       }).returning();
 
-      // Create default components
       const defaultComponents = [
         { componentType: "growth_log", position: 0 },
         { componentType: "achievements", position: 1 },
@@ -160,10 +104,10 @@ export function registerRoutes(app: Express): Server {
 
       const dashboard = await db
         .update(sharedDashboards)
-        .set({ 
-          isPublic, 
-          customizeableLayout, 
-          title, 
+        .set({
+          isPublic,
+          customizeableLayout,
+          title,
           description,
           updatedAt: new Date()
         })
@@ -212,7 +156,7 @@ export function registerRoutes(app: Express): Server {
       for (const component of components) {
         await db
           .update(dashboardComponents)
-          .set({ 
+          .set({
             position: component.position,
             visible: component.visible,
             settings: component.settings,
@@ -266,7 +210,7 @@ export function registerRoutes(app: Express): Server {
 
       // Check if user already has this achievement
       const existing = await db.query.userAchievements.findFirst({
-        where: (ua) => 
+        where: (ua) =>
           eq(ua.userId, userId) && eq(ua.achievementId, achievementId)
       });
 
@@ -285,9 +229,9 @@ export function registerRoutes(app: Express): Server {
         where: eq(achievements.id, achievementId)
       });
 
-      res.json({ 
+      res.json({
         message: "Achievement awarded",
-        achievement 
+        achievement
       });
     } catch (error) {
       res.status(500).json({ message: "Error awarding achievement" });
@@ -316,7 +260,7 @@ export function registerRoutes(app: Express): Server {
         },
         {
           id: 2,
-          title: "Co-Marketing Campaigns", 
+          title: "Co-Marketing Campaigns",
           description: "Partner with complementary businesses to increase reach",
           icon: "🤝"
         },
