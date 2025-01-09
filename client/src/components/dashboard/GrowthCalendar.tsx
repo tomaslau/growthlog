@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
-import { startOfYear, subMonths, eachDayOfInterval, format, parseISO, isEqual } from "date-fns";
+import { startOfYear, endOfYear, eachDayOfInterval, format, parseISO, isEqual } from "date-fns";
 import { SelectTask } from "@db/schema";
 
 // Demo data generator for when no real data is available
@@ -45,12 +45,12 @@ export const GrowthCalendar = () => {
   });
 
   const today = new Date();
-  // Show last 12 months of data
-  const yearStart = subMonths(today, 12);
-  const dates = eachDayOfInterval({ start: yearStart, end: today });
+  const yearStart = startOfYear(today);
+  const yearEnd = endOfYear(today);
+  const dates = eachDayOfInterval({ start: yearStart, end: yearEnd });
 
   // Use demo data if no real data is available
-  const demoData = generateDemoData(yearStart, today);
+  const demoData = generateDemoData(yearStart, yearEnd);
 
   // Calculate activity levels based on completed tasks or demo data
   const getActivityLevel = (date: Date): number => {
