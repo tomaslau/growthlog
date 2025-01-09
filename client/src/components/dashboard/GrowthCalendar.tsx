@@ -9,25 +9,24 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-// Demo data generator for when no real data is available
-const generateDemoData = (startDate: Date, endDate: Date) => {
+const generateDemoData = (startDate: Date, endDate: Date): Record<string, number> => {
   const dates = eachDayOfInterval({ start: startDate, end: endDate });
   const demoData: Record<string, number> = {};
 
   dates.forEach(date => {
-    // Create more realistic patterns
     const dayOfWeek = date.getDay();
     const rand = Math.random();
 
-    // Higher activity during weekdays
+    // Generate more realistic activity patterns
     let activity = 0;
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) { // Not weekend
-      if (rand > 0.4) activity = Math.floor(Math.random() * 4) + 1; // Increased activity chance
-    } else {
-      if (rand > 0.7) activity = Math.floor(Math.random() * 2) + 1; // Some weekend activity
+    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+    if (!isWeekend && rand > 0.4) {
+      activity = Math.floor(Math.random() * 4) + 1;
+    } else if (isWeekend && rand > 0.7) {
+      activity = Math.floor(Math.random() * 2) + 1;
     }
 
-    // Create streaks (consecutive days of activity)
+    // Create natural activity streaks
     const previousDay = format(new Date(date.getTime() - 86400000), 'yyyy-MM-dd');
     if (demoData[previousDay] && demoData[previousDay] > 0 && rand > 0.3) {
       activity = Math.max(1, Math.min(4, demoData[previousDay] + (Math.random() > 0.5 ? 1 : -1)));
@@ -43,14 +42,12 @@ export const GrowthCalendar = () => {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const days = ["", "Mon", "", "Wed", "", "Fri", ""];
 
-  // Fetch tasks data with error handling
-  const { data: tasksData, isError } = useQuery<{ tasks: SelectTask[] }>({
+  const { data: tasksData } = useQuery<{ tasks: SelectTask[] }>({
     queryKey: ['/api/tasks/completed'],
     retry: 1,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
   });
 
-  // Check Google Sheets connection status
   const { data: sheetsStatus } = useQuery<{ connected: boolean }>({
     queryKey: ['/api/sheets/status'],
     retry: 1,
@@ -60,11 +57,8 @@ export const GrowthCalendar = () => {
   const yearStart = startOfYear(today);
   const yearEnd = endOfYear(today);
   const dates = eachDayOfInterval({ start: yearStart, end: yearEnd });
-
-  // Use demo data if no real data is available
   const demoData = generateDemoData(yearStart, yearEnd);
 
-  // Calculate activity levels based on completed tasks or demo data
   const getActivityLevel = (date: Date): number => {
     if (!tasksData?.tasks) {
       return demoData[format(date, 'yyyy-MM-dd')] || 0;
@@ -76,32 +70,20 @@ export const GrowthCalendar = () => {
     });
 
     const count = completedTasks.length;
-    if (count === 0) return 0;
-    if (count <= 2) return 1;
-    if (count <= 4) return 2;
-    if (count <= 6) return 3;
-    return 4;
+    return count === 0 ? 0 : Math.min(4, Math.ceil(count / 2));
   };
 
-  // Get descriptive text for activity level
   const getActivityDescription = (level: number): string => {
-    const sprintText = level === 1 ? "growth sprint" : "growth sprints";
     if (level === 0) return "No growth sprints completed";
-    return `${level} ${sprintText} completed`;
+    return `${level} growth sprint${level === 1 ? '' : 's'} completed`;
   };
 
-  // Calculate color based on activity level
-  const getSquareColor = (level: number) => {
-    if (level === 0) return 'rgb(var(--muted))';
-    // Use primary color with HSL for better control over opacity
-    return `hsl(var(--primary))`;
+  const getSquareColor = (level: number): string => {
+    return level === 0 ? 'rgb(var(--muted))' : 'hsl(var(--primary))';
   };
 
-  // Calculate opacity based on activity level
-  const getSquareOpacity = (level: number) => {
-    if (level === 0) return 0.1;
-    // Increase opacity for better visibility
-    return 0.3 + (level * 0.175); // This gives us a range from 0.475 to 1
+  const getSquareOpacity = (level: number): number => {
+    return level === 0 ? 0.1 : 0.3 + (level * 0.175);
   };
 
   return (
@@ -116,17 +98,14 @@ export const GrowthCalendar = () => {
       </CardHeader>
       <CardContent>
         <TooltipProvider>
-          {/* Months row */}
           <div className="flex text-xs mb-1">
-            <div className="w-8" /> {/* Spacer for day labels */}
+            <div className="w-8" />
             <div className="flex-1 grid grid-cols-[repeat(53,1fr)] gap-[2px]">
               {months.map((month, i) => (
                 <div
                   key={month}
                   className="text-xs text-muted-foreground"
-                  style={{
-                    gridColumn: Math.floor((i * 53) / 12) + 1
-                  }}
+                  style={{ gridColumn: Math.floor((i * 53) / 12) + 1 }}
                 >
                   {month}
                 </div>
@@ -134,9 +113,7 @@ export const GrowthCalendar = () => {
             </div>
           </div>
 
-          {/* Calendar grid */}
           <div className="flex">
-            {/* Day labels */}
             <div className="w-8 text-xs text-muted-foreground">
               {days.map(day => (
                 <div key={day} className="h-[10px] mb-[2px] text-right pr-2">
@@ -145,7 +122,6 @@ export const GrowthCalendar = () => {
               ))}
             </div>
 
-            {/* Activity squares */}
             <div className="flex-1">
               <div className="grid grid-cols-[repeat(53,1fr)] gap-[2px]">
                 {dates.map((date, i) => {
@@ -176,7 +152,6 @@ export const GrowthCalendar = () => {
             </div>
           </div>
 
-          {/* Activity level legend */}
           <div className="flex items-center gap-2 mt-3 text-xs text-muted-foreground">
             <span>Less</span>
             {[0, 1, 2, 3, 4].map(level => (
