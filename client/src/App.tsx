@@ -21,7 +21,6 @@ import { PomodoroProvider } from "@/contexts/PomodoroContext";
 import FloatingTimer from "@/components/pomodoro/FloatingTimer";
 import { ThemeProvider } from "@/hooks/use-theme.tsx";
 import { Footer } from "@/components/layout/Footer";
-import { TopNav } from "@/components/layout/TopNav";
 
 function App() {
   const [location] = useLocation();
@@ -45,7 +44,6 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="growthlog-theme">
       <PomodoroProvider>
         <div className="min-h-screen bg-background flex flex-col">
-          <TopNav />
           <CommandPalette />
           <FloatingTimer />
           <main className="flex-1">

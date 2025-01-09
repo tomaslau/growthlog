@@ -1,4 +1,3 @@
-
 import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -46,7 +45,7 @@ const features = [
     description: "Stay motivated with gamified progress tracking and unlock achievements as you hit growth milestones.",
     href: "/features/achievements"
   },
-  
+
   {
     icon: Users,
     title: "Team Collaboration",
