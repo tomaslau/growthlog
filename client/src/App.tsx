@@ -14,7 +14,7 @@ import GrowthSprints from "@/pages/features/GrowthSprints";
 import ProgressTracking from "@/pages/features/ProgressTracking";
 import Framework from "@/pages/features/Framework";
 import GrowthIdeas from "@/pages/features/GrowthIdeas";
-import TaskBoard from "@/components/tasks/TaskBoard";
+import Tasks from "@/pages/Tasks";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import { PomodoroProvider } from "@/contexts/PomodoroContext";
 import FloatingTimer from "@/components/pomodoro/FloatingTimer";
@@ -31,7 +31,7 @@ function App() {
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/dashboard" component={Dashboard} />
-              <Route path="/tasks" component={TaskBoard} />
+              <Route path="/tasks" component={Tasks} />
               <Route path="/ideas" component={GrowthIdeas} />
               <Route path="/ideas/:id" component={GrowthIdeaView} />
               <Route path="/profile" component={Profile} />
