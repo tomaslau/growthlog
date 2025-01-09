@@ -97,7 +97,7 @@ export const GrowthCalendar = () => {
         )}
       </CardHeader>
       <CardContent>
-        <TooltipProvider>
+        <TooltipProvider delayDuration={0}>
           <div className="flex text-xs mb-1">
             <div className="w-8" />
             <div className="flex-1 grid grid-cols-[repeat(53,1fr)] gap-[2px]">
