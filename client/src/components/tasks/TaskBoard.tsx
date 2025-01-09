@@ -9,11 +9,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus, CheckCircle2, Clock, Search, ArrowUpDown } from "lucide-react";
+import { Plus, CheckCircle2, Clock, Search, ArrowUpDown, X } from "lucide-react";
 import PomodoroTimer from "./PomodoroTimer";
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useConfetti } from "@/hooks/useConfetti";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import debounce from "lodash/debounce";
 
 // Mock data - will be replaced with API data
 const initialTasks = [
@@ -41,8 +42,13 @@ const initialTasks = [
 ];
 
 type TaskStatus = "today" | "later" | "completed";
-type SortField = "title";
+type SortField = "title" | "source";
 type SortOrder = "asc" | "desc";
+type FilterCriteria = {
+  search: string;
+  status: TaskStatus | "all";
+  source: string | "all";
+};
 
 const columns: { id: TaskStatus; title: string; icon: any }[] = [
   { id: "today", title: "Today", icon: Clock },
@@ -55,8 +61,12 @@ export default function TaskBoard() {
   const [tasks, setTasks] = useState(initialTasks);
   const { fireConfetti } = useConfetti();
 
-  // Filtering state
-  const [searchQuery, setSearchQuery] = useState("");
+  // Advanced filtering state
+  const [filters, setFilters] = useState<FilterCriteria>({
+    search: "",
+    status: "all",
+    source: "all"
+  });
   const [sortField, setSortField] = useState<SortField>("title");
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
 
@@ -107,17 +117,53 @@ export default function TaskBoard() {
     setTasks(updatedTasks);
   };
 
-  const filteredTasks = tasks
-    .filter(task => {
-      const matchesSearch = 
-        task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        task.description.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesSearch;
-    })
-    .sort((a, b) => {
-      const direction = sortOrder === "asc" ? 1 : -1;
-      return a.title.localeCompare(b.title) * direction;
+  // Get unique sources for filter dropdown
+  const sources = useMemo(() => {
+    const uniqueSources = new Set(tasks.map(task => task.sourceIdeaTitle));
+    return Array.from(uniqueSources);
+  }, [tasks]);
+
+  // Debounced search handler
+  const debouncedSearch = useCallback(
+    debounce((value: string) => {
+      setFilters(prev => ({ ...prev, search: value }));
+    }, 300),
+    []
+  );
+
+  // Apply filters and sorting
+  const filteredTasks = useMemo(() => {
+    return tasks
+      .filter(task => {
+        const matchesSearch = 
+          filters.search === "" ||
+          task.title.toLowerCase().includes(filters.search.toLowerCase()) ||
+          task.description.toLowerCase().includes(filters.search.toLowerCase()) ||
+          task.sourceIdeaTitle.toLowerCase().includes(filters.search.toLowerCase());
+
+        const matchesStatus = filters.status === "all" || task.status === filters.status;
+        const matchesSource = filters.source === "all" || task.sourceIdeaTitle === filters.source;
+
+        return matchesSearch && matchesStatus && matchesSource;
+      })
+      .sort((a, b) => {
+        const direction = sortOrder === "asc" ? 1 : -1;
+        if (sortField === "title") {
+          return a.title.localeCompare(b.title) * direction;
+        } else {
+          return a.sourceIdeaTitle.localeCompare(b.sourceIdeaTitle) * direction;
+        }
+      });
+  }, [tasks, filters, sortField, sortOrder]);
+
+  // Reset all filters
+  const resetFilters = () => {
+    setFilters({
+      search: "",
+      status: "all",
+      source: "all"
     });
+  };
 
   return (
     <div className="space-y-6">
@@ -132,39 +178,108 @@ export default function TaskBoard() {
         </Button>
       </div>
 
-      {/* Filter and Sort Controls */}
-      <div className="flex items-center gap-4">
-        <div className="flex-1 flex items-center gap-2 bg-muted/50 px-4 py-2 rounded-lg">
-          <Search className="h-4 w-4 text-muted-foreground" />
-          <Input 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search tasks..." 
-            className="bg-transparent border-none focus-visible:ring-0 px-0"
-          />
+      {/* Smart Search and Filter Controls */}
+      <div className="space-y-4">
+        <div className="flex items-center gap-4">
+          <div className="flex-1 flex items-center gap-2 bg-muted/50 px-4 py-2 rounded-lg">
+            <Search className="h-4 w-4 text-muted-foreground" />
+            <Input 
+              onChange={(e) => debouncedSearch(e.target.value)}
+              placeholder="Search tasks by title, description, or source..." 
+              className="bg-transparent border-none focus-visible:ring-0 px-0"
+            />
+          </div>
+
+          <div className="flex gap-2 items-center">
+            <Select
+              value={filters.source}
+              onValueChange={(value) => setFilters(prev => ({ ...prev, source: value }))}
+            >
+              <SelectTrigger className="w-40">
+                <SelectValue placeholder="Filter by source" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Sources</SelectItem>
+                {sources.map(source => (
+                  <SelectItem key={source} value={source}>{source}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select
+              value={filters.status}
+              onValueChange={(value) => setFilters(prev => ({ ...prev, status: value as TaskStatus | "all" }))}
+            >
+              <SelectTrigger className="w-32">
+                <SelectValue placeholder="Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Status</SelectItem>
+                {columns.map(column => (
+                  <SelectItem key={column.id} value={column.id}>{column.title}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select
+              value={sortField}
+              onValueChange={(value) => setSortField(value as SortField)}
+            >
+              <SelectTrigger className="w-32">
+                <SelectValue placeholder="Sort by" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="title">Title</SelectItem>
+                <SelectItem value="source">Source</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setSortOrder(order => order === "asc" ? "desc" : "asc")}
+            >
+              <ArrowUpDown className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
 
-        <div className="flex gap-2 items-center">
-          <Select
-            value={sortField}
-            onValueChange={(value) => setSortField(value as SortField)}
-          >
-            <SelectTrigger className="w-32">
-              <SelectValue placeholder="Sort by" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="title">Title</SelectItem>
-            </SelectContent>
-          </Select>
-
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => setSortOrder(order => order === "asc" ? "desc" : "asc")}
-          >
-            <ArrowUpDown className="h-4 w-4" />
-          </Button>
-        </div>
+        {/* Active Filters Display */}
+        {(filters.search || filters.status !== "all" || filters.source !== "all") && (
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground">Active filters:</span>
+            {filters.search && (
+              <Badge variant="secondary" className="text-xs">
+                Search: {filters.search}
+                <X 
+                  className="h-3 w-3 ml-1 cursor-pointer" 
+                  onClick={() => setFilters(prev => ({ ...prev, search: "" }))}
+                />
+              </Badge>
+            )}
+            {filters.status !== "all" && (
+              <Badge variant="secondary" className="text-xs">
+                Status: {filters.status}
+                <X 
+                  className="h-3 w-3 ml-1 cursor-pointer" 
+                  onClick={() => setFilters(prev => ({ ...prev, status: "all" }))}
+                />
+              </Badge>
+            )}
+            {filters.source !== "all" && (
+              <Badge variant="secondary" className="text-xs">
+                Source: {filters.source}
+                <X 
+                  className="h-3 w-3 ml-1 cursor-pointer" 
+                  onClick={() => setFilters(prev => ({ ...prev, source: "all" }))}
+                />
+              </Badge>
+            )}
+            <Button variant="ghost" size="sm" onClick={resetFilters} className="h-6 px-2">
+              Reset all
+            </Button>
+          </div>
+        )}
       </div>
 
       {activeTaskId && (

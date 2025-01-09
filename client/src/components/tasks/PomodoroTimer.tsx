@@ -7,7 +7,7 @@ import { usePomodoroTimer } from "@/contexts/PomodoroContext";
 
 interface PomodoroTimerProps {
   onComplete?: () => void;
-  taskId: number;
+  taskId: string;
   taskTitle: string;
 }
 
