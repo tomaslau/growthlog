@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import Home from "@/pages/Home";
 import Dashboard from "@/pages/Dashboard";
 import GrowthIdeaView from "@/pages/GrowthIdeaView";
@@ -21,12 +21,31 @@ import { PomodoroProvider } from "@/contexts/PomodoroContext";
 import FloatingTimer from "@/components/pomodoro/FloatingTimer";
 import { ThemeProvider } from "@/hooks/use-theme.tsx";
 import { Footer } from "@/components/layout/Footer";
+import { TopNav } from "@/components/layout/TopNav";
 
 function App() {
+  const [location] = useLocation();
+
+  // Marketing pages where we don't want to show the in-app footer
+  const marketingRoutes = [
+    "/", 
+    "/features", 
+    "/process", 
+    "/updates", 
+    "/pricing", 
+    "/features/growth-sprints",
+    "/features/progress-tracking", 
+    "/features/framework", 
+    "/features/library",
+    "/features/achievements",
+    "/features/saas-metrics"
+  ];
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="growthlog-theme">
       <PomodoroProvider>
         <div className="min-h-screen bg-background flex flex-col">
+          <TopNav />
           <CommandPalette />
           <FloatingTimer />
           <main className="flex-1">
@@ -51,7 +70,7 @@ function App() {
               <Route path="/features/saas-metrics" component={SaasMetrics} />
             </Switch>
           </main>
-          <Footer />
+          {!marketingRoutes.includes(location) && <Footer />}
         </div>
       </PomodoroProvider>
     </ThemeProvider>
