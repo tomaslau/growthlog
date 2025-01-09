@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -11,42 +11,23 @@ import {
 } from "@/components/ui/select";
 import { Plus, CheckCircle2, Clock, Search, ArrowUpDown, X } from "lucide-react";
 import PomodoroTimer from "./PomodoroTimer";
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { useConfetti } from "@/hooks/useConfetti";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import debounce from "lodash/debounce";
 
-type Priority = "high" | "medium" | "low";
+export type Priority = "high" | "medium" | "low";
+export type TaskStatus = "today" | "later" | "completed";
 
-// Mock data - will be replaced with API data
-const initialTasks = [
-  {
-    id: "1",
-    title: "Research competitor pricing",
-    description: "Analyze top 5 competitors' pricing models",
-    status: "today",
-    sourceIdeaTitle: "Cloneable Templates",
-    priority: "high" as Priority
-  },
-  {
-    id: "2", 
-    title: "Create social media calendar",
-    description: "Plan next week's content",
-    status: "today",
-    sourceIdeaTitle: "SEO Content Strategy",
-    priority: "medium" as Priority
-  },
-  {
-    id: "3",
-    title: "Review analytics dashboard",
-    description: "Check key metrics and create report",
-    status: "later",
-    sourceIdeaTitle: "Product Analytics",
-    priority: "low" as Priority
-  },
-];
+export type Task = {
+  id: string;
+  title: string;
+  description: string;
+  status: TaskStatus;
+  sourceIdeaTitle: string;
+  priority: Priority;
+};
 
-type TaskStatus = "today" | "later" | "completed";
 type SortField = "title" | "source" | "priority";
 type SortOrder = "asc" | "desc";
 type FilterCriteria = {
@@ -62,32 +43,67 @@ const columns: { id: TaskStatus; title: string; icon: any }[] = [
   { id: "completed", title: "Completed", icon: CheckCircle2 },
 ];
 
-const priorities: { value: Priority; label: string; color: string }[] = [
+export const priorities: { value: Priority; label: string; color: string }[] = [
   { value: "high", label: "High Priority", color: "destructive" },
   { value: "medium", label: "Medium Priority", color: "default" },
   { value: "low", label: "Low Priority", color: "secondary" },
 ];
 
+// Mock data - will be replaced with API data
+const initialTasks: Task[] = [
+  {
+    id: "1",
+    title: "Research competitor pricing",
+    description: "Analyze top 5 competitors' pricing models",
+    status: "today",
+    sourceIdeaTitle: "Cloneable Templates",
+    priority: "high"
+  },
+  {
+    id: "2",
+    title: "Create social media calendar",
+    description: "Plan next week's content",
+    status: "today",
+    sourceIdeaTitle: "SEO Content Strategy",
+    priority: "medium"
+  },
+  {
+    id: "3",
+    title: "Review analytics dashboard",
+    description: "Check key metrics and create report",
+    status: "later",
+    sourceIdeaTitle: "Product Analytics",
+    priority: "low"
+  },
+];
+
 export default function TaskBoard() {
   const [activeTaskId, setActiveTaskId] = useState<string | null>(null);
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState<Task[]>(initialTasks);
   const { fireConfetti } = useConfetti();
 
-  // Advanced filtering state
-  const [filters, setFilters] = useState<FilterCriteria>({
-    search: "",
-    status: "all",
-    source: "all",
-    priority: "all"
-  });
-  const [sortField, setSortField] = useState<SortField>("priority");
-  const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
+  // Function to add a new task
+  const handleAddTask = useCallback((taskData: Omit<Task, 'id'>) => {
+    const newTask: Task = {
+      ...taskData,
+      id: Math.random().toString(36).substr(2, 9),
+    };
+    setTasks(prev => [...prev, newTask]);
+  }, []);
+
+  // Make handleAddTask available globally for the CommandPalette
+  useEffect(() => {
+    (window as any).addTask = handleAddTask;
+    return () => {
+      (window as any).addTask = undefined;
+    };
+  }, [handleAddTask]);
 
   const handleCompleteTask = (taskId: string) => {
-    setTasks(prev => 
-      prev.map(task => 
-        task.id === taskId 
-          ? { ...task, status: "completed" as TaskStatus }
+    setTasks(prev =>
+      prev.map(task =>
+        task.id === taskId
+          ? { ...task, status: "completed" }
           : task
       )
     );
@@ -144,11 +160,21 @@ export default function TaskBoard() {
     []
   );
 
+  // Advanced filtering state
+  const [filters, setFilters] = useState<FilterCriteria>({
+    search: "",
+    status: "all",
+    source: "all",
+    priority: "all"
+  });
+  const [sortField, setSortField] = useState<SortField>("priority");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
+
   // Apply filters and sorting
   const filteredTasks = useMemo(() => {
     return tasks
       .filter(task => {
-        const matchesSearch = 
+        const matchesSearch =
           filters.search === "" ||
           task.title.toLowerCase().includes(filters.search.toLowerCase()) ||
           task.description.toLowerCase().includes(filters.search.toLowerCase()) ||
@@ -205,7 +231,16 @@ export default function TaskBoard() {
           <h1 className="text-2xl font-bold mb-1">Task Board</h1>
           <p className="text-muted-foreground">Organize and track your growth tasks</p>
         </div>
-        <Button>
+        <Button onClick={() => {
+          // Trigger the keyboard shortcut for command palette
+          const event = new KeyboardEvent('keydown', {
+            key: 'k',
+            ctrlKey: true,
+            metaKey: navigator.platform.toLowerCase().includes('mac'),
+            bubbles: true
+          });
+          document.dispatchEvent(event);
+        }}>
           <Plus className="h-4 w-4 mr-2" />
           Add Task
         </Button>
@@ -216,9 +251,9 @@ export default function TaskBoard() {
         <div className="flex items-center gap-4">
           <div className="flex-1 flex items-center gap-2 bg-muted/50 px-4 py-2 rounded-lg">
             <Search className="h-4 w-4 text-muted-foreground" />
-            <Input 
+            <Input
               onChange={(e) => debouncedSearch(e.target.value)}
-              placeholder="Search tasks by title, description, or source..." 
+              placeholder="Search tasks by title, description, or source..."
               className="bg-transparent border-none focus-visible:ring-0 px-0"
             />
           </div>
@@ -302,8 +337,8 @@ export default function TaskBoard() {
             {filters.search && (
               <Badge variant="secondary" className="text-xs">
                 Search: {filters.search}
-                <X 
-                  className="h-3 w-3 ml-1 cursor-pointer" 
+                <X
+                  className="h-3 w-3 ml-1 cursor-pointer"
                   onClick={() => setFilters(prev => ({ ...prev, search: "" }))}
                 />
               </Badge>
@@ -311,8 +346,8 @@ export default function TaskBoard() {
             {filters.status !== "all" && (
               <Badge variant="secondary" className="text-xs">
                 Status: {filters.status}
-                <X 
-                  className="h-3 w-3 ml-1 cursor-pointer" 
+                <X
+                  className="h-3 w-3 ml-1 cursor-pointer"
                   onClick={() => setFilters(prev => ({ ...prev, status: "all" }))}
                 />
               </Badge>
@@ -320,8 +355,8 @@ export default function TaskBoard() {
             {filters.source !== "all" && (
               <Badge variant="secondary" className="text-xs">
                 Source: {filters.source}
-                <X 
-                  className="h-3 w-3 ml-1 cursor-pointer" 
+                <X
+                  className="h-3 w-3 ml-1 cursor-pointer"
                   onClick={() => setFilters(prev => ({ ...prev, source: "all" }))}
                 />
               </Badge>
@@ -329,8 +364,8 @@ export default function TaskBoard() {
             {filters.priority !== "all" && (
               <Badge variant="secondary" className="text-xs">
                 Priority: {filters.priority}
-                <X 
-                  className="h-3 w-3 ml-1 cursor-pointer" 
+                <X
+                  className="h-3 w-3 ml-1 cursor-pointer"
                   onClick={() => setFilters(prev => ({ ...prev, priority: "all" }))}
                 />
               </Badge>
@@ -344,7 +379,7 @@ export default function TaskBoard() {
 
       {activeTaskId && (
         <div className="max-w-sm mx-auto">
-          <PomodoroTimer 
+          <PomodoroTimer
             taskId={activeTaskId}
             taskTitle={tasks.find(t => t.id === activeTaskId)?.title || "Task"}
             taskDescription={tasks.find(t => t.id === activeTaskId)?.description}
@@ -417,8 +452,8 @@ export default function TaskBoard() {
                                   <div className="flex items-center gap-2 mt-3">
                                     <Badge variant={
                                       task.priority === "high" ? "destructive" :
-                                      task.priority === "medium" ? "default" :
-                                      "secondary"
+                                        task.priority === "medium" ? "default" :
+                                          "secondary"
                                     } className="text-xs">
                                       {task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}
                                     </Badge>
