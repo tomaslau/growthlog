@@ -16,7 +16,6 @@ import { LogOut, User, Settings } from "lucide-react";
 const navigationItems = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/tasks", label: "Tasks" },
-  { href: "/metrics", label: "Metrics" },
   { href: "/ideas", label: "Growth Ideas" },
 ];
 

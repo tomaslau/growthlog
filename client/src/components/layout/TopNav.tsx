@@ -19,7 +19,6 @@ const navItems = [
   { icon: Lightbulb, label: "Growth Ideas", href: "/ideas" },
   { icon: Trophy, label: "Achievements", href: "/achievements" },
   { icon: BookOpen, label: "Process", href: "/process" },
-  { icon: BarChart, label: "SaaS Metrics", href: "/metrics" },
 ];
 
 export function TopNav() {
