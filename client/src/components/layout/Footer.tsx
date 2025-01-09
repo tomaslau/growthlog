@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { cn } from "@/lib/utils";
+import { Github, Twitter, Linkedin } from "lucide-react";
 
 interface FooterProps {
   className?: string;
@@ -30,6 +31,33 @@ export function Footer({ className }: FooterProps) {
             <Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link>
             <Link href="/help" className="hover:text-foreground transition-colors">Help</Link>
           </nav>
+          <div className="h-4 w-px bg-border"></div>
+          <div className="flex items-center gap-3">
+            <a 
+              href="https://twitter.com/growthlog" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Twitter className="h-4 w-4" />
+            </a>
+            <a 
+              href="https://github.com/growthlog" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Github className="h-4 w-4" />
+            </a>
+            <a 
+              href="https://linkedin.com/company/growthlog" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Linkedin className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
