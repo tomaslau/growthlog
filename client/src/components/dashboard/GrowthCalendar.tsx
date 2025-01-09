@@ -93,6 +93,11 @@ export const GrowthCalendar = () => {
     <Card>
       <CardHeader className="pb-2">
         <CardTitle className="text-base font-semibold">Growthlog</CardTitle>
+        {!tasksData?.tasks && (
+          <p className="text-sm text-muted-foreground">
+            Demo data shown. Connect Google Sheets to track your actual growth journey.
+          </p>
+        )}
       </CardHeader>
       <CardContent>
         <TooltipProvider>
