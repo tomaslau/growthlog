@@ -95,38 +95,38 @@ export const GrowthCalendar = () => {
         <CardTitle className="text-base font-semibold">Growthlog</CardTitle>
       </CardHeader>
       <CardContent>
-        {/* Months row */}
-        <div className="flex text-xs mb-1">
-          <div className="w-8" /> {/* Spacer for day labels */}
-          <div className="flex-1 grid grid-cols-[repeat(53,1fr)] gap-[2px]">
-            {months.map((month, i) => (
-              <div
-                key={month}
-                className="text-xs text-muted-foreground"
-                style={{
-                  gridColumn: Math.floor((i * 53) / 12) + 1
-                }}
-              >
-                {month}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Calendar grid */}
-        <div className="flex">
-          {/* Day labels */}
-          <div className="w-8 text-xs text-muted-foreground">
-            {days.map(day => (
-              <div key={day} className="h-[10px] mb-[2px] text-right pr-2">
-                {day}
-              </div>
-            ))}
+        <TooltipProvider>
+          {/* Months row */}
+          <div className="flex text-xs mb-1">
+            <div className="w-8" /> {/* Spacer for day labels */}
+            <div className="flex-1 grid grid-cols-[repeat(53,1fr)] gap-[2px]">
+              {months.map((month, i) => (
+                <div
+                  key={month}
+                  className="text-xs text-muted-foreground"
+                  style={{
+                    gridColumn: Math.floor((i * 53) / 12) + 1
+                  }}
+                >
+                  {month}
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Activity squares */}
-          <div className="flex-1">
-            <TooltipProvider>
+          {/* Calendar grid */}
+          <div className="flex">
+            {/* Day labels */}
+            <div className="w-8 text-xs text-muted-foreground">
+              {days.map(day => (
+                <div key={day} className="h-[10px] mb-[2px] text-right pr-2">
+                  {day}
+                </div>
+              ))}
+            </div>
+
+            {/* Activity squares */}
+            <div className="flex-1">
               <div className="grid grid-cols-[repeat(53,1fr)] gap-[2px]">
                 {dates.map((date, i) => {
                   const level = getActivityLevel(date);
@@ -164,25 +164,25 @@ export const GrowthCalendar = () => {
                   );
                 })}
               </div>
-            </TooltipProvider>
+            </div>
           </div>
-        </div>
 
-        {/* Activity level legend */}
-        <div className="flex items-center gap-2 mt-3 text-xs text-muted-foreground">
-          <span>Less</span>
-          {[0, 1, 2, 3, 4].map(level => (
-            <div
-              key={level}
-              className="h-[10px] w-[10px] rounded-[2px]"
-              style={{
-                backgroundColor: level === 0 ? 'var(--muted)' : 'var(--primary)',
-                opacity: level === 0 ? 0.35 : (0.4 + (level * 0.15))
-              }}
-            />
-          ))}
-          <span>More</span>
-        </div>
+          {/* Activity level legend */}
+          <div className="flex items-center gap-2 mt-3 text-xs text-muted-foreground">
+            <span>Less</span>
+            {[0, 1, 2, 3, 4].map(level => (
+              <div
+                key={level}
+                className="h-[10px] w-[10px] rounded-[2px]"
+                style={{
+                  backgroundColor: level === 0 ? 'var(--muted)' : 'var(--primary)',
+                  opacity: level === 0 ? 0.35 : (0.4 + (level * 0.15))
+                }}
+              />
+            ))}
+            <span>More</span>
+          </div>
+        </TooltipProvider>
       </CardContent>
     </Card>
   );
