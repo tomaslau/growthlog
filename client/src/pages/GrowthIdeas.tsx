@@ -35,8 +35,10 @@ export default function GrowthIdeas() {
   const [sortField, setSortField] = useState<keyof GrowthIdea>("title");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
-  const { data: ideas = [], isLoading, error } = useQuery<GrowthIdea[]>({
+  import { growthIdeas } from '@/data/growthIdeas';
+const { data: ideas = growthIdeas, isLoading, error } = useQuery<GrowthIdea[]>({
     queryKey: ["/api/growth-ideas"],
+    initialData: growthIdeas
   });
 
   const filteredIdeas = ideas
