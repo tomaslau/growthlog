@@ -7,7 +7,6 @@ import { ArrowLeft, Calendar, Target, TrendingUp, CheckSquare, Book, Link as Lin
 import { growthIdeas, GrowthIdea, getGrowthIdea } from "@/data/growthIdeas";
 import { usePomodoroTimer } from "@/contexts/PomodoroContext";
 import { AppTopNav } from "@/components/layout/AppTopNav";
-import { Footer } from "@/components/layout/Footer";
 
 export default function GrowthIdeaView() {
   const { id } = useParams();
@@ -61,8 +60,8 @@ export default function GrowthIdeaView() {
 
         {/* Title Section */}
         <div className="space-y-4">
-          <h1 className="text-3xl font-semibold tracking-tight">{idea.title}</h1>
-          <p className="text-lg text-muted-foreground">{idea.description}</p>
+          <h1 className="text-2xl font-semibold tracking-tight">{idea.title}</h1>
+          <p className="text-sm text-muted-foreground">{idea.description}</p>
         </div>
 
         {/* Quick Stats */}
@@ -117,7 +116,7 @@ export default function GrowthIdeaView() {
         {/* Implementation Overview */}
         <Card>
           <CardContent className="pt-6">
-            <h3 className="text-lg font-semibold mb-4">Implementation Overview</h3>
+            <h3 className="text-base font-semibold mb-4">Implementation Overview</h3>
             <p className="text-muted-foreground">
               This growth initiative focuses on {idea.description.toLowerCase()} through a series of 
               focused tasks. Each task is designed to take 25 minutes, following the Pomodoro technique.
@@ -198,7 +197,6 @@ export default function GrowthIdeaView() {
           </Card>
         )}
       </div>
-      <Footer />
     </div>
   );
 }
