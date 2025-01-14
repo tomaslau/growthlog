@@ -3,13 +3,14 @@ import { useParams, Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Calendar, Target, TrendingUp, CheckSquare, Book, Link as LinkIcon, Lightbulb, Clock } from "lucide-react";
+import { ArrowLeft, Calendar, Target, TrendingUp, CheckSquare, Book, Link as LinkIcon, Clock, Play } from "lucide-react";
 import { growthIdeas, GrowthIdea, getGrowthIdea } from "@/data/growthIdeas";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { usePomodoroTimer } from "@/contexts/PomodoroContext";
 
 export default function GrowthIdeaView() {
   const { id } = useParams();
   const idea = id ? getGrowthIdea(id) : undefined;
+  const { setActiveTimer } = usePomodoroTimer();
 
   if (!idea) {
     return (
@@ -26,8 +27,17 @@ export default function GrowthIdeaView() {
 
   const totalTime = idea.tasks.reduce((acc, task) => acc + task.duration, 0);
 
+  const startTimer = (task: GrowthIdea['tasks'][0]) => {
+    setActiveTimer({
+      taskId: `${idea.id}-${task.title}`,
+      taskTitle: task.title,
+      timeLeft: task.duration * 60,
+      isRunning: true
+    });
+  };
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
+    <div className="max-w-4xl mx-auto px-4 py-8 space-y-8">
       {/* Header Navigation */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -38,13 +48,6 @@ export default function GrowthIdeaView() {
             </Button>
           </Link>
           <Badge variant="outline">{idea.category}</Badge>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline">Save for Later</Button>
-          <Button>
-            <CheckSquare className="h-4 w-4 mr-2" />
-            Start Growth Sprint
-          </Button>
         </div>
       </div>
 
@@ -103,94 +106,89 @@ export default function GrowthIdeaView() {
         </Card>
       </div>
 
-      {/* Main Content Tabs */}
-      <Tabs defaultValue="overview" className="space-y-4">
-        <TabsList>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="tasks">Tasks</TabsTrigger>
-          <TabsTrigger value="metrics">Metrics</TabsTrigger>
-          <TabsTrigger value="resources">Resources</TabsTrigger>
-        </TabsList>
+      {/* Implementation Overview */}
+      <Card>
+        <CardContent className="pt-6">
+          <h3 className="text-lg font-semibold mb-4">Implementation Overview</h3>
+          <p className="text-muted-foreground">
+            This growth initiative focuses on {idea.description.toLowerCase()} through a series of 
+            focused tasks. Each task is designed to take 25 minutes, following the Pomodoro technique.
+          </p>
+        </CardContent>
+      </Card>
 
-        <TabsContent value="overview" className="space-y-4">
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="text-lg font-semibold mb-4">Implementation Overview</h3>
-              <p className="text-muted-foreground">
-                This growth initiative focuses on {idea.description.toLowerCase()} through a series of 
-                focused tasks. Each task is designed to take 25 minutes, following the Pomodoro technique.
-              </p>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="tasks">
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="text-lg font-semibold mb-4">Implementation Steps</h3>
-              <div className="space-y-6">
-                {idea.tasks.map((task, index) => (
-                  <div key={index} className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      {index + 1}
-                    </div>
-                    <div className="space-y-2">
-                      <h4 className="font-medium">{task.title}</h4>
-                      <p className="text-sm text-muted-foreground">{task.description}</p>
-                      <div className="flex gap-2">
-                        <Badge variant="secondary">{task.duration} min</Badge>
-                        <Badge variant="outline">1 pomodoro</Badge>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="metrics">
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="text-lg font-semibold mb-4">Key Metrics to Track</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {idea.metrics.map((metric, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <TrendingUp className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <p className="font-medium">{metric}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="resources">
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="text-lg font-semibold mb-4">Additional Resources</h3>
-              <div className="space-y-4">
-                {idea.source && (
+      {/* Implementation Steps */}
+      <Card>
+        <CardContent className="pt-6">
+          <h3 className="text-lg font-semibold mb-4">Implementation Steps</h3>
+          <div className="space-y-6">
+            {idea.tasks.map((task, index) => (
+              <div key={index} className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  {index + 1}
+                </div>
+                <div className="space-y-2 flex-1">
+                  <h4 className="font-medium">{task.title}</h4>
+                  <p className="text-sm text-muted-foreground">{task.description}</p>
                   <div className="flex items-center gap-2">
-                    <LinkIcon className="h-4 w-4 text-muted-foreground" />
-                    <a href={idea.source} target="_blank" rel="noopener noreferrer" 
-                       className="text-primary hover:underline">
-                      Original Source
-                    </a>
+                    <Badge variant="secondary">{task.duration} min</Badge>
+                    <Badge variant="outline">1 pomodoro</Badge>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => startTimer(task)}
+                      className="ml-auto"
+                    >
+                      <Play className="h-4 w-4 mr-2" />
+                      Start Timer
+                    </Button>
                   </div>
-                )}
-                <p className="text-sm text-muted-foreground">
-                  Last updated: {new Date(idea.lastUpdated).toLocaleDateString()}
-                </p>
+                </div>
               </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Key Metrics */}
+      <Card>
+        <CardContent className="pt-6">
+          <h3 className="text-lg font-semibold mb-4">Key Metrics to Track</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {idea.metrics.map((metric, index) => (
+              <div key={index} className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  <TrendingUp className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="font-medium">{metric}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Additional Resources */}
+      {idea.source && (
+        <Card>
+          <CardContent className="pt-6">
+            <h3 className="text-lg font-semibold mb-4">Additional Resources</h3>
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <LinkIcon className="h-4 w-4 text-muted-foreground" />
+                <a href={idea.source} target="_blank" rel="noopener noreferrer" 
+                   className="text-primary hover:underline">
+                  Original Source
+                </a>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Last updated: {new Date(idea.lastUpdated).toLocaleDateString()}
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }
