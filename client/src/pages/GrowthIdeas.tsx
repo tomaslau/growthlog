@@ -12,7 +12,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { useLocation } from "wouter";
-import { growthIdeas } from '@/data/growthIdeas';
+import { growthIdeas, GrowthIdea } from '@/data/growthIdeas';
 import { useQuery } from "@tanstack/react-query";
 import { TopNav } from "@/components/layout/TopNav";
 
@@ -36,9 +36,9 @@ export default function GrowthIdeas() {
   const [sortField, setSortField] = useState<keyof GrowthIdea>("title");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
-  const { data: ideas = [], isLoading, error } = useQuery<GrowthIdea[]>({
+  const { data: ideas = growthIdeas, isLoading } = useQuery<GrowthIdea[]>({
     queryKey: ["/api/growth-ideas"],
-    initialData: []
+    initialData: growthIdeas
   });
 
   const filteredIdeas = ideas

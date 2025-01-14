@@ -18,6 +18,65 @@ export type GrowthIdea = {
 
 export const growthIdeas: GrowthIdea[] = [
   {
+    id: "saas-instagram-growth",
+    title: "SaaS Instagram Organic Growth Strategy",
+    description: "Launch organic growth initiatives on Instagram for SaaS decision makers",
+    category: "Acquisition",
+    difficulty: "Medium",
+    impact: "High",
+    tasks: [
+      {
+        title: "Define content strategy",
+        description: "Create content calendar and themes for organic posting",
+        duration: 25
+      },
+      {
+        title: "Set up Instagram business profile",
+        description: "Optimize profile for business outreach",
+        duration: 25
+      },
+      {
+        title: "Create engagement plan",
+        description: "Define hashtag strategy and engagement tactics",
+        duration: 25
+      }
+    ],
+    metrics: [
+      "Follower Growth Rate",
+      "Engagement Rate",
+      "Profile Visits",
+      "Website Clicks"
+    ],
+    lastUpdated: "2024-01-16"
+  },
+  {
+    id: "newsletter-growth",
+    title: "SaaS Newsletter Growth Strategy",
+    description: "Implement newsletter growth tactics to increase subscriber base",
+    category: "Acquisition",
+    difficulty: "Easy",
+    impact: "Medium",
+    tasks: [
+      {
+        title: "Design opt-in strategy",
+        description: "Create compelling opt-in offers and placement strategy",
+        duration: 25
+      },
+      {
+        title: "Set up email automation",
+        description: "Configure welcome sequence and tracking",
+        duration: 25
+      }
+    ],
+    metrics: [
+      "Opt-in Rate",
+      "Subscriber Growth Rate",
+      "Email Open Rate",
+      "Click-through Rate"
+    ],
+    lastUpdated: "2024-01-16"
+  },
+  {
     id: "cold-email-campaign",
     title: "Cold Email Campaign",
     description: "Launch targeted cold email campaign for SaaS decision makers",
