@@ -112,13 +112,12 @@ export default function GrowthIdeaView() {
           </Card>
         </div>
 
-        {/* Implementation Overview */}
+        {/* Growth Idea Summary */}
         <Card>
           <CardContent className="pt-6">
-            <h3 className="text-base font-semibold mb-4">Implementation Overview</h3>
+            <h3 className="text-base font-semibold mb-4">Growth Idea Summary</h3>
             <p className="text-muted-foreground">
-              This growth initiative focuses on {idea.description.toLowerCase()} through a series of 
-              focused tasks. Each task is designed to take 25 minutes, following the Pomodoro technique.
+              {idea.description}
             </p>
           </CardContent>
         </Card>
