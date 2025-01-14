@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp, foreignKey, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, foreignKey } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { sql } from "drizzle-orm";
 
@@ -41,26 +41,16 @@ export const dashboardComponents = pgTable("dashboard_components", {
   updatedAt: timestamp("updated_at").default(sql`NOW()`).notNull(),
 });
 
-// Enhanced growth ideas table with additional fields
+// Simplified growth ideas focused on SaaS
 export const growthIdeas = pgTable("growth_ideas", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   description: text("description").notNull(),
-  category: text("category").notNull(), // e.g., "SaaS", "eCommerce", "B2B"
-  subCategory: text("sub_category").notNull(), // e.g., "Acquisition", "Activation", "Retention"
-  strategyType: text("strategy_type").notNull(), // e.g., "Organic", "Paid", "Email"
-  platform: text("platform"), // e.g., "Instagram", "LinkedIn", "TikTok"
+  category: text("category").notNull(), // e.g., "Acquisition", "Activation", "Retention"
   difficulty: text("difficulty").notNull(),
   impact: text("impact").notNull(),
-  status: text("status").default('draft').notNull(), // "draft", "published", "archived"
-  tags: text("tags").array(), // Array of tags for filtering
-  sourceUrl: text("source_url"), // Reference URL
   icon: text("icon").notNull(),
-  sheetsLastSync: timestamp("sheets_last_sync"), // Track last sync with Google Sheets
-  sheetsRowId: integer("sheets_row_id"), // Row ID in Google Sheets for sync
-  userId: integer("user_id").references(() => users.id).notNull(),
   createdAt: timestamp("created_at").default(sql`NOW()`).notNull(),
-  updatedAt: timestamp("updated_at").default(sql`NOW()`).notNull(),
 });
 
 // Pomodoro-sized tasks
